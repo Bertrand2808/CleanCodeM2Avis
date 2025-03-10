@@ -1,4 +1,4 @@
-package fr.esgi.br.app.avis;
+package fr.esgi.avis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
