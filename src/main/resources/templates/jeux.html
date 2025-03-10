@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeux</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta http-equiv="cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+</head>
+<body>
+<div th:replace="entete"></div>
+<h1>Liste des jeux</h1>
+
+<table width="100%">
+    <thead>
+    <tr>
+        <td>Image</td>
+        <td>Nom <a th:href="@{jeux?sort=nom}">trier</a></td>
+        <td>Genre <a th:href="@{jeux?sort=genre.nom}">trier</a></td>
+        <td>Plateforme</td>
+        <td>Date de sortie <a th:href="@{jeux?sort=dateDeSortie,DESC}">trier</a></td>
+        <td>Editeur <a th:href="@{jeux?sort=editeur.nom}">trier</a></td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="jeu, stat:${pageDeJeux.content}">
+        <td><img th:src="@{'/images/' + ${jeu.id} + '.jpg'}" width="80px"></td>
+        <td th:text="${jeu.nom}"></td>
+        <td th:text="${jeu.genre}"></td>
+        <td><ul th:each="plateforme:${jeu.plateformes}"><li th:text="${plateforme.nom}"></li></ul></td>
+        <td th:text="${jeu.dateDeSortie}"></td>
+        <td th:text="${jeu.editeur}"></td>
+        <td><a th:href="@{'televersement?ID=' + ${jeu.id}}">Ajouter une image</a></td>
+    </tbody>
+</table>
+<p>Page <span th:text="${pageDeJeux.number+1}"></span> sur <span th:text="${pageDeJeux.totalPages}"></span></p>
+
+<span th:text="${'Jeux de ' +  (pageDeJeux.totalElements == 0 ? 0 : pageDeJeux.size * pageDeJeux.number+1) + ' à ' + (pageDeJeux.numberOfElements + (pageDeJeux.size * pageDeJeux.number)) + ' sur ' + (pageDeJeux.totalElements)}"></span>
+
+<span th:if="${!pageDeJeux.first}">
+		<a th:href="@{jeux?page=0}">&#x23EE;</a>
+    	<a th:href="@{'jeux?page=' + ${pageDeJeux.number-1 }}">&#x23EA;</a>
+	</span>
+
+<span th:if="${!pageDeJeux.last}">
+<a th:href="@{'jeux?page=' + ${pageDeJeux.number+1 } + '&sort=' + ${sort}}">&#x23E9;</a>
+    	<a th:href="@{'jeux?page=' + ${pageDeJeux.totalPages-1 }}">&#x23ED;</a>
+    </span>
+
+<div></div>
+<div></div>
+
+<span th:if="${!pageDeJeux.first}">
+		<a th:href="@{'jeux?page=0' + '&sort=' + ${sort}}">Première page</a>
+    	<a th:href="@{'jeux?page=' + ${pageDeJeux.number-1 } + '&sort=' + ${sort}}">Page précédente</a>
+	</span>
+
+<span th:if="${!pageDeJeux.last}">
+    	<a th:href="@{'jeux?page=' + ${pageDeJeux.number+1 } + '&sort=' + ${sort}}">Page suivante</a>
+    	<a th:href="@{'jeux?page=' + ${pageDeJeux.totalPages-1 } + '&sort=' + ${sort}}">Dernière page</a>
+    </span>
+<br>
+<span>Page générée en </span><span th:text="${tempsDeTraitementEnMs}"></span><span> ms</span>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Statistiques</title>
+</head>
+<body>
+<div th:replace="~{entete}"></div>
+<h1>Statistiques</h1>
+<div>Date et heure : <span th:text="${currentTime}"></span></div>
+<div><span>Nb de sessions ouvertes : </span><span th:text="${stats.sessionOpenCount}"></span></div>
+<div><span>Nb de sessions fermées : </span><span th:text="${stats.sessionCloseCount}"></span><div>
+<div><span>Nb de flush : </span><span th:text="${stats.flushCount}"></span></div>
+<div><span>Nb de connexions obtenues : </span><span th:text="${stats.connectCount}"></span></div>
+<div><span>Nb de requêtes préparées envoyées : </span><span th:text="${stats.prepareStatementCount}"></span></div>
+    <br>
+<div><span>Nb d'accès au cache de 2nd niveau : </span><span th:text="${stats.secondLevelCacheHitCount}"/></div>
+    <div><span>Nb de misses au cache de 2nd niveau : </span><span th:text="${stats.secondLevelCacheMissCount}"/></div>
+    <div><span>Nb de puts au cache de 2nd niveau : </span><span th:text="${stats.secondLevelCachePutCount}"/></div>
+    <div>Activision présent dans le cache de 2nd niveau : <span th:text="${cachedData}"/></div></di>
+    <br>
+    <h2>Cache de requêtes</h2>
+    <div>Hits : <span th:text="${stats.queryCacheHitCount}"/></div>
+    <div>Misses : <span th:text="${stats.queryCacheMissCount}"/></div>
+    <div>Puts : <span th:text="${stats.queryCachePutCount}"/></div>
+    <br>
+    <h2>Collections</h2>
+    <div>Fetches : <span th:text="${stats.collectionFetchCount}"/></div>
+    <div>Loads : <span th:text="${stats.collectionLoadCount}"/></div>
+    <div>Updates : <span th:text="${stats.collectionUpdateCount}"/></div>
+    <div>Recreates : <span th:text="${stats.collectionRecreateCount}"/></div>
+    <div>Removes : <span th:text="${stats.collectionRemoveCount}"/></div>
+    <br>
+    <h2>Opérations sur les Entités</h2>
+    <div>Fetches : <span th:text="${stats.entityFetchCount}"/></div>
+    <div>Loads : <span th:text="${stats.entityLoadCount}"/></div>
+    <div>Inserts : <span th:text="${stats.entityInsertCount}"/></div>
+    <div>Updates : <span th:text="${stats.entityUpdateCount}"/></div>
+    <div>Deletes : <span th:text="${stats.entityDeleteCount}"/></div>
+    <br>
+    <h2>Entités</h2>
+    <table>
+        <tr>
+            <td>Entité</td>
+            <td>Fetches</td>
+            <td>Loads</td>
+            <td>Inserts</td>
+            <td>Updates</td>
+            <td>Deletes</td>
+            <td>Optimistic Failures</td>
+        </tr>
+    <tr th:each="entityName:${entityNames}">
+        <td th:text="${entityName}"></td>
+        <td th:text="${stats.getEntityStatistics(entityName).fetchCount}"></td>
+        <td th:text="${stats.getEntityStatistics(entityName).loadCount}"></td>
+        <td th:text="${stats.getEntityStatistics(entityName).insertCount}"></td>
+        <td th:text="${stats.getEntityStatistics(entityName).updateCount}"></td>
+        <td th:text="${stats.getEntityStatistics(entityName).deleteCount}"></td>
+        <td th:text="${stats.getEntityStatistics(entityName).optimisticFailureCount}"></td>
+    </tr>
+    </table>
+    <br>
+    <h2>Requêtes</h2>
+    <div>Nb de requêtes exécutées : <span th:text="${stats.queryExecutionCount}"/></div>
+<table>
+    <tr>
+        <td>Requête</td>
+        <td>Nombre d'exécutions</td>
+        <td>Temps moyen d'exécution</td>
+        <td>Temps min</td>
+        <td>Temps max</td>
+        <td>Cache hit count</td>
+        <td>Row count</td>
+    </tr>
+    <tr th:each="query:${queries}">
+        <td th:text="${query}"></td>
+        <td th:text="${stats.getQueryStatistics(query).executionCount}"></td>
+        <td th:text="${stats.getQueryStatistics(query).executionAvgTime}"></td>
+        <td th:text="${(stats.getQueryStatistics(query).executionMinTime<1000000000)?stats.getQueryStatistics(query).executionMinTime:'indéfini'}"></td>
+        <td th:text="${stats.getQueryStatistics(query).executionMaxTime}"></td>
+        <td th:text="${stats.getQueryStatistics(query).cacheHitCount}"></td>
+        <td th:text="${stats.getQueryStatistics(query).getExecutionRowCount()}"></td>
+        <td></td>
+    </tr>
+</table>
+</body>
+</html>
