@@ -1,4 +1,4 @@
-package fr.esgi.avis.domain.Avatar;
+package fr.esgi.avis.domain.Avatar.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,11 @@ public class Avatar {
 
     @NonNull
     private String nom;
+
+    public Avatar(Long id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
 
     //private Joueur joueur;
 }

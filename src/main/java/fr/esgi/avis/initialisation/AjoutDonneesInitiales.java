@@ -1,23 +1,17 @@
-/*
-package fr.esgi.fx.avis.initialisation;
+package fr.esgi.avis.initialisation;
 
 import com.github.javafaker.Faker;
-import fr.esgi.fx.avis.business.*;
-import fr.esgi.fx.avis.repository.*;
+import fr.esgi.avis.domain.Avatar.model.Avatar;
+import fr.esgi.avis.domain.Avatar.AvatarRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 @Component
@@ -26,14 +20,14 @@ import java.util.*;
 @Transactional(readOnly = true)
 public class AjoutDonneesInitiales {
 
-    private EditeurRepository editeurRepository;
-    private ClassificationRepository classificationRepository;
-    private GenreRepository genreRepository;
-    private PlateformeRepository plateformeRepository;
-    private JeuRepository jeuRepository;
-    private JoueurRepository joueurRepository;
-    private ModerateurRepository moderateurRepository;
-    private AvisRepository avisRepository;
+    //private EditeurRepository editeurRepository;
+    //private ClassificationRepository classificationRepository;
+    //private GenreRepository genreRepository;
+    //private PlateformeRepository plateformeRepository;
+    //private JeuRepository jeuRepository;
+    //private JoueurRepository joueurRepository;
+    //private ModerateurRepository moderateurRepository;
+    //private AvisRepository avisRepository;
     private AvatarRepository avatarRepository;
     @PersistenceContext
     private EntityManager entityManager;
@@ -46,15 +40,15 @@ public class AjoutDonneesInitiales {
     @Transactional
     // public void run(String... args) throws Exception {
     public void init() {
-        ajouterEditeurs();
-        ajouterClassifications();
-        ajouterGenres();
-        ajouterPlateformes();
-        ajouterJeux();
+        //ajouterEditeurs();
+        //ajouterClassifications();
+        //ajouterGenres();
+        //ajouterPlateformes();
+        //ajouterJeux();
         ajouterAvatars();
-        ajouterJoueurs(100);
-        ajouterModerateur();
-        ajouterAvis(200);
+        //ajouterJoueurs(100);
+        //ajouterModerateur();
+        //ajouterAvis(200);
         //afficherStatistiques();
     }
 
@@ -63,7 +57,7 @@ public class AjoutDonneesInitiales {
         avatarRepository.save(new Avatar("Avatar 2"));
     }
 
-    private void ajouterAvis(int nbAvisAAjouter) {
+    /*private void ajouterAvis(int nbAvisAAjouter) {
         if (avisRepository.count() == 0) {
             Random random = new Random();
             List<Joueur> joueurs = joueurRepository.findAll();
@@ -75,9 +69,9 @@ public class AjoutDonneesInitiales {
                 avisRepository.save(avis);
             }
         }
-    }
+    }*/
 
-    private void ajouterJoueurs(int nbJoueursAAjouter) {
+    /*private void ajouterJoueurs(int nbJoueursAAjouter) {
         if (joueurRepository.count() == 0) {
             Random random = new Random();
             Calendar calendar = Calendar.getInstance();
@@ -96,13 +90,11 @@ public class AjoutDonneesInitiales {
                 String prenom = faker.name().firstName();
                 String email = prenom + "." + faker.name().lastName().replaceAll(" ", "") + "@soprasteria.com";
 
-                */
-/*
                  * Sans Builder : Joueur joueur = new Joueur(); joueur.setPseudo(prenom +
                  * String.valueOf(random.nextInt(999) + 1000)); joueur.setEmail(email);
                  * joueur.setMotDePasse(String.valueOf(random.nextInt(99999999) + 10000000));
                  * joueur.setDateDeNaissance(dateDeNaissance);
-                 *//*
+
 
 
                 Joueur joueur = Joueur.builder().pseudo(prenom + String.valueOf(random.nextInt(999) + 1000))
@@ -325,7 +317,6 @@ public class AjoutDonneesInitiales {
             editeurRepository.save(new Editeur("Valve"));
             editeurRepository.save(new Editeur("Wildcard"));
         }
-    }
+    }*/
 
 }
-*/
