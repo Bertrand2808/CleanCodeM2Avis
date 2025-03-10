@@ -1,0 +1,99 @@
+# 📌 Projet : Avis
+
+## 🏗️ Architecture du projet
+
+Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les principes du **Clean Code** et de la **Clean Architecture**.
+
+```
+📂 src/main/java/fr/esgi/avis
+├── 📂 domain
+│   ├── 📂 X
+│   │   ├── 📂 model
+│   │   │   ├── X.java
+│   │   ├── XRepository.java
+├── 📂 application
+│   ├── 📂 X
+│   │   ├── 📂 model
+│   │   │    ├── XEntity.java
+│   │   ├── XJpaAdapter.java
+│   │   ├── XJpaRepository.java
+│   │   ├── XMapper.java
+├── 📂 useCases
+│   ├── 📂 X
+│   │   ├── XUseCases.java
+├── 📂 controller
+│   ├── 📂 X
+│   │   ├── 📂 dto
+│   │   │    ├── XDTO.java
+│   │   ├── 📂 rest
+│   │   │    ├── XRestController.java
+│   │   ├── XController.java
+│   │   ├── XDtoMapper.java
+```
+
+
+## 🛠️ Technologies utilisées
+- **Java 23+**
+- **Spring Boot 3.4**
+- **Spring Data JPA**
+- **Mockito / JUnit 5** (pour les tests unitaires)
+- **Lombok** (pour réduire le boilerplate code)
+- **H2 / PostgreSQL** (base de données)
+
+---
+
+## 🎯 Principes du Clean Code appliqués
+
+### **1️⃣ Séparation des préoccupations (Separation of Concerns)**
+- Le projet est divisé en plusieurs **couches distinctes** :
+    - **Domaine (`domain`)** : Définit les objets métier et les interfaces.
+    - **Application (`application`)** : Contient les adaptateurs pour la persistance.
+    - **Cas d'utilisation (`useCases`)** : Contient la logique métier.
+    - **Contrôleur (`controller`)** : Expose les API REST et orchestre les use cases.
+
+### **2️⃣ Dépendance sur l'abstraction (Dependency Inversion)**
+- Le domaine définit **une interface `XRepository`**, et la persistance **(`XJpaAdapter`)** l’implémente.
+- Cela permet de changer facilement l'implémentation de la base de données sans impacter le cœur métier.
+
+### **3️⃣ Responsabilité unique (Single Responsibility Principle - SRP)**
+- Chaque classe a **une seule raison de changer** :
+    - **`XUseCases`** ne contient que la logique métier.
+    - **`XRestController`** ne fait que gérer les requêtes HTTP.
+    - **`XJpaAdapter`** s'occupe uniquement de l'accès aux données.
+
+### **4️⃣ Open/Closed Principle (OCP)**
+- L'architecture est **ouverte à l'extension mais fermée aux modifications** :
+    - Ajout d'une nouvelle base de données → **Créer un nouvel adapter sans modifier le domaine**.
+    - Ajout d'un autre type d'API (GraphQL, WebSockets) → **Créer un nouveau contrôleur sans modifier le métier**.
+
+### **5️⃣ Tests unitaires et isolation**
+- **Tests unitaires (`JUnit 5 + Mockito`)** :
+    - Chaque couche est testée indépendamment :
+        - **Cas d'utilisation** (`XUseCasesTest`)
+        - **Adaptateur de persistance** (`XJpaAdapterTest`)
+        - **Mapper DTO** (`XDtoMapperTest`)
+        - **Contrôleurs** (`XControllerTest`, `XRestControllerTest`)
+
+### **6️⃣ Utilisation de DTO et Mapper**
+- **Pourquoi ?** Ne jamais exposer directement les objets métier.
+- **Solution** : `XDtoMapper` transforme `X` ↔ `XDTO`, évitant ainsi les fuites de modèles.
+
+### **7️⃣ Adhérence au principe DRY (Don't Repeat Yourself)**
+- **Utilisation de `Lombok`** pour réduire le code répétitif (`@Data`, `@RequiredArgsConstructor`).
+- **Mappers centralisés** (`XMapper`, `XDtoMapper`) pour éviter la duplication de code.
+
+---
+
+## 🧪 Tests et qualité du code
+
+### ✅ **Exécution des tests**
+Lancer tous les tests unitaires et d'intégration :
+```sh
+mvn test
+```
+
+# Architecture du projet : détails 
+
+## Avatar endpoint 
+
+![AvatarDiagram.png](doc/AvatarDiagram.png)
