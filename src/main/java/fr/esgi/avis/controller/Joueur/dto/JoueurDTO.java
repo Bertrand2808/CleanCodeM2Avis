@@ -12,6 +12,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class JoueurDTO extends UtilisateurDTO {
+    private Long id;
     private LocalDate dateDeNaissance;
     private List<AvisDTO> avis;
     private AvatarDTO avatar;

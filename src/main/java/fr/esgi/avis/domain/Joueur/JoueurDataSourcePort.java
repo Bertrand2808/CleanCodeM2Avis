@@ -10,6 +10,8 @@ public interface JoueurDataSourcePort {
     Joueur save(Joueur joueur);
     Optional<Joueur> findByPseudo(String pseudo);
     Optional<Joueur> findByDateDeNaissance(LocalDate dateDeNaissance);
+    Optional<Joueur> findById(Long id);
     long count(); // remplace le count() de Spring Data JPA
     List<Joueur> findAll();
+    void updateAvatar(Long joueurId, Long avatarId);
 }

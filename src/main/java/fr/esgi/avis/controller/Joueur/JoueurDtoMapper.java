@@ -5,6 +5,7 @@ import fr.esgi.avis.controller.Avis.AvisDtoMapper;
 import fr.esgi.avis.controller.Joueur.dto.JoueurDTO;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -25,16 +26,18 @@ public class JoueurDtoMapper {
             return null;
         }
         JoueurDTO joueurDTO = new JoueurDTO();
+        joueurDTO.setId(joueur.getId());
         joueurDTO.setDateDeNaissance(joueur.getDateDeNaissance());
         joueurDTO.setAvatar(AvatarDtoMapper.toDto(joueur.getAvatar()));
-        joueurDTO.setAvis(joueur.getAvis().stream()
-                .map(AvisDtoMapper::toDto)
-                .collect(Collectors.toList()));
+        joueurDTO.setAvis(joueur.getAvis() != null ?
+                joueur.getAvis().stream().map(AvisDtoMapper::toDto).collect(Collectors.toList()) :
+                new ArrayList<>());
 
         // Champs de Utilisateur
         joueurDTO.setPseudo(joueur.getPseudo());
         joueurDTO.setEmail(joueur.getEmail());
         joueurDTO.setMotDePasse(joueur.getMotDePasse());
+
         return joueurDTO;
     }
 
@@ -50,9 +53,9 @@ public class JoueurDtoMapper {
         Joueur joueur = new Joueur();
         joueur.setDateDeNaissance(joueurDTO.getDateDeNaissance());
         joueur.setAvatar(AvatarDtoMapper.toDomain(joueurDTO.getAvatar()));
-        joueur.setAvis(joueurDTO.getAvis().stream()
-                .map(AvisDtoMapper::toDomain)
-                .collect(Collectors.toList()));
+        joueur.setAvis(joueurDTO.getAvis() != null ?
+                joueurDTO.getAvis().stream().map(AvisDtoMapper::toDomain).collect(Collectors.toList()) :
+                new ArrayList<>());
 
         // Champs de Utilisateur
         joueur.setPseudo(joueurDTO.getPseudo());

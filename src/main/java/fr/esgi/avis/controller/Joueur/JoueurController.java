@@ -41,6 +41,11 @@ public class JoueurController {
                 .toList(); // ou collect(Collectors.toList())
     }
 
+    public Optional<JoueurDTO> getJoueurById(Long id) {
+        return joueurUseCases.getJoueurById(id)
+                .map(JoueurDtoMapper::toDto);
+    }
+
     /**
      * Get a Joueur by its pseudo
      * @param pseudo : pseudo of the joueur to find
@@ -60,4 +65,10 @@ public class JoueurController {
         return joueurUseCases.getJoueurByBirthdate(birthdate)
                 .map(JoueurDtoMapper::toDto);
     }
+
+    public Optional<JoueurDTO> assignAvatarToJoueur(Long joueurId, Long avatarId) {
+        return joueurUseCases.assignAvatarToJoueur(joueurId, avatarId)
+                .map(JoueurDtoMapper::toDto);
+    }
+
 }

@@ -1,5 +1,7 @@
 package fr.esgi.avis.application.Joueur;
 
+import fr.esgi.avis.application.Avatar.AvatarJpaRepository;
+import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
 import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JoueurJpaAdapter implements JoueurDataSourcePort {
     private final JoueurJpaRepository joueurJpaRepository;
+    private final AvatarJpaRepository avatarJpaRepository;
 
     /**
      * Save a Joueur
@@ -50,6 +53,17 @@ public class JoueurJpaAdapter implements JoueurDataSourcePort {
     }
 
     /**
+     * Fin a Joueur by its id
+     * @param id id of the player
+     * @return Joueur found
+     */
+    @Override
+    public Optional<Joueur> findById(Long id) {
+        return joueurJpaRepository.findById(id)
+                .map(JoueurMapper::toDomain);
+    }
+
+    /**
      * Find a Joueur by its date of birth
      * @param dateDeNaissance
      * @return Joueur
@@ -73,6 +87,28 @@ public class JoueurJpaAdapter implements JoueurDataSourcePort {
     public long count() {
         return joueurJpaRepository.count();
     }
+
+    /**
+     * Met à jour l'avatar d'un joueur.
+     * @param joueurId ID du joueur.
+     * @param avatarId ID du nouvel avatar.
+     */
+    @Override
+    public void updateAvatar(Long joueurId, Long avatarId) {
+        Optional<JoueurEntity> joueurEntity = joueurJpaRepository.findById(joueurId);
+        Optional<AvatarEntity> avatarEntity = avatarJpaRepository.findById(avatarId);
+
+        if (joueurEntity.isEmpty() || avatarEntity.isEmpty()){
+            throw new IllegalArgumentException("Joueur ou Avatar introuvable.");
+        }
+
+        JoueurEntity joueurEntityToUpdate = joueurEntity.get();
+        AvatarEntity avatarEntityToUpdate = avatarEntity.get();
+
+        joueurEntityToUpdate.setAvatar(avatarEntityToUpdate);
+        joueurJpaRepository.save(joueurEntityToUpdate);
+    }
+
 
 }
 

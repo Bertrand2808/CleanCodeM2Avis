@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface JoueurJpaRepository extends JpaRepository<JoueurEntity, Long> {
     JoueurEntity findByPseudo(String pseudo);
+    Optional<JoueurEntity> findById(Long id);
     Optional<JoueurEntity> findByDateDeNaissance(LocalDate dateDeNaissance);
     void deleteByPseudo(String pseudo);
 }
