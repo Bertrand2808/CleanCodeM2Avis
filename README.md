@@ -140,3 +140,7 @@ mvn test
 ## Avis endpoint
 
 ![AvisDiagram.png](doc/AvisDiagram.png)
+
+## Moderateur endpoint
+
+![ModerateurDiagram.png](doc/ModerateurDiagram.png)
