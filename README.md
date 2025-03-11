@@ -42,8 +42,8 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
 - **Spring Boot 3.4**
 - **Spring Data JPA**
 - **Mockito / JUnit 5** (pour les tests unitaires)
-- **Lombok** (pour réduire le boilerplate code)
-- **H2 / PostgreSQL** (base de données)
+- **Lombok**
+- **H2** (base de données)
 
 ---
 
@@ -88,6 +88,8 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
 - **Mappers centralisés** (`XMapper`, `XDtoMapper`) pour éviter la duplication de code.
 
 # Diagram Principal 
+
+Notes : Pour plus de lisibilité, voir le diagram sur **Notion**.
 
 ![diagram.png](doc/diagram.png)
 
