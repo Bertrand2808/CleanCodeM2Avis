@@ -1,6 +1,6 @@
 package fr.esgi.avis.usecases.Utilisateur;
 
-import fr.esgi.avis.domain.Utilisateur.UtilisateurRepository;
+import fr.esgi.avis.domain.Utilisateur.UtilisateurDataSourcePort;
 import fr.esgi.avis.domain.Utilisateur.model.Utilisateur;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class UtilisateurUseCases {
 
-    private final UtilisateurRepository utilisateurRepository;
+    private final UtilisateurDataSourcePort utilisateurDataSourcePort;
 
     /**
      * Create an utilisateur
@@ -23,7 +23,7 @@ public class UtilisateurUseCases {
      * @return
      */
     public Utilisateur createUtilisateur(Utilisateur utilisateur) {
-        return utilisateurRepository.save(utilisateur);
+        return utilisateurDataSourcePort.save(utilisateur);
     }
 
     /**
@@ -33,7 +33,7 @@ public class UtilisateurUseCases {
      * @return
      */
     public Optional<Utilisateur> getUtilisateurById(Long id) {
-        return utilisateurRepository.findById(id);
+        return utilisateurDataSourcePort.findById(id);
     }
 
     /**
@@ -42,7 +42,7 @@ public class UtilisateurUseCases {
      * @param id : id of the utilisateur to delete
      */
     public void deleteUtilisateur(Long id) {
-        utilisateurRepository.deleteById(id);
+        utilisateurDataSourcePort.deleteById(id);
     }
 
     /**
@@ -52,7 +52,7 @@ public class UtilisateurUseCases {
      * @return the utilisateur
      */
     public Optional<Utilisateur> getUtilisateurByPseudo(String pseudo) {
-        return utilisateurRepository.findByPseudo(pseudo);
+        return utilisateurDataSourcePort.findByPseudo(pseudo);
     }
 
     /**
@@ -62,6 +62,6 @@ public class UtilisateurUseCases {
      * @return the utilisateur
      */
     public Optional<Utilisateur> getUtilisateurByEmail(String email) {
-        return utilisateurRepository.findByEmail(email);
+        return utilisateurDataSourcePort.findByEmail(email);
     }
 }

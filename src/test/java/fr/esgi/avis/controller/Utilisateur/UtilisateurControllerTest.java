@@ -69,7 +69,7 @@ class UtilisateurControllerTest {
         // THEN
         assertTrue(result.isPresent());
         assertEquals("test", result.get().getPseudo());
-        assertEquals("test@example.com", result.get().getEmail());
+        assertEquals("test@exemple.com", result.get().getEmail());
         verify(utilisateurUseCases, times(1)).getUtilisateurByPseudo(utilisateurPseudo);
     }
 
@@ -152,8 +152,8 @@ class UtilisateurControllerTest {
     private Utilisateur createUtilisateur() {
         return Joueur.builder()
                 .id(1L)
-                .pseudo("PseudoTest")
-                .motDePasse("mdpTest")
+                .pseudo("test")
+                .motDePasse("password")
                 .email("test@exemple.com")
                 .dateDeNaissance(LocalDate.of(1990, 1, 1))
                 .build();

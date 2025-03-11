@@ -1,9 +1,9 @@
 package fr.esgi.avis.initialisation;
 
 import com.github.javafaker.Faker;
+import fr.esgi.avis.domain.Avatar.AvatarDataSourcePort;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.domain.Avatar.AvatarRepository;
-import fr.esgi.avis.domain.Joueur.JoueurRepository;
+import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -29,10 +29,10 @@ public class AjoutDonneesInitiales {
     //private GenreRepository genreRepository;
     //private PlateformeRepository plateformeRepository;
     //private JeuRepository jeuRepository;
-    private JoueurRepository joueurRepository;
+    private JoueurDataSourcePort joueurDataSourcePort;
     //private ModerateurRepository moderateurRepository;
     //private AvisRepository avisRepository;
-    private AvatarRepository avatarRepository;
+    private AvatarDataSourcePort avatarDataSourcePort;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -57,14 +57,14 @@ public class AjoutDonneesInitiales {
     }
 
     private void ajouterAvatars() {
-        avatarRepository.save(new Avatar("Avatar 1"));
-        avatarRepository.save(new Avatar("Avatar 2"));
+        avatarDataSourcePort.save(new Avatar("Avatar 1"));
+        avatarDataSourcePort.save(new Avatar("Avatar 2"));
     }
 
     /*private void ajouterAvis(int nbAvisAAjouter) {
         if (avisRepository.count() == 0) {
             Random random = new Random();
-            List<Joueur> joueurs = joueurRepository.findAll();
+            List<Joueur> joueurs = joueurDataSourcePort.findAll();
             for (int i = 0; i < nbAvisAAjouter; i++) {
                 Joueur joueur = joueurs.get(random.nextInt(joueurs.size()));
                 Avis avis = new Avis(faker.letterify("????????"), jeuRepository.findGamesRandomlySorted().get(0), joueur);
@@ -76,7 +76,7 @@ public class AjoutDonneesInitiales {
     }*/
 
     private void ajouterJoueurs(int nbJoueursAAjouter) {
-        if (joueurRepository.count() == 0) {
+        if (joueurDataSourcePort.count() == 0) {
             Random random = new Random();
             Calendar calendar = Calendar.getInstance();
             Map<String, Joueur> map = new HashMap<>();
@@ -106,10 +106,10 @@ public class AjoutDonneesInitiales {
                         .dateDeNaissance(dateDeNaissance).build();
 
                 //map.put(joueur.getEmail(), joueur);
-                joueurRepository.save(joueur);
+                joueurDataSourcePort.save(joueur);
             }
-            //joueurRepository.saveAll(map.values());
-            joueurRepository.save(Joueur.builder().pseudo("test").motDePasse("anniversaire")
+            //joueurDataSourcePort.saveAll(map.values());
+            joueurDataSourcePort.save(Joueur.builder().pseudo("test").motDePasse("anniversaire")
                     .email("test@m2iformation.fr")
                     .dateDeNaissance(LocalDate.of(1999, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth())).build());
         }

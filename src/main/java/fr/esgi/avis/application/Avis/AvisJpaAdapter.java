@@ -1,7 +1,7 @@
 package fr.esgi.avis.application.Avis;
 
 import fr.esgi.avis.application.Avis.model.AvisEntity;
-import fr.esgi.avis.domain.Avis.AvisRepository;
+import fr.esgi.avis.domain.Avis.AvisDataSourcePort;
 import fr.esgi.avis.domain.Avis.model.Avis;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class AvisJpaAdapter implements AvisRepository {
+public class AvisJpaAdapter implements AvisDataSourcePort {
 
-    private final AvisJpaRepository avisRepository;
+    private final AvisJpaRepository avisJpaRepository;
 
     /**
      * Save an Avis
@@ -22,7 +22,7 @@ public class AvisJpaAdapter implements AvisRepository {
     @Override
     public Avis save(Avis avis) {
         AvisEntity avisEntity = AvisMapper.toEntity(avis);
-        return AvisMapper.toDomain(avisRepository.save(avisEntity));
+        return AvisMapper.toDomain(avisJpaRepository.save(avisEntity));
     }
 
     /**
@@ -32,7 +32,7 @@ public class AvisJpaAdapter implements AvisRepository {
      */
     @Override
     public Optional<Avis> findById(Long id) {
-        return avisRepository.findById(id).map(AvisMapper::toDomain);
+        return avisJpaRepository.findById(id).map(AvisMapper::toDomain);
     }
 
     /**
@@ -41,6 +41,6 @@ public class AvisJpaAdapter implements AvisRepository {
      */
     @Override
     public void deleteById(Long id) {
-        avisRepository.deleteById(id);
+        avisJpaRepository.deleteById(id);
     }
 }

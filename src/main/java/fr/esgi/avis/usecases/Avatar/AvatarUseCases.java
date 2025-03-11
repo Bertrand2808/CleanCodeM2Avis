@@ -1,7 +1,7 @@
 package fr.esgi.avis.usecases.Avatar;
 
+import fr.esgi.avis.domain.Avatar.AvatarDataSourcePort;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.domain.Avatar.AvatarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class AvatarUseCases {
 
-    private final AvatarRepository avatarRepository;
+    private final AvatarDataSourcePort avatarDataSourcePort;
 
     /**
      * Create an avatar
@@ -22,7 +22,7 @@ public class AvatarUseCases {
      * @return
      */
     public Avatar createAvatar(String nom) {
-        return avatarRepository.save(new Avatar(nom));
+        return avatarDataSourcePort.save(new Avatar(nom));
     }
 
     /**
@@ -31,7 +31,7 @@ public class AvatarUseCases {
      * @return
      */
     public Optional<Avatar> getAvatarById(Long id) {
-        return avatarRepository.findById(id);
+        return avatarDataSourcePort.findById(id);
     }
 
     /**
@@ -40,6 +40,6 @@ public class AvatarUseCases {
      * @return
      */
     public void deleteAvatar(Long id) {
-        avatarRepository.deleteById(id);
+        avatarDataSourcePort.deleteById(id);
     }
 }

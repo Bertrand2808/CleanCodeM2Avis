@@ -119,6 +119,7 @@ class AvisJpaAdapterTest {
         List<Avis> avis = new ArrayList<>();
 
         Joueur joueur = Joueur.builder()
+                .id(1L)
                 .pseudo("PseudoTest")
                 .motDePasse("mdpTest")
                 .email("test@example.com")
@@ -127,7 +128,7 @@ class AvisJpaAdapterTest {
                 .build();
 
         Avatar avatar = new Avatar(
-                null,
+                1L,
                 "Warrior",
                 joueur.getId()
         );
@@ -136,4 +137,5 @@ class AvisJpaAdapterTest {
 
         return joueur;
     }
+
 }
