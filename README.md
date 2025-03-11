@@ -1,5 +1,10 @@
 # 📌 Projet : Avis
 
+## Liens utiles : 
+- Notion : https://www.notion.so/Clean-Code-1b2449738dcc808587aef6d0a6b29ac0?pvs=4
+- Trello : https://trello.com/invite/b/67cec311863296c171fb4b17/ATTId9eb4e2fa4ae3afde4947794c88bbb325B0ADBAD/clean-code
+- Github : https://github.com/Bertrand2808/CleanCodeM2Avis
+
 ## 🏗️ Architecture du projet
 
 Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les principes du **Clean Code** et de la **Clean Architecture**.
@@ -82,6 +87,12 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
 - **Utilisation de `Lombok`** pour réduire le code répétitif (`@Data`, `@RequiredArgsConstructor`).
 - **Mappers centralisés** (`XMapper`, `XDtoMapper`) pour éviter la duplication de code.
 
+# Diagram Principal 
+
+![diagram.png](doc/diagram.png)
+
+
+
 ---
 
 ## 🧪 Tests et qualité du code
@@ -97,3 +108,6 @@ mvn test
 ## Avatar endpoint 
 
 ![AvatarDiagram.png](doc/AvatarDiagram.png)
+
+## Joueur endpoint
+

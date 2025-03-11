@@ -16,7 +16,7 @@ public class AvatarMapper {
      */
     public static Avatar toDomain(AvatarEntity avatarEntity) {
         if (avatarEntity == null) {
-            throw new IllegalArgumentException("AvatarEntity cannot be null");
+            return null;
         }
         return new Avatar(
                 avatarEntity.getId(),
@@ -33,7 +33,7 @@ public class AvatarMapper {
      */
     public static AvatarEntity toEntity(Avatar avatar) {
         if (avatar == null) {
-            throw new IllegalArgumentException("Avatar cannot be null");
+            return null;
         }
         AvatarEntity avatarEntity = new AvatarEntity();
         avatarEntity.setId(avatar.getId());

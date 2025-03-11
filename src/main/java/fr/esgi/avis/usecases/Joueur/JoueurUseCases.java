@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,6 +26,15 @@ public class JoueurUseCases {
     public Joueur createJoueur(Joueur joueur) {
         return joueurRepository.save(joueur);
     }
+
+    /**
+     * Get all joueurs
+     * @return all joueurs
+     */
+    public List<Joueur> getAllJoueurs() {
+        return joueurRepository.findAll();
+    }
+
 
     /**
      * Get a Joueur by its pseudo

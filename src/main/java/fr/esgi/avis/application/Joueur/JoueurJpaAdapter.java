@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * JoueurJpaAdapter
@@ -27,6 +29,15 @@ public class JoueurJpaAdapter implements JoueurRepository {
         JoueurEntity joueurEntity = JoueurMapper.toEntity(joueur);
         return JoueurMapper.toDomain(joueurRepository.save(joueurEntity));
     }
+
+    @Override
+    public List<Joueur> findAll() {
+        return joueurRepository.findAll()
+                .stream()
+                .map(JoueurMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
 
     /**
      * Find a Joueur by its pseudo
@@ -57,5 +68,11 @@ public class JoueurJpaAdapter implements JoueurRepository {
     public void deleteByPseudo(String pseudo) {
         joueurRepository.deleteByPseudo(pseudo);
     }
+
+    @Override
+    public long count() {
+        return joueurRepository.count();
+    }
+
 }
 

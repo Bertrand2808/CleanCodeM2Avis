@@ -20,6 +20,7 @@ public class JoueurMapper {
         }
 
         return Joueur.builder()
+                .id(joueurEntity.getId())
                 .dateDeNaissance(joueurEntity.getDateDeNaissance())
                 .avatar(AvatarMapper.toDomain(joueurEntity.getAvatar()))
                 .avis(joueurEntity.getAvis().stream()
@@ -42,6 +43,7 @@ public class JoueurMapper {
         }
 
         return JoueurEntity.builder()
+                .id(joueur.getId())
                 .dateDeNaissance(joueur.getDateDeNaissance())
                 .avatar(AvatarMapper.toEntity(joueur.getAvatar()))
                 .avis(joueur.getAvis().stream()

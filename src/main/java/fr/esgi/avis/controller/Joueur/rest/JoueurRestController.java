@@ -30,6 +30,15 @@ public class JoueurRestController {
     }
 
     /**
+     * Get all Joueurs
+     * @return all Joueurs
+     */
+    @GetMapping
+    public ResponseEntity<Iterable<JoueurDTO>> getAllJoueurs() {
+        return ResponseEntity.ok(joueurController.getAllJoueurs());
+    }
+
+    /**
      * Get a Joueur by its pseudo
      * @param pseudo : pseudo of the joueur to find
      * @return the joueur found
@@ -52,6 +61,7 @@ public class JoueurRestController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
     // TODO : add update and delete methods ?
 

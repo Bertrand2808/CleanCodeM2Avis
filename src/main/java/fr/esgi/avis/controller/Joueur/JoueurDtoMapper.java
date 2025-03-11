@@ -7,6 +7,12 @@ import fr.esgi.avis.domain.Joueur.model.Joueur;
 
 import java.util.stream.Collectors;
 
+/**
+ * JoueurDtoMapper :
+ * - Convert Joueur to JoueurDTO
+ * - Convert JoueurDTO to Joueur
+ * Use : Both Joueur and Utilisateur fields because Joueur extends Utilisateur
+ */
 public class JoueurDtoMapper {
 
     /**
@@ -24,6 +30,11 @@ public class JoueurDtoMapper {
         joueurDTO.setAvis(joueur.getAvis().stream()
                 .map(AvisDtoMapper::toDto)
                 .collect(Collectors.toList()));
+
+        // Champs de Utilisateur
+        joueurDTO.setPseudo(joueur.getPseudo());
+        joueurDTO.setEmail(joueur.getEmail());
+        joueurDTO.setMotDePasse(joueur.getMotDePasse());
         return joueurDTO;
     }
 
@@ -42,6 +53,11 @@ public class JoueurDtoMapper {
         joueur.setAvis(joueurDTO.getAvis().stream()
                 .map(AvisDtoMapper::toDomain)
                 .collect(Collectors.toList()));
+
+        // Champs de Utilisateur
+        joueur.setPseudo(joueurDTO.getPseudo());
+        joueur.setEmail(joueurDTO.getEmail());
+        joueur.setMotDePasse(joueurDTO.getMotDePasse());
         return joueur;
     }
 }

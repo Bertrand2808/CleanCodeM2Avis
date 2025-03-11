@@ -3,6 +3,8 @@ package fr.esgi.avis.initialisation;
 import com.github.javafaker.Faker;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avatar.AvatarRepository;
+import fr.esgi.avis.domain.Joueur.JoueurRepository;
+import fr.esgi.avis.domain.Joueur.model.Joueur;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Component
@@ -25,7 +29,7 @@ public class AjoutDonneesInitiales {
     //private GenreRepository genreRepository;
     //private PlateformeRepository plateformeRepository;
     //private JeuRepository jeuRepository;
-    //private JoueurRepository joueurRepository;
+    private JoueurRepository joueurRepository;
     //private ModerateurRepository moderateurRepository;
     //private AvisRepository avisRepository;
     private AvatarRepository avatarRepository;
@@ -46,7 +50,7 @@ public class AjoutDonneesInitiales {
         //ajouterPlateformes();
         //ajouterJeux();
         ajouterAvatars();
-        //ajouterJoueurs(100);
+        ajouterJoueurs(100);
         //ajouterModerateur();
         //ajouterAvis(200);
         //afficherStatistiques();
@@ -71,7 +75,7 @@ public class AjoutDonneesInitiales {
         }
     }*/
 
-    /*private void ajouterJoueurs(int nbJoueursAAjouter) {
+    private void ajouterJoueurs(int nbJoueursAAjouter) {
         if (joueurRepository.count() == 0) {
             Random random = new Random();
             Calendar calendar = Calendar.getInstance();
@@ -89,12 +93,12 @@ public class AjoutDonneesInitiales {
                 LocalDate dateDeNaissance = dateAleatoire.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 String prenom = faker.name().firstName();
                 String email = prenom + "." + faker.name().lastName().replaceAll(" ", "") + "@soprasteria.com";
-
+                /*
                  * Sans Builder : Joueur joueur = new Joueur(); joueur.setPseudo(prenom +
                  * String.valueOf(random.nextInt(999) + 1000)); joueur.setEmail(email);
                  * joueur.setMotDePasse(String.valueOf(random.nextInt(99999999) + 10000000));
                  * joueur.setDateDeNaissance(dateDeNaissance);
-
+                */
 
 
                 Joueur joueur = Joueur.builder().pseudo(prenom + String.valueOf(random.nextInt(999) + 1000))
@@ -110,7 +114,7 @@ public class AjoutDonneesInitiales {
                     .dateDeNaissance(LocalDate.of(1999, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth())).build());
         }
     }
-
+    /*
     private void ajouterModerateur() {
         moderateurRepository.save(new Moderateur("Peppe", "azerty", "peppe@spiagge.it", "+39123456789"));
     }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +28,17 @@ public class JoueurController {
         Joueur joueur = JoueurDtoMapper.toDomain(joueurDTO);
         Joueur createdJoueur = joueurUseCases.createJoueur(joueur);
         return JoueurDtoMapper.toDto(createdJoueur);
+    }
+
+    /**
+     * Get all joueurs
+     * @return List of all joueurs
+     */
+    public List<JoueurDTO> getAllJoueurs() {
+        return joueurUseCases.getAllJoueurs()
+                .stream()
+                .map(JoueurDtoMapper::toDto)
+                .toList(); // ou collect(Collectors.toList())
     }
 
     /**

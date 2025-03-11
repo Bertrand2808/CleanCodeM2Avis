@@ -19,6 +19,11 @@ public class UtilisateurMapper {
         if (utilisateurEntity == null) {
             return null;
         }
+        if (utilisateurEntity.getPseudo().isBlank() ||
+                utilisateurEntity.getMotDePasse().isBlank() ||
+                utilisateurEntity.getEmail().isBlank()) {
+            throw new IllegalArgumentException("Pseudo, motDePasse and email cannot be empty");
+        }
         if (utilisateurEntity instanceof JoueurEntity joueurEntity) {
             return Joueur.builder()
                     .id(joueurEntity.getId())
@@ -42,6 +47,12 @@ public class UtilisateurMapper {
     public static UtilisateurEntity toEntity(Utilisateur utilisateur) {
         if (utilisateur == null) {
             return null;
+        }
+
+        if (utilisateur.getPseudo().isBlank() ||
+                utilisateur.getMotDePasse().isBlank() ||
+                utilisateur.getEmail().isBlank()) {
+            throw new IllegalArgumentException("Pseudo, motDePasse and email cannot be empty");
         }
 
         if (utilisateur instanceof Joueur joueur) {
