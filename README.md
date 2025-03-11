@@ -69,7 +69,6 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
 ### **4️⃣ Open/Closed Principle (OCP)**
 - L'architecture est **ouverte à l'extension mais fermée aux modifications** :
     - Ajout d'une nouvelle base de données → **Créer un nouvel adapter sans modifier le domaine**.
-    - Ajout d'un autre type d'API (GraphQL, WebSockets) → **Créer un nouveau contrôleur sans modifier le métier**.
 
 ### **5️⃣ Tests unitaires et isolation**
 - **Tests unitaires (`JUnit 5 + Mockito`)** :
@@ -78,6 +77,8 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
         - **Adaptateur de persistance** (`XJpaAdapterTest`)
         - **Mapper DTO** (`XDtoMapperTest`)
         - **Contrôleurs** (`XControllerTest`, `XRestControllerTest`)
+- **Tests d'intégrations**:
+  - A venir : tests des RestController 
 
 ### **6️⃣ Utilisation de DTO et Mapper**
 - **Pourquoi ?** Ne jamais exposer directement les objets métier.
