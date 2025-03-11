@@ -1,7 +1,7 @@
 package fr.esgi.avis.application.Joueur;
 
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
-import fr.esgi.avis.domain.Joueur.JoueurRepository;
+import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
  */
 @Repository
 @RequiredArgsConstructor
-public class JoueurJpaAdapter implements JoueurRepository {
-    private final JoueurJpaRepository joueurRepository;
+public class JoueurJpaAdapter implements JoueurDataSourcePort {
+    private final JoueurJpaRepository joueurJpaRepository;
 
     /**
      * Save a Joueur
@@ -27,12 +27,12 @@ public class JoueurJpaAdapter implements JoueurRepository {
     @Override
     public Joueur save(Joueur joueur) {
         JoueurEntity joueurEntity = JoueurMapper.toEntity(joueur);
-        return JoueurMapper.toDomain(joueurRepository.save(joueurEntity));
+        return JoueurMapper.toDomain(joueurJpaRepository.save(joueurEntity));
     }
 
     @Override
     public List<Joueur> findAll() {
-        return joueurRepository.findAll()
+        return joueurJpaRepository.findAll()
                 .stream()
                 .map(JoueurMapper::toDomain)
                 .collect(Collectors.toList());
@@ -46,7 +46,7 @@ public class JoueurJpaAdapter implements JoueurRepository {
      */
     @Override
     public Optional<Joueur> findByPseudo(String pseudo) {
-        return Optional.ofNullable(JoueurMapper.toDomain(joueurRepository.findByPseudo(pseudo)));
+        return Optional.ofNullable(JoueurMapper.toDomain(joueurJpaRepository.findByPseudo(pseudo)));
     }
 
     /**
@@ -56,7 +56,7 @@ public class JoueurJpaAdapter implements JoueurRepository {
      */
     @Override
     public Optional<Joueur> findByDateDeNaissance(LocalDate dateDeNaissance) {
-        return joueurRepository.findByDateDeNaissance(dateDeNaissance)
+        return joueurJpaRepository.findByDateDeNaissance(dateDeNaissance)
                 .map(JoueurMapper::toDomain);
     }
 
@@ -66,12 +66,12 @@ public class JoueurJpaAdapter implements JoueurRepository {
      * @return void
      */
     public void deleteByPseudo(String pseudo) {
-        joueurRepository.deleteByPseudo(pseudo);
+        joueurJpaRepository.deleteByPseudo(pseudo);
     }
 
     @Override
     public long count() {
-        return joueurRepository.count();
+        return joueurJpaRepository.count();
     }
 
 }

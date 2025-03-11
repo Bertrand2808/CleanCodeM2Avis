@@ -2,7 +2,6 @@ package fr.esgi.avis.application.Avatar;
 
 import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.application.Avis.model.AvisEntity;
-import fr.esgi.avis.application.Joueur.JoueurMapper;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avis.model.Avis;
@@ -64,18 +63,23 @@ class AvatarMapperTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenEntityIsNull() {
-        // WHEN & THEN
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> AvatarMapper.toDomain(null));
-        assertEquals("AvatarEntity cannot be null", exception.getMessage());
+    void shouldReturnNullWhenEntityIsNull() {
+        // WHEN
+        Avatar result = AvatarMapper.toDomain(null);
+
+        // THEN
+        assertNull(result);
     }
 
     @Test
-    void shouldThrowExceptionWhenAvatarIsNull() {
-        // WHEN & THEN
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> AvatarMapper.toEntity(null));
-        assertEquals("Avatar cannot be null", exception.getMessage());
+    void shouldReturnNullWhenAvatarIsNull() {
+        // WHEN
+        AvatarEntity result = AvatarMapper.toEntity(null);
+
+        // THEN
+        assertNull(result);
     }
+
 
     private JoueurEntity createJoueurEntity() {
         LocalDate birthdate = LocalDate.of(1990, 1, 1);

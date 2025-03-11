@@ -15,7 +15,7 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
 │   ├── 📂 X
 │   │   ├── 📂 model
 │   │   │   ├── X.java
-│   │   ├── XRepository.java
+│   │   ├── XDataSourcePort.java
 ├── 📂 application
 │   ├── 📂 X
 │   │   ├── 📂 model
@@ -57,8 +57,24 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
     - **Contrôleur (`controller`)** : Expose les API REST et orchestre les use cases.
 
 ### **2️⃣ Dépendance sur l'abstraction (Dependency Inversion)**
-- Le domaine définit **une interface `XRepository`**, et la persistance **(`XJpaAdapter`)** l’implémente.
-- Cela permet de changer facilement l'implémentation de la base de données sans impacter le cœur métier.
+- `XUseCases` dépend de **`XDataSourcePort`** et non plus directement d’un repository.
+- L’implémentation de la persistance est **découplée** et gérée via **`XJpaAdapter`**.
+
+**Avant (Couplage fort)** :
+```java
+public class XUseCases {
+    private final XRepository xRepository; // ❌ Couplé à JPA
+}
+```
+
+**Après (Découplé avec un Port) :**
+```java
+public class XUseCases {
+    private final XDataSourcePort xDataSourcePort; // ✅ Indépendant de la persistance
+}
+```
+
+
 
 ### **3️⃣ Responsabilité unique (Single Responsibility Principle - SRP)**
 - Chaque classe a **une seule raison de changer** :
@@ -69,6 +85,7 @@ Ce projet suit une architecture **modulaire et hexagonale**, en appliquant les p
 ### **4️⃣ Open/Closed Principle (OCP)**
 - L'architecture est **ouverte à l'extension mais fermée aux modifications** :
     - Ajout d'une nouvelle base de données → **Créer un nouvel adapter sans modifier le domaine**.
+
 
 ### **5️⃣ Tests unitaires et isolation**
 - **Tests unitaires (`JUnit 5 + Mockito`)** :
@@ -114,3 +131,12 @@ mvn test
 
 ## Joueur endpoint
 
+![JoueurDiagram.png](doc/JoueurDiagram.png)
+
+## Utilisateur endpoint
+
+![UtilisateurDiagram.png](doc/UtilisateurDiagram.png)
+
+## Avis endpoint
+
+![AvisDiagram.png](doc/AvisDiagram.png)

@@ -1,7 +1,7 @@
 package fr.esgi.avis.application.Utilisateur;
 
 import fr.esgi.avis.application.Utilisateur.model.UtilisateurEntity;
-import fr.esgi.avis.domain.Utilisateur.UtilisateurRepository;
+import fr.esgi.avis.domain.Utilisateur.UtilisateurDataSourcePort;
 import fr.esgi.avis.domain.Utilisateur.model.Utilisateur;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,8 +13,8 @@ import java.util.Optional;
  */
 @Repository
 @RequiredArgsConstructor
-public class UtilisateurJpaAdapter implements UtilisateurRepository {
-    private final UtilisateurJpaRepository utilisateurRepository;
+public class UtilisateurJpaAdapter implements UtilisateurDataSourcePort {
+    private final UtilisateurJpaRepository utilisateurJpaRepository;
 
     /**
      * Save a Utilisateur
@@ -24,7 +24,7 @@ public class UtilisateurJpaAdapter implements UtilisateurRepository {
     @Override
     public Utilisateur save(Utilisateur utilisateur) {
         UtilisateurEntity utilisateurEntity = UtilisateurMapper.toEntity(utilisateur);
-        return UtilisateurMapper.toDomain(utilisateurRepository.save(utilisateurEntity));
+        return UtilisateurMapper.toDomain(utilisateurJpaRepository.save(utilisateurEntity));
     }
 
     /**
@@ -34,7 +34,7 @@ public class UtilisateurJpaAdapter implements UtilisateurRepository {
      */
     @Override
     public Optional<Utilisateur> findByPseudo(String pseudo) {
-        return Optional.ofNullable(UtilisateurMapper.toDomain(utilisateurRepository.findByPseudo(pseudo)));
+        return Optional.ofNullable(UtilisateurMapper.toDomain(utilisateurJpaRepository.findByPseudo(pseudo)));
     }
 
     /**
@@ -44,7 +44,7 @@ public class UtilisateurJpaAdapter implements UtilisateurRepository {
      */
     @Override
     public Optional<Utilisateur> findByEmail(String email) {
-        return Optional.ofNullable(UtilisateurMapper.toDomain(utilisateurRepository.findByEmail(email)));
+        return Optional.ofNullable(UtilisateurMapper.toDomain(utilisateurJpaRepository.findByEmail(email)));
     }
 
     /**
@@ -53,7 +53,7 @@ public class UtilisateurJpaAdapter implements UtilisateurRepository {
      * @return void
      */
     public void deleteByPseudo(String pseudo) {
-        utilisateurRepository.deleteByPseudo(pseudo);
+        utilisateurJpaRepository.deleteByPseudo(pseudo);
     }
 
     /**
@@ -63,7 +63,7 @@ public class UtilisateurJpaAdapter implements UtilisateurRepository {
      */
     @Override
     public Optional<Utilisateur> findById(Long id) {
-        return utilisateurRepository.findById(id)
+        return utilisateurJpaRepository.findById(id)
                 .map(UtilisateurMapper::toDomain);
     }
 
@@ -73,6 +73,6 @@ public class UtilisateurJpaAdapter implements UtilisateurRepository {
      * @return void
      */
     public void deleteById(Long id) {
-        utilisateurRepository.deleteById(id);
+        utilisateurJpaRepository.deleteById(id);
     }
 }

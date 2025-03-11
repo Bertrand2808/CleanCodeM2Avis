@@ -1,7 +1,7 @@
 package fr.esgi.avis.usecases.Avatar;
 
+import fr.esgi.avis.domain.Avatar.AvatarDataSourcePort;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.domain.Avatar.AvatarRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 class AvatarUseCasesTest {
 
     @Mock
-    private AvatarRepository avatarRepository;
+    private AvatarDataSourcePort avatarDataSourcePort;
 
     @InjectMocks
     private AvatarUseCases avatarUseCases;
@@ -31,7 +31,7 @@ class AvatarUseCasesTest {
         // GIVEN
         String avatarName = "Warrior";
         Avatar avatar = new Avatar(avatarName);
-        when(avatarRepository.save(any(Avatar.class))).thenReturn(avatar);
+        when(avatarDataSourcePort.save(any(Avatar.class))).thenReturn(avatar);
 
         // WHEN
         Avatar createdAvatar = avatarUseCases.createAvatar(avatarName);
@@ -39,7 +39,7 @@ class AvatarUseCasesTest {
         // THEN
         assertNotNull(createdAvatar);
         assertEquals(avatarName, createdAvatar.getNom());
-        verify(avatarRepository, times(1)).save(any(Avatar.class));
+        verify(avatarDataSourcePort, times(1)).save(any(Avatar.class));
     }
 
     @Test
@@ -48,7 +48,7 @@ class AvatarUseCasesTest {
         Long avatarId = 1L;
         Avatar avatar = new Avatar("Mage");
         avatar.setId(avatarId);
-        when(avatarRepository.findById(avatarId)).thenReturn(Optional.of(avatar));
+        when(avatarDataSourcePort.findById(avatarId)).thenReturn(Optional.of(avatar));
 
         // WHEN
         Optional<Avatar> foundAvatar = avatarUseCases.getAvatarById(avatarId);
@@ -56,33 +56,33 @@ class AvatarUseCasesTest {
         // THEN
         assertTrue(foundAvatar.isPresent());
         assertEquals(avatarId, foundAvatar.get().getId());
-        verify(avatarRepository, times(1)).findById(avatarId);
+        verify(avatarDataSourcePort, times(1)).findById(avatarId);
     }
 
     @Test
     void shouldReturnEmptyWhenAvatarNotFound() {
         // GIVEN
         Long avatarId = 1L;
-        when(avatarRepository.findById(avatarId)).thenReturn(Optional.empty());
+        when(avatarDataSourcePort.findById(avatarId)).thenReturn(Optional.empty());
 
         // WHEN
         Optional<Avatar> foundAvatar = avatarUseCases.getAvatarById(avatarId);
 
         // THEN
         assertFalse(foundAvatar.isPresent());
-        verify(avatarRepository, times(1)).findById(avatarId);
+        verify(avatarDataSourcePort, times(1)).findById(avatarId);
     }
 
     @Test
     void shouldDeleteAvatarSuccessfully() {
         // GIVEN
         Long avatarId = 1L;
-        doNothing().when(avatarRepository).deleteById(avatarId);
+        doNothing().when(avatarDataSourcePort).deleteById(avatarId);
 
         // WHEN
         avatarUseCases.deleteAvatar(avatarId);
 
         // THEN
-        verify(avatarRepository, times(1)).deleteById(avatarId);
+        verify(avatarDataSourcePort, times(1)).deleteById(avatarId);
     }
 }

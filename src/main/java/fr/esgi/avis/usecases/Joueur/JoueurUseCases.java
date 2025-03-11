@@ -1,6 +1,6 @@
 package fr.esgi.avis.usecases.Joueur;
 
-import fr.esgi.avis.domain.Joueur.JoueurRepository;
+import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class JoueurUseCases {
 
-    private final JoueurRepository joueurRepository;
+    private final JoueurDataSourcePort joueurDataSourcePort;
 
     /**
      * Create a Joueur
@@ -24,7 +24,7 @@ public class JoueurUseCases {
      * @return the created Joueur
      */
     public Joueur createJoueur(Joueur joueur) {
-        return joueurRepository.save(joueur);
+        return joueurDataSourcePort.save(joueur);
     }
 
     /**
@@ -32,7 +32,7 @@ public class JoueurUseCases {
      * @return all joueurs
      */
     public List<Joueur> getAllJoueurs() {
-        return joueurRepository.findAll();
+        return joueurDataSourcePort.findAll();
     }
 
 
@@ -42,7 +42,7 @@ public class JoueurUseCases {
      * @return the joueur found
      */
     public Optional<Joueur> getJoueurByPseudo(String pseudo) {
-        return joueurRepository.findByPseudo(pseudo);
+        return joueurDataSourcePort.findByPseudo(pseudo);
     }
 
     /**
@@ -51,6 +51,6 @@ public class JoueurUseCases {
      * @return Joueur found
      */
     public Optional<Joueur> getJoueurByBirthdate(LocalDate birthdate) {
-        return joueurRepository.findByDateDeNaissance(birthdate);
+        return joueurDataSourcePort.findByDateDeNaissance(birthdate);
     }
 }

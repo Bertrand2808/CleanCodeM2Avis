@@ -1,7 +1,7 @@
 package fr.esgi.avis.usecases.Avis;
 
 import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.domain.Avis.AvisRepository;
+import fr.esgi.avis.domain.Avis.AvisDataSourcePort;
 import fr.esgi.avis.domain.Avis.model.Avis;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 class AvisUseCasesTest {
     
     @Mock
-    private AvisRepository avisRepository;
+    private AvisDataSourcePort avisDataSourcePort;
     
     @InjectMocks
     private AvisUseCases avisUseCases;
@@ -37,7 +37,7 @@ class AvisUseCasesTest {
     void shouldCreateAvisSuccessfully() {
         // GIVEN
         Avis avis = createAvis();
-        when(avisRepository.save(any(Avis.class))).thenReturn(avis);
+        when(avisDataSourcePort.save(any(Avis.class))).thenReturn(avis);
 
         // WHEN
         Avis createdAvis = avisUseCases.createAvis(avis);
@@ -58,7 +58,7 @@ class AvisUseCasesTest {
         Long avisId = 1L;
         Avis avis = createAvis();
         avis.setId(avisId);
-        when(avisRepository.findById(avisId)).thenReturn(java.util.Optional.of(avis));
+        when(avisDataSourcePort.findById(avisId)).thenReturn(Optional.of(avis));
 
         // WHEN
         Optional<Avis> foundAvis = avisUseCases.getAvisById(avisId);
@@ -75,7 +75,7 @@ class AvisUseCasesTest {
     void shouldReturnEmptyWhenAvisNotFound() {
         // GIVEN
         Long avisId = 1L;
-        when(avisRepository.findById(avisId)).thenReturn(Optional.empty());
+        when(avisDataSourcePort.findById(avisId)).thenReturn(Optional.empty());
 
         // WHEN
         Optional<Avis> foundAvis = avisUseCases.getAvisById(avisId);
@@ -93,8 +93,8 @@ class AvisUseCasesTest {
         avisUseCases.deleteAvis(avisId);
 
         // THEN
-        // Verify that the deleteById method of the avisRepository is called once with the avisId as an argument
-        verify(avisRepository, times(1)).deleteById(avisId);
+        // Verify that the deleteById method of the avisDataSourcePort is called once with the avisId as an argument
+        verify(avisDataSourcePort, times(1)).deleteById(avisId);
     }
 
 

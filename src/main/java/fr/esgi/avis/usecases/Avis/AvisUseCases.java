@@ -1,6 +1,6 @@
 package fr.esgi.avis.usecases.Avis;
 
-import fr.esgi.avis.domain.Avis.AvisRepository;
+import fr.esgi.avis.domain.Avis.AvisDataSourcePort;
 import fr.esgi.avis.domain.Avis.model.Avis;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class AvisUseCases {
 
-    private final AvisRepository avisRepository;
+    private final AvisDataSourcePort avisDataSourcePort;
 
     /**
      * Create an avis
@@ -22,7 +22,7 @@ public class AvisUseCases {
      * @return
      */
     public Avis createAvis(Avis avis) {
-        return avisRepository.save(avis);
+        return avisDataSourcePort.save(avis);
     }
 
     /**
@@ -31,7 +31,7 @@ public class AvisUseCases {
      * @return
      */
     public Optional<Avis> getAvisById(Long id) {
-        return avisRepository.findById(id);
+        return avisDataSourcePort.findById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class AvisUseCases {
      * @param id : id of the avis to delete
      */
     public void deleteAvis(Long id) {
-        avisRepository.deleteById(id);
+        avisDataSourcePort.deleteById(id);
     }
 
 }

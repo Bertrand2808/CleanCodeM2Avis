@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface JoueurRepository {
+public interface JoueurDataSourcePort {
     Joueur save(Joueur joueur);
     Optional<Joueur> findByPseudo(String pseudo);
     Optional<Joueur> findByDateDeNaissance(LocalDate dateDeNaissance);
