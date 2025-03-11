@@ -3,6 +3,9 @@ package fr.esgi.avis.application.Avatar;
 import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 
+/**
+ * Mapper class to convert AvatarEntity objects to Avatar domain.
+ */
 public class AvatarMapper {
 
     /**
@@ -13,9 +16,13 @@ public class AvatarMapper {
      */
     public static Avatar toDomain(AvatarEntity avatarEntity) {
         if (avatarEntity == null) {
-            throw new IllegalArgumentException("AvatarEntity cannot be null");
+            return null;
         }
-        return new Avatar(avatarEntity.getId(), avatarEntity.getNom());
+        return new Avatar(
+                avatarEntity.getId(),
+                avatarEntity.getNom(),
+                avatarEntity.getJoueurId()
+        );
     }
 
     /**
@@ -26,8 +33,13 @@ public class AvatarMapper {
      */
     public static AvatarEntity toEntity(Avatar avatar) {
         if (avatar == null) {
-            throw new IllegalArgumentException("Avatar cannot be null");
+            return null;
         }
-        return new AvatarEntity(avatar.getId(), avatar.getNom());
+        AvatarEntity avatarEntity = new AvatarEntity();
+        avatarEntity.setId(avatar.getId());
+        avatarEntity.setNom(avatar.getNom());
+        avatarEntity.setJoueurId(avatar.getJoueurId());
+
+        return avatarEntity;
     }
 }

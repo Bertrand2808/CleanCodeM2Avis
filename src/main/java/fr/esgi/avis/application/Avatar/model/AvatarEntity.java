@@ -1,9 +1,7 @@
 package fr.esgi.avis.application.Avatar.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import fr.esgi.avis.application.Joueur.model.JoueurEntity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,12 +19,11 @@ public class AvatarEntity {
 
     private String nom;
 
-    //@OneToOne(mappedBy="avatar", fetch= FetchType.LAZY)
-    // private JoueurEntity joueur;
+    private Long joueurId;
 
-    // TODO : Add JoueurEntity to constructor
-    public AvatarEntity(Long id, String nom) {
+    public AvatarEntity(Long id, String nom, Long joueurId) {
         this.id = id;
         this.nom = nom;
+        this.joueurId = joueurId;
     }
 }

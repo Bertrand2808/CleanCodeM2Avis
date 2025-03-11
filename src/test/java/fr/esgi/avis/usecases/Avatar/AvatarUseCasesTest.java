@@ -1,4 +1,4 @@
-package fr.esgi.avis.useCases.Avatar;
+package fr.esgi.avis.usecases.Avatar;
 
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avatar.AvatarRepository;
