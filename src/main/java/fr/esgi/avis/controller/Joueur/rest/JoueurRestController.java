@@ -62,7 +62,28 @@ public class JoueurRestController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<JoueurDTO> getJoueurById(Long id) {
+        return joueurController.getJoueurById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-    // TODO : add update and delete methods ?
+    /**
+     * Assigne un avatar à un joueur.
+     * @param joueurId L'ID du joueur.
+     * @param avatarId L'ID de l'avatar à assigner.
+     * @return Le joueur mis à jour avec son nouvel avatar.
+     */
+    @PatchMapping("/{joueurId}/set-avatar/{avatarId}")
+    public ResponseEntity<JoueurDTO> assignAvatarToJoueur(
+            @PathVariable Long joueurId,
+            @PathVariable Long avatarId) {
+
+        return joueurController.assignAvatarToJoueur(joueurId, avatarId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
 }
