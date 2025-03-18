@@ -1,7 +1,8 @@
 package fr.esgi.avis.useCases.Jeu;
 
-import fr.esgi.avis.domain.jeu.JeuRepository;
+import fr.esgi.avis.domain.Jeu.JeuDataSourcePort;
 import fr.esgi.avis.domain.Jeu.model.Jeu;
+import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +13,30 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JeuUseCases {
 
-    private final JeuRepository jeuRepository;
+    private final JeuDataSourcePort jeuDataSourcePort;
 
-    public Jeu createJeu(String nom) {
-        return jeuRepository.save(new Jeu(nom));
+    public Jeu createJeu(Jeu jeu) {
+        return jeuDataSourcePort.save(jeu);
     }
 
     public List<Jeu> getJeux() {
-        return jeuRepository.findAll();
+        return jeuDataSourcePort.findAll();
     }
 
     public Optional<Jeu> getJeuById(Long id) {
-        return jeuRepository.findById(id);
+        return jeuDataSourcePort.findById(id);
     }
 
-    public Optional<Jeu> getJeuByName(String nom) {
-        return jeuRepository.findByNom(nom);
+    public Optional<Jeu> getJeuByNom(String nom) {
+        return jeuDataSourcePort.findByNom(nom);
+    }
+
+    public List<Jeu> getJeuxByNomContaining(String keyword) {
+        return jeuDataSourcePort.findByNomContaining(keyword);
     }
 
     public void deleteJeuById(Long id) {
-        jeuRepository.deleteById(id);
+        jeuDataSourcePort.deleteById(id);
     }
 }
+

@@ -27,17 +27,18 @@ public class JeuDtoMapper {
         if (jeuDTO == null) {
             return null;
         }
-        return new Jeu(
-                jeuDTO.getId(),
-                jeuDTO.getNom(),
-                jeuDTO.getEditeur(),
-                jeuDTO.getGenre(),
-                jeuDTO.getClassification(),
-                jeuDTO.getDescription(),
-                jeuDTO.getDateDeSortie(),
-                jeuDTO.getPlateformes(),
-                jeuDTO.getImage(),
-                jeuDTO.getPrix()
-        );
+
+        Jeu jeu = new Jeu();
+        jeu.setId(jeuDTO.getId());
+        jeu.setNom(jeuDTO.getNom());
+        jeu.setEditeur(jeuDTO.getEditeur());
+        jeu.setGenre(jeuDTO.getGenre());
+        jeu.setClassification(jeuDTO.getClassification());
+        jeu.setDescription(jeuDTO.getDescription());
+        jeu.setDateDeSortie(jeuDTO.getDateDeSortie());
+        jeu.setPlateformes(jeuDTO.getPlateformes());
+        jeu.setImage(jeuDTO.getImage());
+        jeu.setPrix(jeuDTO.getPrix());
+        return jeu;
     }
 }

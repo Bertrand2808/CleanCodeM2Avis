@@ -1,11 +1,11 @@
 package fr.esgi.avis.domain.Jeu.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import fr.esgi.avis.domain.Classification.model.Classification;
+import fr.esgi.avis.domain.Editeur.model.Editeur;
+import fr.esgi.avis.domain.Genre.model.Genre;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,25 +13,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Builder
 public class Jeu {
-
     private Long id;
     @NonNull private String nom;
-
     @NonNull private Editeur editeur;
-
     private Genre genre;
-
     private Classification classification;
-
     private String description;
-
     private LocalDate dateDeSortie;
-
     private List<Plateforme> plateformes;
-
     private String image;
-
     private float prix;
 
     public Jeu(Long id, String nom, Editeur editeur, Genre genre, Classification classification, String description, LocalDate dateDeSortie, List<Plateforme> plateformes, String image, float prix) {

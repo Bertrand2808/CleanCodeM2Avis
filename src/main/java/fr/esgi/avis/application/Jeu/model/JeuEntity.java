@@ -1,12 +1,12 @@
 package fr.esgi.avis.application.Jeu.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import fr.esgi.avis.domain.Classification.model.Classification;
+import fr.esgi.avis.domain.Editeur.model.Editeur;
+import fr.esgi.avis.domain.Genre.model.Genre;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -18,6 +18,7 @@ import java.util.List;
 @DynamicUpdate
 @DynamicInsert
 @Table(indexes = @Index(name="Jeu_Nom_Index", columnList = "nom"))
+@Builder
 public class JeuEntity {
 
     @Id
@@ -30,11 +31,11 @@ public class JeuEntity {
     private String nom;
 
     @NonNull
-    @ManyToOne // Many Jeu to One Editeur
+    @ManyToOne
     @JsonManagedReference
     private Editeur editeur;
 
-    @ManyToOne // Many Jeu to One Genre
+    @ManyToOne
     private Genre genre;
 
     @ManyToOne

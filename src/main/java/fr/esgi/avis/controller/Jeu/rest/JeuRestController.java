@@ -24,6 +24,12 @@ public class JeuRestController {
 
     private final JeuController jeuController;
 
+    @PostMapping
+    public ResponseEntity<JeuDTO> createJeu(@RequestBody JeuDTO jeuDTO) {
+        JeuDTO createdJeuDto = jeuController.createJeu(jeuDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdJeuDto);
+    }
+
     @GetMapping
     public ResponseEntity<List<JeuDTO>> getJeux() {
         List<JeuDTO> jeux = jeuController.getJeux();
@@ -37,10 +43,17 @@ public class JeuRestController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<JeuDTO> createJeu(@RequestBody JeuDTO jeuDTO) {
-        JeuDTO createdJeuDto = jeuController.createJeu(jeuDTO);
-        return ResponseEntity.status(201).body(createdJeuDto);
+    @GetMapping("/name/{name}")
+    public ResponseEntity<JeuDTO> getJeuxByNom(@PathVariable String nom) {
+        return jeuController.getJeuByNom(nom)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<JeuDTO>> getJeuxByNomContaining(@PathVariable String keyword) {
+        List<JeuDTO> jeux = jeuController.getJeuxByNomContaining(keyword);
+        return ResponseEntity.ok(jeux);
     }
 
     @DeleteMapping("/{id}")

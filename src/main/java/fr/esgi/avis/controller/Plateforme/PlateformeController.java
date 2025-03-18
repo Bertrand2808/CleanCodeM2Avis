@@ -1,7 +1,11 @@
 package fr.esgi.avis.controller.Plateforme;
 
+import fr.esgi.avis.controller.Jeu.JeuDtoMapper;
+import fr.esgi.avis.controller.Jeu.dto.JeuDTO;
+import fr.esgi.avis.controller.Plateforme.PlateformeDtoMapper;
 import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
 import fr.esgi.avis.controller.Plateforme.PlateformeDtoMapper;
+import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import fr.esgi.avis.useCases.Plateforme.PlateformeUseCases;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +21,14 @@ public class PlateformeController {
 
     private final PlateformeUseCases plateformeUseCases;
 
+    public PlateformeDTO createPlateforme(PlateformeDTO plateformeDTO) {
+        Plateforme plateforme = PlateformeDtoMapper.toDomain(plateformeDTO);
+        Plateforme createdPlateforme = plateformeUseCases.createPlateforme(plateforme);
+        return PlateformeDtoMapper.toDto(createdPlateforme);
+    }
+
     public List<PlateformeDTO> getPlateformes() {
-        return plateformeUseCases.recupererPlateformes().stream()
+        return plateformeUseCases.getlateformes().stream()
                 .map(PlateformeDtoMapper::toDto)
                 .toList();
     }
@@ -33,10 +43,10 @@ public class PlateformeController {
                 .map(PlateformeDtoMapper::toDto);
     }
 
-    public PlateformeDTO createPlateforme(PlateformeDTO plateformeDTO) {
-        return PlateformeDtoMapper.toDto(
-                plateformeUseCases.createPlateforme(PlateformeDtoMapper.toDomain(plateformeDTO)) // ✅ Fixed method name
-        );
+    public List<PlateformeDTO> getJeuxByNomContaining(String keyword) {
+        return plateformeUseCases.getPlateformesByNomContaining(keyword).stream()
+                .map(PlateformeDtoMapper::toDto)
+                .toList();
     }
 
     public void deletePlateformeById(Long id) {

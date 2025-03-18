@@ -1,13 +1,18 @@
 package fr.esgi.avis.controller.Jeu.dto;
 
-import fr.esgi.avis.domain.Plateforme.model.Plateforme;
+import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
+import fr.esgi.avis.domain.Classification.model.Classification;
+import fr.esgi.avis.domain.Editeur.model.Editeur;
+import fr.esgi.avis.domain.Genre.model.Genre;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class JeuDTO {
 
     private Long id;
@@ -24,7 +29,7 @@ public class JeuDTO {
 
     private LocalDate dateDeSortie;
 
-    private List<Plateforme> plateformes;
+    private List<PlateformeDTO> plateformes;
 
     private String image;
 

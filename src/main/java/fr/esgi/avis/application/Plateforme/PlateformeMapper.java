@@ -8,27 +8,25 @@ import java.util.stream.Collectors;
 
 public class PlateformeMapper {
 
-    public static Plateforme toDomain(PlateformeEntity entity) {
-        if (entity == null) return null;
-        return new Plateforme(
-                entity.getId(),
-                entity.getNom(),
-                entity.getJeux(),
-                entity.getDateDeSortie()
-        );
+    public static Plateforme toDomain(PlateformeEntity plateformeEntity) {
+        if (plateformeEntity == null) return null;
+
+        return Plateforme.builder()
+                .id(plateformeEntity.getId())
+                .nom(plateformeEntity.getNom())
+                .jeux(plateformeEntity.getJeux())
+                .dateDeSortie(plateformeEntity.getDateDeSortie())
+                .build();
     }
 
     public static PlateformeEntity toEntity(Plateforme plateforme) {
         if (plateforme == null) return null;
-        return new PlateformeEntity(
-                plateforme.getId(),
-                plateforme.getNom(),
-                plateforme.getJeux(),
-                plateforme.getDateDeSortie()
-        );
-    }
 
-    public static List<Plateforme> toDomainList(List<PlateformeEntity> entities) {
-        return entities.stream().map(PlateformeMapper::toDomain).collect(Collectors.toList());
+        return PlateformeEntity.builder()
+                .id(plateforme.getId())
+                .nom(plateforme.getNom())
+                .jeux(plateforme.getJeux())
+                .dateDeSortie(plateforme.getDateDeSortie())
+                .build();
     }
 }

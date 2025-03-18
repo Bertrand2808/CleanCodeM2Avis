@@ -15,6 +15,12 @@ public class JeuController {
 
     private final JeuUseCases jeuUseCases;
 
+    public JeuDTO createJeu(JeuDTO jeuDTO) {
+        Jeu jeu = JeuDtoMapper.toDomain(jeuDTO);
+        Jeu createdJeu = jeuUseCases.createJeu(jeu);
+        return JeuDtoMapper.toDto(createdJeu);
+    }
+
     public List<JeuDTO> getJeux() {
         return jeuUseCases.getJeux().stream()
                 .map(JeuDtoMapper::toDto)
@@ -26,15 +32,15 @@ public class JeuController {
                 .map(JeuDtoMapper::toDto);
     }
 
-    public Optional<JeuDTO> getJeuByName(String nom) {
-        return jeuUseCases.getJeuByName(nom)
+    public Optional<JeuDTO> getJeuByNom(String nom) {
+        return jeuUseCases.getJeuByNom(nom)
                 .map(JeuDtoMapper::toDto);
     }
 
-    public JeuDTO createJeu(JeuDTO jeuDTO) {
-        return JeuDtoMapper.toDto(
-                jeuUseCases.createJeu(jeuDTO.getNom()) // ✅ Only using name as per `JeuUseCases`
-        );
+    public List<JeuDTO> getJeuxByNomContaining(String keyword) {
+        return jeuUseCases.getJeuxByNomContaining(keyword).stream()
+                .map(JeuDtoMapper::toDto)
+                .toList();
     }
 
     public void deleteJeuById(Long id) {

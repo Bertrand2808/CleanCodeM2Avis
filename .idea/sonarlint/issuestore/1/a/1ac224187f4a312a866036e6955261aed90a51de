@@ -1,2 +1,4 @@
 
-n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ıË/
+û
+java:S1598"ØThis file "AvatarUseCases.java" should be located in "fr\esgi\avis\usecases\Avatar" directory, not in "C:\Users\Aurelien\Documents\cours\clean architecture\CleanCodeM2Avis\src\main\java\fr\esgi\avis\useCases\Avatar".(é¢Ìíûÿÿÿÿ8©É”®Ø2
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(é¢Ìíûÿÿÿÿ

@@ -1,6 +1,6 @@
 package fr.esgi.avis.application.Plateforme.model;
 
-import fr.esgi.avis.application.Jeu.model.JeuEntity;
+import fr.esgi.avis.domain.Jeu.model.Jeu;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "plateforme")
+@Builder
 public class PlateformeEntity {
 
     @Id
@@ -21,14 +22,7 @@ public class PlateformeEntity {
     private String nom;
 
     @ManyToMany(mappedBy = "plateformes")
-    private List<JeuEntity> jeux;
+    private List<Jeu> jeux;
 
     private LocalDate dateDeSortie;
-
-    public PlateformeEntity(Long id, String nom, List<JeuEntity> jeux, LocalDate dateDeSortie) {
-        this.id = id;
-        this.nom = nom;
-        this.jeux = jeux;
-        this.dateDeSortie = dateDeSortie;
-    }
 }

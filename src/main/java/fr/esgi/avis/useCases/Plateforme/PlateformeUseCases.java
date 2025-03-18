@@ -1,5 +1,6 @@
 package fr.esgi.avis.useCases.Plateforme;
 
+import fr.esgi.avis.domain.Jeu.model.Jeu;
 import fr.esgi.avis.domain.Plateforme.PlateformeDataSourcePort;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import lombok.RequiredArgsConstructor;
@@ -12,25 +13,29 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlateformeUseCases {
 
-    private final PlateformeDataSourcePort plateformeRepository;
+    private final PlateformeDataSourcePort plateformeDataSourcePort;
 
-    public List<Plateforme> recupererPlateformes() {
-        return plateformeRepository.findAll();
+    public Plateforme createPlateforme(Plateforme plateforme) {
+        return plateformeDataSourcePort.save(plateforme);
     }
 
-    public Optional<Plateforme> getPlateformeById(Long id) { // ✅ Added method
-        return plateformeRepository.findById(id);
+    public List<Plateforme> getlateformes() {
+        return plateformeDataSourcePort.findAll();
     }
 
-    public Optional<Plateforme> getPlateformeByNom(String nom) { // ✅ Handle null cases
-        return plateformeRepository.findByNom(name);
+    public Optional<Plateforme> getPlateformeById(Long id) {
+        return plateformeDataSourcePort.findById(id);
     }
 
-    public Plateforme createPlateforme(Plateforme plateforme) { // ✅ Centralized save logic
-        return plateformeRepository.save(plateforme);
+    public Optional<Plateforme> getPlateformeByNom(String nom) {
+        return plateformeDataSourcePort.findByNom(nom);
     }
 
-    public void deletePlateforme(Long id) { // ✅ Avoids deleting a non-existent record
-        plateformeRepository.findById(id).ifPresent(plateformeRepository::delete);
+    public List<Plateforme> getPlateformesByNomContaining(String keyword) {
+        return plateformeDataSourcePort.findByNomContaining(keyword);
+    }
+
+    public void deletePlateforme(Long id) {
+        plateformeDataSourcePort.deleteById(id);
     }
 }
