@@ -1,7 +1,10 @@
 package fr.esgi.avis.application.Classification;
 
 import fr.esgi.avis.application.Classification.model.ClassificationEntity;
+import fr.esgi.avis.application.Jeu.JeuMapper;
 import fr.esgi.avis.domain.Classification.model.Classification;
+
+import java.util.stream.Collectors;
 
 public class ClassificationMapper {
     public static Classification toDomain(ClassificationEntity classificationEntity) {
@@ -11,7 +14,11 @@ public class ClassificationMapper {
                 .id(classificationEntity.getId())
                 .nom(classificationEntity.getNom())
                 .couleurRGB(classificationEntity.getCouleurRGB())
-                .jeux(classificationEntity.getJeux())
+                .jeux(
+                        classificationEntity.getJeux().stream()
+                                .map(JeuMapper::toDomain)
+                                .collect(Collectors.toList())
+                )
                 .build();
     }
 
@@ -22,7 +29,11 @@ public class ClassificationMapper {
                 .id(classification.getId())
                 .nom(classification.getNom())
                 .couleurRGB(classification.getCouleurRGB())
-                .jeux(classification.getJeux())
+                .jeux(
+                        classification.getJeux().stream()
+                                .map(JeuMapper::toEntity)
+                                .collect(Collectors.toList())
+                )
                 .build();
     }
 }

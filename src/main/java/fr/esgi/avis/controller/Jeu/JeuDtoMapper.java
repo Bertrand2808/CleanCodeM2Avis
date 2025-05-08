@@ -1,7 +1,10 @@
 package fr.esgi.avis.controller.Jeu;
 
 import fr.esgi.avis.controller.Jeu.dto.JeuDTO;
+import fr.esgi.avis.controller.Plateforme.PlateformeDtoMapper;
 import fr.esgi.avis.domain.Jeu.model.Jeu;
+
+import java.util.stream.Collectors;
 
 public class JeuDtoMapper {
 
@@ -17,7 +20,11 @@ public class JeuDtoMapper {
         jeuDTO.setClassification(jeu.getClassification());
         jeuDTO.setDescription(jeu.getDescription());
         jeuDTO.setDateDeSortie(jeu.getDateDeSortie());
-        jeuDTO.setPlateformes(jeu.getPlateformes());
+        jeuDTO.setPlateformes(
+                jeu.getPlateformes().stream()
+                        .map(PlateformeDtoMapper::toDto)
+                        .collect(Collectors.toList())
+        );
         jeuDTO.setImage(jeu.getImage());
         jeuDTO.setPrix(jeu.getPrix());
         return jeuDTO;
@@ -36,7 +43,11 @@ public class JeuDtoMapper {
         jeu.setClassification(jeuDTO.getClassification());
         jeu.setDescription(jeuDTO.getDescription());
         jeu.setDateDeSortie(jeuDTO.getDateDeSortie());
-        jeu.setPlateformes(jeuDTO.getPlateformes());
+        jeu.setPlateformes(
+                jeuDTO.getPlateformes().stream()
+                        .map(PlateformeDtoMapper::toDomain)
+                        .collect(Collectors.toList())
+        );
         jeu.setImage(jeuDTO.getImage());
         jeu.setPrix(jeuDTO.getPrix());
         return jeu;

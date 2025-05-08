@@ -1,10 +1,10 @@
 package fr.esgi.avis.application.Jeu.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import fr.esgi.avis.domain.Classification.model.Classification;
-import fr.esgi.avis.domain.Editeur.model.Editeur;
-import fr.esgi.avis.domain.Genre.model.Genre;
-import fr.esgi.avis.domain.Plateforme.model.Plateforme;
+import fr.esgi.avis.application.Classification.model.ClassificationEntity;
+import fr.esgi.avis.application.Editeur.model.EditeurEntity;
+import fr.esgi.avis.application.Genre.model.GenreEntity;
+import fr.esgi.avis.application.Plateforme.model.PlateformeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -13,6 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
 @Data
 @NoArgsConstructor
 @DynamicUpdate
@@ -33,29 +34,27 @@ public class JeuEntity {
     @NonNull
     @ManyToOne
     @JsonManagedReference
-    private Editeur editeur;
+    private EditeurEntity editeur;
 
     @ManyToOne
-    private Genre genre;
+    private GenreEntity genre;
 
     @ManyToOne
-    private Classification classification;
+    private ClassificationEntity classification;
 
     @Lob
     private String description;
 
     private LocalDate dateDeSortie;
 
-    // Jeu est la classe centrale
-    //
     @ManyToMany
-    private List<Plateforme> plateformes;
+    private List<PlateformeEntity> plateformes;
 
     private String image;
 
     private float prix;
 
-    public JeuEntity(Long id, String nom, Editeur editeur, Genre genre, Classification classification, String description, LocalDate dateDeSortie, List<Plateforme> plateformes, String image, float prix) {
+    public JeuEntity(Long id, String nom, EditeurEntity editeur, GenreEntity genre, ClassificationEntity classification, String description, LocalDate dateDeSortie, List<PlateformeEntity> plateformes, String image, float prix) {
         this.id = id;
         this.nom = nom;
         this.editeur = editeur;

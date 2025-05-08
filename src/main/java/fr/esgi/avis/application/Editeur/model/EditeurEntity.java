@@ -2,7 +2,7 @@ package fr.esgi.avis.application.Editeur.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.esgi.avis.domain.Jeu.model.Jeu;
+import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -12,6 +12,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.List;
 
+@Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
@@ -33,9 +34,9 @@ public class EditeurEntity {
     @JsonBackReference
     @ToString.Exclude
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private List<Jeu> jeux;
+    private List<JeuEntity> jeux;
 
-    public EditeurEntity(Long id, String nom, List<Jeu> jeux) {
+    public EditeurEntity(Long id, String nom, List<JeuEntity> jeux) {
         this.id = id;
         this.nom = nom;
         this.jeux = jeux;

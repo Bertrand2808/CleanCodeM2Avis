@@ -1,15 +1,13 @@
 package fr.esgi.avis.application.Genre.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import fr.esgi.avis.domain.Jeu.model.Jeu;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import fr.esgi.avis.application.Jeu.model.JeuEntity;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
+@Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
@@ -25,9 +23,9 @@ public class GenreEntity {
     @ToString.Exclude
     @JsonIgnore
     @OneToMany(mappedBy="genre")
-    private List<Jeu> jeux;
+    private List<JeuEntity> jeux;
 
-    public GenreEntity(Long id, String nom, List<Jeu> jeux) {
+    public GenreEntity(Long id, String nom, List<JeuEntity> jeux) {
         this.id = id;
         this.nom = nom;
         this.jeux = jeux;

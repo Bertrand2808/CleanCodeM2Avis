@@ -1,7 +1,10 @@
 package fr.esgi.avis.controller.Classification;
 
 import fr.esgi.avis.controller.Classification.dto.ClassificationDTO;
+import fr.esgi.avis.controller.Jeu.JeuDtoMapper;
 import fr.esgi.avis.domain.Classification.model.Classification;
+
+import java.util.stream.Collectors;
 
 public class ClassificationDtoMapper {
     public static ClassificationDTO toDto(Classification classification) {
@@ -12,7 +15,11 @@ public class ClassificationDtoMapper {
         classificationDTO.setId(classification.getId());
         classificationDTO.setNom(classification.getNom());
         classificationDTO.setCouleurRGB(classification.getCouleurRGB());
-        classificationDTO.setJeux(classification.getJeux());
+        classificationDTO.setJeux(
+                classification.getJeux().stream()
+                        .map(JeuDtoMapper::toDto)
+                        .collect(Collectors.toList())
+        );
         return classificationDTO;
     }
 
@@ -24,7 +31,12 @@ public class ClassificationDtoMapper {
         classification.setId(classificationDTO.getId());
         classification.setNom(classificationDTO.getNom());
         classification.setCouleurRGB(classificationDTO.getCouleurRGB());
-        classification.setJeux(classificationDTO.getJeux());
+        classification.setJeux(
+                classificationDTO.getJeux().stream()
+                        .map(JeuDtoMapper::toDomain)
+                        .collect(Collectors.toList())
+        );
+
         return classification;
     }
 }

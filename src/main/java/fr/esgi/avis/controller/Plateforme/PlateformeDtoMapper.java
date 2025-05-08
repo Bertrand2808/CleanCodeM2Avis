@@ -1,7 +1,10 @@
 package fr.esgi.avis.controller.Plateforme;
 
+import fr.esgi.avis.controller.Jeu.JeuDtoMapper;
 import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
+
+import java.util.stream.Collectors;
 
 public class PlateformeDtoMapper {
 
@@ -12,7 +15,10 @@ public class PlateformeDtoMapper {
         PlateformeDTO dto = new PlateformeDTO();
         dto.setNom(plateforme.getNom());
         dto.setDateDeSortie(plateforme.getDateDeSortie());
-        dto.setJeux(plateforme.getJeux());
+        dto.setJeux(plateforme.getJeux().stream()
+                        .map(JeuDtoMapper::toDto)
+                        .collect(Collectors.toList())
+        );
         return dto;
     }
 
@@ -23,7 +29,10 @@ public class PlateformeDtoMapper {
         Plateforme plateforme = new Plateforme();
         plateforme.setNom(dto.getNom());
         plateforme.setDateDeSortie(dto.getDateDeSortie());
-        plateforme.setJeux(dto.getJeux());
+        plateforme.setJeux(dto.getJeux().stream()
+                .map(JeuDtoMapper::toDomain)
+                .collect(Collectors.toList())
+        );
         return plateforme;
     }
 }

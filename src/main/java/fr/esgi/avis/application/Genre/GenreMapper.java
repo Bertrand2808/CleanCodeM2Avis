@@ -1,7 +1,10 @@
 package fr.esgi.avis.application.Genre;
 
 import fr.esgi.avis.application.Genre.model.GenreEntity;
+import fr.esgi.avis.application.Jeu.JeuMapper;
 import fr.esgi.avis.domain.Genre.model.Genre;
+
+import java.util.stream.Collectors;
 
 public class GenreMapper {
     public static Genre toDomain(GenreEntity genreEntity) {
@@ -10,7 +13,10 @@ public class GenreMapper {
         return Genre.builder()
                 .id(genreEntity.getId())
                 .nom(genreEntity.getNom())
-                .jeux(genreEntity.getJeux())
+                .jeux(genreEntity.getJeux().stream()
+                        .map(JeuMapper::toDomain)
+                        .collect(Collectors.toList())
+                )
                 .build();
     }
 
@@ -20,7 +26,10 @@ public class GenreMapper {
         return GenreEntity.builder()
                 .id(genre.getId())
                 .nom(genre.getNom())
-                .jeux(genre.getJeux())
+                .jeux(genre.getJeux().stream()
+                    .map(JeuMapper::toEntity)
+                    .collect(Collectors.toList())
+                )
                 .build();
     }
 }
