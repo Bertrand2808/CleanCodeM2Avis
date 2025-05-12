@@ -19,7 +19,8 @@ class AvisDtoMapperTest {
         avis.setNote(5.0f);
         avis.setJoueurId(1L);
         avis.setDateDEnvoi(LocalDateTime.now());
-        //avis.setJeuId(1L);
+        avis.setJeuId(1L);
+        avis.setModerateurId(1L);
 
         // WHEN
         AvisDTO avisDTO = AvisDtoMapper.toDto(avis);
@@ -31,7 +32,8 @@ class AvisDtoMapperTest {
         assertEquals(avis.getNote(), avisDTO.getNote());
         assertEquals(avis.getJoueurId(), avisDTO.getJoueurId());
         assertEquals(avis.getDateDEnvoi(), avisDTO.getDateDEnvoi());
-        //assertEquals(avis.getJeuId(), avisDTO.getJeuId());
+        assertEquals(avis.getJeuId(), avisDTO.getJeuId());
+        assertEquals(avis.getModerateurId(), avisDTO.getModerateurId());
     }
 
     @Test
@@ -42,8 +44,9 @@ class AvisDtoMapperTest {
         avisDTO.setDescription("Mauvais jeu");
         avisDTO.setNote(1.0f);
         avisDTO.setJoueurId(2L);
+        avisDTO.setJeuId(2L);
+        avisDTO.setModerateurId(3L);
         avisDTO.setDateDEnvoi(LocalDateTime.now());
-        //avisDTO.setJeuId(2L);
 
         // WHEN
         Avis avis = AvisDtoMapper.toDomain(avisDTO);
@@ -55,7 +58,8 @@ class AvisDtoMapperTest {
         assertEquals(avisDTO.getNote(), avis.getNote());
         assertEquals(avisDTO.getJoueurId(), avis.getJoueurId());
         assertEquals(avisDTO.getDateDEnvoi(), avis.getDateDEnvoi());
-        //assertEquals(avisDTO.getJeuId(), avis.getJeuId());
+        assertEquals(avisDTO.getJeuId(), avis.getJeuId());
+        assertEquals(avisDTO.getModerateurId(), avis.getModerateurId());
     }
 
     @Test

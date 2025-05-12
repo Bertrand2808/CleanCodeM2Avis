@@ -120,9 +120,11 @@ class AvisUseCasesTest {
         Avis newAvis = new Avis(
                 1L,
                 "Super jeu",
+                10L,
                 joueur.getId(),
-                5f,
-                LocalDateTime.now()
+                5.0f,
+                LocalDateTime.now(),
+                99L
         );
         avis.add(newAvis);
         joueur.setAvis(avis);

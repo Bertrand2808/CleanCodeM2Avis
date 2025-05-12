@@ -2,7 +2,10 @@ package fr.esgi.avis.application.Avis;
 
 import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.application.Avis.model.AvisEntity;
+import fr.esgi.avis.application.Editeur.model.EditeurEntity;
+import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
+import fr.esgi.avis.application.Moderateur.model.ModerateurEntity;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avis.model.Avis;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
@@ -29,8 +32,38 @@ class AvisMapperTest {
         Long joueurId = random.nextLong(100);
         joueurEntity.setId(joueurId);
 
-        // GIVEN
-        AvisEntity avisEntity = new AvisEntity(1L, "Super jeu", joueurEntity, 5f, LocalDateTime.now());
+        // Création d’un EditeurEntity minimal pour JeuEntity
+        EditeurEntity editeurEntity = EditeurEntity.builder()
+                .id(1L)
+                .nom("Ubisoft")
+                .build();
+
+        // Création du JeuEntity requis
+        JeuEntity jeuEntity = JeuEntity.builder()
+                .id(10L)
+                .nom("Zelda")
+                .editeur(editeurEntity)
+                .build();
+
+        // Création d’un modérateur fictif
+        ModerateurEntity moderateurEntity = ModerateurEntity.builder()
+                .id(1L)
+                .pseudo("mod123")
+                .motDePasse("securePass")
+                .email("mod@example.com")
+                .numeroDeTelephone("0601020304")
+                .build();
+
+        // Création de l’AvisEntity
+        AvisEntity avisEntity = new AvisEntity(
+                1L,
+                "Super jeu",
+                jeuEntity,
+                joueurEntity,
+                5f,
+                LocalDateTime.now(),
+                moderateurEntity
+        );
 
         // WHEN
         Avis avis = AvisMapper.toDomain(avisEntity);
@@ -67,9 +100,11 @@ class AvisMapperTest {
         Avis avisDomain = new Avis(
                 1L,
                 "Super jeu",
+                10L,
                 joueur.getId(),
                 5f,
-                LocalDateTime.now()
+                LocalDateTime.now(),
+                99L
         );
         avis.add(avisDomain);
         joueur.setAvis(avis);

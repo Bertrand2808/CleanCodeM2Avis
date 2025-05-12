@@ -1,0 +1,4 @@
+package fr.esgi.avis.application.Jeu;
+
+public class JeuMapperTest {
+}

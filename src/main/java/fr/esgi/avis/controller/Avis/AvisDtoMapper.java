@@ -20,7 +20,8 @@ public class AvisDtoMapper {
         avisDTO.setId(avis.getId());
         avisDTO.setJoueurId(avis.getJoueurId());
         avisDTO.setDateDEnvoi(avis.getDateDEnvoi());
-        //avisDTO.setJeuId(avis.getJeuId());
+        avisDTO.setJeuId(avis.getJeuId());
+        avisDTO.setModerateurId(avis.getModerateurId());
         return avisDTO;
     }
 
@@ -39,7 +40,8 @@ public class AvisDtoMapper {
         avis.setId(avisDTO.getId());
         avis.setJoueurId(avisDTO.getJoueurId());
         avis.setDateDEnvoi(avisDTO.getDateDEnvoi());
-        //avis.setJeuId(avisDTO.getJeuId());
+        avis.setJeuId(avisDTO.getJeuId());
+        avis.setModerateurId(avisDTO.getModerateurId());
         return avis;
     }
 }
