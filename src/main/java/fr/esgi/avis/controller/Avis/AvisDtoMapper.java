@@ -11,9 +11,7 @@ public class AvisDtoMapper {
      * @return AvisDTO
      */
     public static AvisDTO toDto(Avis avis) {
-        if (avis == null) {
-            return null;
-        }
+        if (avis == null) return null;
         AvisDTO avisDTO = new AvisDTO();
         avisDTO.setDescription(avis.getDescription());
         avisDTO.setNote(avis.getNote());
@@ -31,9 +29,7 @@ public class AvisDtoMapper {
      * @return Avis
      */
     public static Avis toDomain(AvisDTO avisDTO) {
-        if (avisDTO == null) {
-            return null;
-        }
+        if (avisDTO == null) return null;
         Avis avis = new Avis();
         avis.setDescription(avisDTO.getDescription());
         avis.setNote(avisDTO.getNote());

@@ -9,9 +9,7 @@ import java.util.stream.Collectors;
 public class JeuDtoMapper {
 
     public static JeuDTO toDto(Jeu jeu) {
-        if (jeu == null) {
-            return null;
-        }
+        if (jeu == null) return null;
         JeuDTO jeuDTO = new JeuDTO();
         jeuDTO.setId(jeu.getId());
         jeuDTO.setNom(jeu.getNom());
@@ -31,9 +29,7 @@ public class JeuDtoMapper {
     }
 
     public static Jeu toDomain(JeuDTO jeuDTO) {
-        if (jeuDTO == null) {
-            return null;
-        }
+        if (jeuDTO == null) return null;
 
         Jeu jeu = new Jeu();
         jeu.setId(jeuDTO.getId());

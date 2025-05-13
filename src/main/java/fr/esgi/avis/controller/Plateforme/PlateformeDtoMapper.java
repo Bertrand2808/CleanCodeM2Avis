@@ -9,9 +9,7 @@ import java.util.stream.Collectors;
 public class PlateformeDtoMapper {
 
     public static PlateformeDTO toDto(Plateforme plateforme) {
-        if (plateforme == null) {
-            return null;
-        }
+        if (plateforme == null) return null;
         PlateformeDTO dto = new PlateformeDTO();
         dto.setNom(plateforme.getNom());
         dto.setDateDeSortie(plateforme.getDateDeSortie());
@@ -23,9 +21,7 @@ public class PlateformeDtoMapper {
     }
 
     public static Plateforme toDomain(PlateformeDTO dto) {
-        if (dto == null) {
-            return null;
-        }
+        if (dto == null) return null;
         Plateforme plateforme = new Plateforme();
         plateforme.setNom(dto.getNom());
         plateforme.setDateDeSortie(dto.getDateDeSortie());

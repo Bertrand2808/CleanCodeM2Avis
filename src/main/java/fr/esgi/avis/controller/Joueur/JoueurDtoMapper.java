@@ -21,9 +21,7 @@ public class JoueurDtoMapper {
      * @return JoueurDTO
      */
     public static JoueurDTO toDto(Joueur joueur) {
-        if (joueur == null) {
-            return null;
-        }
+        if (joueur == null) return null;
         JoueurDTO joueurDTO = new JoueurDTO();
         joueurDTO.setDateDeNaissance(joueur.getDateDeNaissance());
         joueurDTO.setAvatar(AvatarDtoMapper.toDto(joueur.getAvatar()));
@@ -44,9 +42,7 @@ public class JoueurDtoMapper {
      * @return Joueur
      */
     public static Joueur toDomain(JoueurDTO joueurDTO) {
-        if (joueurDTO == null) {
-            return null;
-        }
+        if (joueurDTO == null) return null;
         Joueur joueur = new Joueur();
         joueur.setDateDeNaissance(joueurDTO.getDateDeNaissance());
         joueur.setAvatar(AvatarDtoMapper.toDomain(joueurDTO.getAvatar()));

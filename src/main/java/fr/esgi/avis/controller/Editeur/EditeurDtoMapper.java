@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 
 public class EditeurDtoMapper {
     public static EditeurDTO toDto(Editeur editeur) {
-        if (editeur == null) {
-            return null;
-        }
+        if (editeur == null) return null;
         EditeurDTO editeurDTO = new EditeurDTO();
         editeurDTO.setId(editeur.getId());
         editeurDTO.setNom(editeur.getNom());
@@ -23,9 +21,7 @@ public class EditeurDtoMapper {
     }
 
     public static Editeur toDomain(EditeurDTO editeurDTO) {
-        if (editeurDTO == null) {
-            return null;
-        }
+        if (editeurDTO == null) return null;
         Editeur editeur = new Editeur();
         editeur.setId(editeurDTO.getId());
         editeur.setNom(editeurDTO.getNom());

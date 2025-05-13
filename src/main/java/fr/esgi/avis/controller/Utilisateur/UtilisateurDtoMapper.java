@@ -13,9 +13,7 @@ public class UtilisateurDtoMapper {
      * @return UtilisateurDTO : Converted DTO
      */
     public static UtilisateurDTO toDto(Utilisateur utilisateur) {
-        if (utilisateur == null) {
-            return null;
-        }
+        if (utilisateur == null) return null;
 
         UtilisateurDTO utilisateurDTO;
 
@@ -40,9 +38,7 @@ public class UtilisateurDtoMapper {
      * @return Utilisateur : Converted Utilisateur
      */
     public static Utilisateur toDomain(UtilisateurDTO utilisateurDTO) {
-        if (utilisateurDTO == null) {
-            return null;
-        }
+        if (utilisateurDTO == null) return null;
 
         if (utilisateurDTO instanceof JoueurDTO joueurDTO) {
             // Si c'est un JoueurDTO, on renvoie un Joueur

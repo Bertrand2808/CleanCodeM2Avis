@@ -15,9 +15,7 @@ public class JoueurMapper {
      * @return Joueur
      */
     public static Joueur toDomain(JoueurEntity joueurEntity) {
-        if (joueurEntity == null) {
-            return null;
-        }
+        if (joueurEntity == null) return null;
 
         return Joueur.builder()
                 .id(joueurEntity.getId())
@@ -38,9 +36,7 @@ public class JoueurMapper {
      * @return JoueurEntity
      */
     public static JoueurEntity toEntity(Joueur joueur) {
-        if (joueur == null) {
-            return null;
-        }
+        if (joueur == null) return null;
 
         return JoueurEntity.builder()
                 .id(joueur.getId())

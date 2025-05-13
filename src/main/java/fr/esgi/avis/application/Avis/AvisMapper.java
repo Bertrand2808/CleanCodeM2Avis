@@ -9,9 +9,7 @@ import fr.esgi.avis.domain.Avis.model.Avis;
 public class AvisMapper {
 
     public static Avis toDomain(AvisEntity avisEntity) {
-        if (avisEntity == null) {
-            throw new IllegalArgumentException("AvisEntity cannot be null");
-        }
+        if (avisEntity == null) return null;
 
         return new Avis(
                 avisEntity.getId(),
@@ -25,9 +23,7 @@ public class AvisMapper {
     }
 
     public static AvisEntity toEntity(Avis avis) {
-        if (avis == null) {
-            throw new IllegalArgumentException("Avis cannot be null");
-        }
+        if (avis == null) return null;
 
         AvisEntity avisEntity = new AvisEntity();
         avisEntity.setId(avis.getId());

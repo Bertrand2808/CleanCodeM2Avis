@@ -2,6 +2,7 @@ package fr.esgi.avis.application.Avis;
 
 import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.application.Avis.model.AvisEntity;
+import fr.esgi.avis.application.Classification.ClassificationMapper;
 import fr.esgi.avis.application.Editeur.model.EditeurEntity;
 import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
@@ -19,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AvisMapperTest {
 
@@ -28,24 +28,22 @@ class AvisMapperTest {
 
     @Test
     void shouldConvertEntityToDomainSuccessfully() {
+        // GIVEN
         JoueurEntity joueurEntity = createJoueurEntity();
         Long joueurId = random.nextLong(100);
         joueurEntity.setId(joueurId);
 
-        // Création d’un EditeurEntity minimal pour JeuEntity
         EditeurEntity editeurEntity = EditeurEntity.builder()
                 .id(1L)
                 .nom("Ubisoft")
                 .build();
 
-        // Création du JeuEntity requis
         JeuEntity jeuEntity = JeuEntity.builder()
                 .id(10L)
                 .nom("Zelda")
                 .editeur(editeurEntity)
                 .build();
 
-        // Création d’un modérateur fictif
         ModerateurEntity moderateurEntity = ModerateurEntity.builder()
                 .id(1L)
                 .pseudo("mod123")
@@ -54,16 +52,15 @@ class AvisMapperTest {
                 .numeroDeTelephone("0601020304")
                 .build();
 
-        // Création de l’AvisEntity
-        AvisEntity avisEntity = new AvisEntity(
-                1L,
-                "Super jeu",
-                jeuEntity,
-                joueurEntity,
-                5f,
-                LocalDateTime.now(),
-                moderateurEntity
-        );
+        AvisEntity avisEntity = AvisEntity.builder()
+                .id(1L)
+                .description("Super jeu")
+                .jeu(jeuEntity)
+                .joueur(joueurEntity)
+                .note(5f)
+                .dateDEnvoi(LocalDateTime.now())
+                .moderateur(moderateurEntity)
+                .build();
 
         // WHEN
         Avis avis = AvisMapper.toDomain(avisEntity);
@@ -81,33 +78,32 @@ class AvisMapperTest {
     void shouldConvertDomainToEntitySuccessfully() {
         // GIVEN
         LocalDate birthdate = LocalDate.of(1990, 1, 1);
-        List<Avis> avis = new ArrayList<>();
+        List<Avis> avisList = new ArrayList<>();
+
         Joueur joueur = Joueur.builder()
+                .id(42L)
                 .pseudo("PseudoTest")
                 .motDePasse("mdpTest")
                 .email("test@example.com")
                 .dateDeNaissance(birthdate)
-                .avis(avis)
+                .avis(avisList)
                 .build();
-        Avatar avatar = new Avatar(
-                null,
-                "Warrior",
-                joueur.getId()
-        );
+
+        Avatar avatar = new Avatar(1L, "Warrior", joueur.getId());
         joueur.setAvatar(avatar);
-        Long joueurId = random.nextLong(100);
-        joueur.setId(joueurId);
-        Avis avisDomain = new Avis(
-                1L,
-                "Super jeu",
-                10L,
-                joueur.getId(),
-                5f,
-                LocalDateTime.now(),
-                99L
-        );
-        avis.add(avisDomain);
-        joueur.setAvis(avis);
+
+        Avis avisDomain = Avis.builder()
+                .id(1L)
+                .description("Super jeu")
+                .jeuId(10L)
+                .joueurId(joueur.getId())
+                .note(5f)
+                .dateDEnvoi(LocalDateTime.now())
+                .moderateurId(99L)
+                .build();
+
+        avisList.add(avisDomain);
+        joueur.setAvis(avisList);
 
         // WHEN
         AvisEntity avisEntity = AvisMapper.toEntity(avisDomain);
@@ -119,7 +115,6 @@ class AvisMapperTest {
         assertNotNull(avisEntity.getDateDEnvoi());
         assertEquals(avisDomain.getId(), avisEntity.getId());
         assertEquals(avisDomain.getDescription(), avisEntity.getDescription());
-        assertEquals(avisDomain.getDescription(), avisEntity.getDescription());
         assertEquals(joueur.getId(), avisEntity.getJoueur().getId());
         assertEquals(avisDomain.getNote(), avisEntity.getNote());
         assertEquals(avisDomain.getDateDEnvoi(), avisEntity.getDateDEnvoi());
@@ -128,15 +123,13 @@ class AvisMapperTest {
     @Test
     void shouldThrowExceptionWhenEntityIsNull() {
         // WHEN & THEN
-        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> AvisMapper.toDomain(null));
-        assertEquals("AvisEntity cannot be null", exception.getMessage());
+        assertNull(AvisMapper.toDomain(null));
     }
 
     @Test
     void shouldThrowExceptionWhenAvisIsNull() {
         // WHEN & THEN
-        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> AvisMapper.toEntity(null));
-        assertEquals("Avis cannot be null", exception.getMessage());
+        assertNull(AvisMapper.toEntity(null));
     }
 
     private JoueurEntity createJoueurEntity() {

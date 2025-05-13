@@ -29,9 +29,7 @@ public class ModerateurDtoMapper {
      *         ou {@code null} si l'entrée est {@code null}.
      */
     public static ModerateurDTO toDto(Moderateur moderateur) {
-        if (moderateur == null) {
-            return null;
-        }
+        if (moderateur == null) return null;
         ModerateurDTO moderateurDTO = new ModerateurDTO();
         moderateurDTO.setNumeroDeTelephone(moderateur.getNumeroDeTelephone());
 
@@ -51,9 +49,7 @@ public class ModerateurDtoMapper {
      *         ou {@code null} si l'entrée est {@code null}.
      */
     public static Moderateur toDomain(ModerateurDTO moderateurDTO) {
-        if (moderateurDTO == null) {
-            return null;
-        }
+        if (moderateurDTO == null) return null;
 
         Moderateur moderateur = new Moderateur();
         moderateur.setNumeroDeTelephone(moderateurDTO.getNumeroDeTelephone());

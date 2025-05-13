@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 
 public class ClassificationDtoMapper {
     public static ClassificationDTO toDto(Classification classification) {
-        if (classification == null) {
-            return null;
-        }
+        if (classification == null) return null;
         ClassificationDTO classificationDTO = new ClassificationDTO();
         classificationDTO.setId(classification.getId());
         classificationDTO.setNom(classification.getNom());
@@ -24,9 +22,7 @@ public class ClassificationDtoMapper {
     }
 
     public static Classification toDomain(ClassificationDTO classificationDTO) {
-        if (classificationDTO == null) {
-            return null;
-        }
+        if (classificationDTO == null) return null;
         Classification classification = new Classification();
         classification.setId(classificationDTO.getId());
         classification.setNom(classificationDTO.getNom());

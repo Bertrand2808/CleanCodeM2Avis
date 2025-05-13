@@ -3,10 +3,7 @@ package fr.esgi.avis.domain.Avis.model;
 import fr.esgi.avis.domain.Jeu.model.Jeu;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import fr.esgi.avis.domain.Moderateur.model.Moderateur;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Builder
 public class Avis {
 
     private Long id;
