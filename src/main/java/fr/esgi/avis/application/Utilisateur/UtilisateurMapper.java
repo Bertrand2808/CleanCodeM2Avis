@@ -16,9 +16,7 @@ public class UtilisateurMapper {
      * @return UtilisateurEntity
      */
     public static Utilisateur toDomain(UtilisateurEntity utilisateurEntity) {
-        if (utilisateurEntity == null) {
-            return null;
-        }
+        if (utilisateurEntity == null) return null;
         if (utilisateurEntity.getPseudo().isBlank() ||
                 utilisateurEntity.getMotDePasse().isBlank() ||
                 utilisateurEntity.getEmail().isBlank()) {
@@ -45,9 +43,7 @@ public class UtilisateurMapper {
      * @return UtilisateurEntity
      */
     public static UtilisateurEntity toEntity(Utilisateur utilisateur) {
-        if (utilisateur == null) {
-            return null;
-        }
+        if (utilisateur == null) return null;
 
         if (utilisateur.getPseudo().isBlank() ||
                 utilisateur.getMotDePasse().isBlank() ||

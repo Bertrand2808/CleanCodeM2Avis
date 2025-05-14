@@ -19,9 +19,7 @@ public class ModerateurMapper {
      * @return L'objet domaine `Moderateur` correspondant.
      */
     public static Moderateur toDomain(ModerateurEntity moderateurEntity) {
-        if (moderateurEntity == null) {
-            return null;
-        }
+        if (moderateurEntity == null) return null;
 
         return Moderateur.builder()
                 .id(moderateurEntity.getId())  // Hérité de UtilisateurEntity
@@ -39,9 +37,7 @@ public class ModerateurMapper {
      * @return L'entité `ModerateurEntity` correspondante.
      */
     public static ModerateurEntity toEntity(Moderateur moderateur) {
-        if (moderateur == null) {
-            return null;
-        }
+        if (moderateur == null) return null;
 
         return ModerateurEntity.builder()
                 .id(moderateur.getId())  // Hérité de Utilisateur

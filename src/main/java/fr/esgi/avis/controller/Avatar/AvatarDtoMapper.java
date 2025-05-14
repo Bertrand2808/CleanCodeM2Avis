@@ -11,9 +11,7 @@ public class AvatarDtoMapper {
      * @return AvatarDTO
      */
     public static AvatarDTO toDto(Avatar avatar) {
-        if (avatar == null) {
-            return null;
-        }
+        if (avatar == null) return null;
         AvatarDTO avatarDTO = new AvatarDTO();
         avatarDTO.setId(avatar.getId());
         avatarDTO.setNom(avatar.getNom());
@@ -26,9 +24,7 @@ public class AvatarDtoMapper {
      * @return Avatar
      */
     public static Avatar toDomain(AvatarDTO avatarDTO) {
-        if (avatarDTO == null) {
-            return null;
-        }
+        if (avatarDTO == null) return null;
         Avatar avatar = new Avatar();
         avatar.setId(avatarDTO.getId());
         avatar.setNom(avatarDTO.getNom());

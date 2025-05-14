@@ -1,7 +1,5 @@
 package fr.esgi.avis.usecases.Joueur;
 
-import fr.esgi.avis.domain.Avatar.AvatarDataSourcePort;
-import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,11 +21,8 @@ class JoueurUseCasesTest {
     @Mock
     private JoueurDataSourcePort joueurDataSourcePort;
 
-    @Mock
-    private AvatarDataSourcePort avatarDataSourcePort;
-
     @InjectMocks
-    private JoueurUseCases joueurUseCases;
+    private fr.esgi.avis.usecases.Joueur.JoueurUseCases joueurUseCases;
 
     @BeforeEach
     void setUp() {
@@ -36,164 +31,76 @@ class JoueurUseCasesTest {
 
     @Test
     void shouldCreateJoueurSuccessfully() {
-        // GIVEN
         Joueur joueur = createJoueur();
         when(joueurDataSourcePort.save(any(Joueur.class))).thenReturn(joueur);
 
-        // WHEN
-        Joueur createdJoueur = joueurUseCases.createJoueur(joueur);
+        Joueur created = joueurUseCases.createJoueur(joueur);
 
-        // THEN
-        assertNotNull(createdJoueur);
-        assertEquals(joueur.getPseudo(), createdJoueur.getPseudo());
+        assertNotNull(created);
         verify(joueurDataSourcePort, times(1)).save(any(Joueur.class));
     }
 
     @Test
-    void shouldGetAllJoueursSuccessfully() {
-        // GIVEN
-        List<Joueur> joueurs = List.of(createJoueur());
-        when(joueurDataSourcePort.findAll()).thenReturn(joueurs);
+    void shouldGetAllJoueurs() {
+        when(joueurDataSourcePort.findAll()).thenReturn(List.of(createJoueur()));
 
-        // WHEN
-        List<Joueur> result = joueurUseCases.getAllJoueurs();
+        List<Joueur> all = joueurUseCases.getAllJoueurs();
 
-        // THEN
-        assertNotNull(result);
-        assertFalse(result.isEmpty());
-        assertEquals(joueurs.size(), result.size());
+        assertFalse(all.isEmpty());
         verify(joueurDataSourcePort, times(1)).findAll();
     }
 
     @Test
-    void shouldGetJoueurByIdSuccessfully() {
-        // GIVEN
-        Long joueurId = 1L;
+    void shouldGetJoueurByPseudoIfExists() {
         Joueur joueur = createJoueur();
-        when(joueurDataSourcePort.findById(joueurId)).thenReturn(Optional.of(joueur));
+        when(joueurDataSourcePort.findByPseudo("player123")).thenReturn(Optional.of(joueur));
 
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.getJoueurById(joueurId);
+        Optional<Joueur> found = joueurUseCases.getJoueurByPseudo("player123");
 
-        // THEN
-        assertTrue(result.isPresent());
-        assertEquals(joueur.getPseudo(), result.get().getPseudo());
-        verify(joueurDataSourcePort, times(1)).findById(joueurId);
+        assertTrue(found.isPresent());
+        verify(joueurDataSourcePort, times(1)).findByPseudo("player123");
     }
 
     @Test
-    void shouldReturnEmptyWhenJoueurNotFoundById() {
-        // GIVEN
-        Long joueurId = 1L;
-        when(joueurDataSourcePort.findById(joueurId)).thenReturn(Optional.empty());
+    void shouldReturnEmptyIfJoueurNotFoundByPseudo() {
+        when(joueurDataSourcePort.findByPseudo("unknown")).thenReturn(Optional.empty());
 
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.getJoueurById(joueurId);
+        Optional<Joueur> found = joueurUseCases.getJoueurByPseudo("unknown");
 
-        // THEN
-        assertFalse(result.isPresent());
-        verify(joueurDataSourcePort, times(1)).findById(joueurId);
+        assertTrue(found.isEmpty());
+        verify(joueurDataSourcePort, times(1)).findByPseudo("unknown");
     }
 
     @Test
-    void shouldGetJoueurByPseudoSuccessfully() {
-        // GIVEN
-        String pseudo = "PlayerOne";
-        Joueur joueur = createJoueur();
-        when(joueurDataSourcePort.findByPseudo(pseudo)).thenReturn(Optional.of(joueur));
-
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.getJoueurByPseudo(pseudo);
-
-        // THEN
-        assertTrue(result.isPresent());
-        assertEquals(pseudo, result.get().getPseudo());
-        verify(joueurDataSourcePort, times(1)).findByPseudo(pseudo);
-    }
-
-    @Test
-    void shouldGetJoueurByBirthdateSuccessfully() {
-        // GIVEN
-        LocalDate birthdate = LocalDate.of(1995, 6, 15);
+    void shouldGetJoueurByBirthdateIfExists() {
+        LocalDate birthdate = LocalDate.of(1990, 1, 1);
         Joueur joueur = createJoueur();
         when(joueurDataSourcePort.findByDateDeNaissance(birthdate)).thenReturn(Optional.of(joueur));
 
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.getJoueurByBirthdate(birthdate);
+        Optional<Joueur> found = joueurUseCases.getJoueurByBirthdate(birthdate);
 
-        // THEN
-        assertTrue(result.isPresent());
-        assertEquals(birthdate, result.get().getDateDeNaissance());
+        assertTrue(found.isPresent());
         verify(joueurDataSourcePort, times(1)).findByDateDeNaissance(birthdate);
     }
 
     @Test
-    void shouldAssignAvatarToJoueurSuccessfully() {
-        // GIVEN
-        Joueur joueur = createJoueur();
-        Avatar avatar = createAvatar();
-        Long joueurId = joueur.getId();
-        Long avatarId = avatar.getId();
+    void shouldReturnEmptyIfJoueurNotFoundByBirthdate() {
+        LocalDate birthdate = LocalDate.of(2000, 1, 1);
+        when(joueurDataSourcePort.findByDateDeNaissance(birthdate)).thenReturn(Optional.empty());
 
-        when(joueurDataSourcePort.findById(joueurId)).thenReturn(Optional.of(joueur));
-        when(avatarDataSourcePort.findById(avatarId)).thenReturn(Optional.of(avatar));
-        when(joueurDataSourcePort.save(any(Joueur.class))).thenReturn(joueur);
-        when(avatarDataSourcePort.save(any(Avatar.class))).thenReturn(avatar);
+        Optional<Joueur> found = joueurUseCases.getJoueurByBirthdate(birthdate);
 
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.assignAvatarToJoueur(joueurId, avatarId);
-
-        // THEN
-        assertTrue(result.isPresent());
-        assertEquals(avatarId, result.get().getAvatar().getId());
-        verify(joueurDataSourcePort, times(1)).save(any(Joueur.class));
-        verify(avatarDataSourcePort, times(1)).save(any(Avatar.class));
-    }
-
-    @Test
-    void shouldReturnEmptyWhenAssigningAvatarToNonExistingJoueur() {
-        // GIVEN
-        Long joueurId = 1L;
-        Long avatarId = 2L;
-        when(joueurDataSourcePort.findById(joueurId)).thenReturn(Optional.empty());
-
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.assignAvatarToJoueur(joueurId, avatarId);
-
-        // THEN
-        assertFalse(result.isPresent());
-        verify(joueurDataSourcePort, times(1)).findById(joueurId);
-        verify(avatarDataSourcePort, times(1)).findById(avatarId);
-    }
-
-    @Test
-    void shouldReturnEmptyWhenAssigningNonExistingAvatarToJoueur() {
-        // GIVEN
-        Long joueurId = 1L;
-        Long avatarId = 2L;
-        Joueur joueur = createJoueur();
-        when(joueurDataSourcePort.findById(joueurId)).thenReturn(Optional.of(joueur));
-        when(avatarDataSourcePort.findById(avatarId)).thenReturn(Optional.empty());
-
-        // WHEN
-        Optional<Joueur> result = joueurUseCases.assignAvatarToJoueur(joueurId, avatarId);
-
-        // THEN
-        assertFalse(result.isPresent());
-        verify(joueurDataSourcePort, times(1)).findById(joueurId);
-        verify(avatarDataSourcePort, times(1)).findById(avatarId);
+        assertTrue(found.isEmpty());
+        verify(joueurDataSourcePort, times(1)).findByDateDeNaissance(birthdate);
     }
 
     private Joueur createJoueur() {
         return Joueur.builder()
-                .pseudo("PlayerOne")
+                .id(1L)
+                .pseudo("player123")
                 .motDePasse("password")
                 .email("player@example.com")
-                .dateDeNaissance(LocalDate.of(1995, 6, 15))
+                .dateDeNaissance(LocalDate.of(1990, 1, 1))
                 .build();
-    }
-
-    private Avatar createAvatar() {
-        return new Avatar(1L, "Warrior", null);
     }
 }

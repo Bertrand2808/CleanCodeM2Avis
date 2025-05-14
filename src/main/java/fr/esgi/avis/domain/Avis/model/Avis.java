@@ -1,10 +1,9 @@
 package fr.esgi.avis.domain.Avis.model;
 
+import fr.esgi.avis.domain.Jeu.model.Jeu;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import fr.esgi.avis.domain.Moderateur.model.Moderateur;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Builder
 public class Avis {
 
     private Long id;
@@ -21,8 +21,8 @@ public class Avis {
     @NonNull
     private String description;
 
-    //@NonNull
-    //private Jeu jeu;
+    @NonNull
+    private Long jeuId;
 
     @NonNull
     private Long joueurId;
@@ -31,13 +31,16 @@ public class Avis {
 
     private LocalDateTime dateDEnvoi;
 
-    //private Moderateur moderateur;
+    @NonNull
+    private Long moderateurId;
 
-    public Avis(Long id, @NonNull String description, @NonNull Long joueurId, Float note, LocalDateTime dateDEnvoi) {
+    public Avis(Long id, @NonNull String description,@NonNull Long jeuId, @NonNull Long joueurId, Float note, LocalDateTime dateDEnvoi, @NonNull Long moderateurId) {
         this.id = id;
         this.description = description;
+        this.jeuId = jeuId;
         this.joueurId = joueurId;
         this.note = note;
         this.dateDEnvoi = dateDEnvoi;
+        this.moderateurId = moderateurId;
     }
 }

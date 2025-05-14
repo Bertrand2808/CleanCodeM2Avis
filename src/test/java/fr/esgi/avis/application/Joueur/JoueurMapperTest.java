@@ -1,110 +1,139 @@
 package fr.esgi.avis.application.Joueur;
 
-import fr.esgi.avis.application.Avatar.AvatarMapper;
 import fr.esgi.avis.application.Avatar.model.AvatarEntity;
-import fr.esgi.avis.application.Avis.AvisMapper;
 import fr.esgi.avis.application.Avis.model.AvisEntity;
+import fr.esgi.avis.application.Editeur.model.EditeurEntity;
+import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
+import fr.esgi.avis.application.Moderateur.model.ModerateurEntity;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avis.model.Avis;
+import fr.esgi.avis.domain.Editeur.model.Editeur;
+import fr.esgi.avis.domain.Jeu.model.Jeu;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
+import fr.esgi.avis.domain.Moderateur.model.Moderateur;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class JoueurMapperTest {
 
-    @Test
-    void shouldConvertEntityToDomainSuccessfully() {
-        // GIVEN
-        JoueurEntity joueurEntity = createJoueurEntity();
+    private final Random random = new Random();
 
-        // WHEN
+    @Test
+    void shouldMapEntityToDomainSuccessfully() {
+        AvatarEntity avatarEntity = new AvatarEntity(1L, "Viking", 1L);
+
+        JoueurEntity joueurEntity = JoueurEntity.builder()
+                .id(1L)
+                .pseudo("Ezio")
+                .email("ezio@ac.com")
+                .motDePasse("hiddenBlade")
+                .dateDeNaissance(LocalDate.of(1995, 6, 12))
+                .avatar(avatarEntity)
+                .avis(new ArrayList<>())
+                .build();
+
+        JeuEntity jeuEntity = JeuEntity.builder()
+                .id(10L)
+                .nom("Zelda")
+                .editeur(EditeurEntity.builder().id(1L).nom("Ubisoft").build())
+                .build();
+
+        ModerateurEntity moderateurEntity = ModerateurEntity.builder()
+                .id(99L)
+                .pseudo("mod123")
+                .motDePasse("securePass")
+                .email("mod@example.com")
+                .numeroDeTelephone("0601020304")
+                .build();
+
+        AvisEntity avisEntity = AvisEntity.builder()
+                .id(1L)
+                .description("Excellent game")
+                .jeu(jeuEntity)
+                .joueur(joueurEntity)
+                .note(5f)
+                .dateDEnvoi(LocalDateTime.now())
+                .moderateur(moderateurEntity)
+                .build();
+
+        joueurEntity.setAvis(List.of(avisEntity));
+
         Joueur joueur = JoueurMapper.toDomain(joueurEntity);
 
-        // THEN
         assertNotNull(joueur);
-        assertEquals(joueurEntity.getId(), joueur.getId());
-        assertEquals(joueurEntity.getPseudo(), joueur.getPseudo());
-        assertEquals(joueurEntity.getEmail(), joueur.getEmail());
-        assertEquals(joueurEntity.getMotDePasse(), joueur.getMotDePasse());
-        assertEquals(joueurEntity.getDateDeNaissance(), joueur.getDateDeNaissance());
-        assertNotNull(joueur.getAvatar());
-        assertEquals(joueurEntity.getAvatar().getNom(), joueur.getAvatar().getNom());
-        assertEquals(joueurEntity.getAvis().size(), joueur.getAvis().size());
+        assertEquals("Ezio", joueur.getPseudo());
+        assertEquals("ezio@ac.com", joueur.getEmail());
+        assertEquals("Viking", joueur.getAvatar().getNom());
+        assertEquals(1, joueur.getAvis().size());
     }
 
     @Test
-    void shouldConvertDomainToEntitySuccessfully() {
-        // GIVEN
-        Joueur joueur = createJoueur();
-
-        // WHEN
-        JoueurEntity joueurEntity = JoueurMapper.toEntity(joueur);
-
-        // THEN
-        assertNotNull(joueurEntity);
-        assertEquals(joueur.getId(), joueurEntity.getId());
-        assertEquals(joueur.getPseudo(), joueurEntity.getPseudo());
-        assertEquals(joueur.getEmail(), joueurEntity.getEmail());
-        assertEquals(joueur.getMotDePasse(), joueurEntity.getMotDePasse());
-        assertEquals(joueur.getDateDeNaissance(), joueurEntity.getDateDeNaissance());
-        assertNotNull(joueurEntity.getAvatar());
-        assertEquals(joueur.getAvatar().getNom(), joueurEntity.getAvatar().getNom());
-        assertEquals(joueur.getAvis().size(), joueurEntity.getAvis().size());
-    }
-
-    @Test
-    void shouldReturnNullWhenEntityIsNull() {
-        // WHEN
-        Joueur joueur = JoueurMapper.toDomain(null);
-
-        // THEN
-        assertNull(joueur);
-    }
-
-    @Test
-    void shouldReturnNullWhenDomainIsNull() {
-        // WHEN
-        JoueurEntity joueurEntity = JoueurMapper.toEntity(null);
-
-        // THEN
-        assertNull(joueurEntity);
-    }
-
-    private JoueurEntity createJoueurEntity() {
-        LocalDate birthdate = LocalDate.of(1995, 6, 15);
-        AvatarEntity avatarEntity = new AvatarEntity(1L, "Guerrier", null);
-        List<AvisEntity> avisEntities = new ArrayList<>();
-
-        return JoueurEntity.builder()
-                .id(10L)
-                .pseudo("PlayerOne")
-                .motDePasse("password")
-                .email("player@example.com")
-                .dateDeNaissance(birthdate)
-                .avatar(avatarEntity)
-                .avis(avisEntities)
+    void shouldMapDomainToEntitySuccessfully() {
+        Editeur editeur = Editeur.builder()
+                .id(1L)
+                .nom("Ubisoft")
+                .jeux(List.of())
                 .build();
+
+        Jeu jeu = Jeu.builder()
+                .id(10L)
+                .nom("Assassin's Creed Valhalla")
+                .editeur(editeur)
+                .build();
+
+        Moderateur moderateur = Moderateur.builder()
+                .id(99L)
+                .pseudo("ModAC")
+                .email("mod@ac.com")
+                .motDePasse("modpass")
+                .numeroDeTelephone("0102030405")
+                .build();
+
+        Joueur joueur = Joueur.builder()
+                .id(1L)
+                .pseudo("Altair")
+                .email("altair@ac.com")
+                .motDePasse("creed123")
+                .dateDeNaissance(LocalDate.of(1985, 3, 15))
+                .avatar(new Avatar(1L, "Viking", 1L))
+                .build();
+
+        Avis avis = Avis.builder()
+                .id(1L)
+                .description("Masterpiece")
+                .jeuId(jeu.getId())
+                .joueurId(joueur.getId())
+                .moderateurId(moderateur.getId())
+                .note(5f)
+                .dateDEnvoi(LocalDateTime.now())
+                .build();
+
+        joueur.setAvis(List.of(avis));
+
+        JoueurEntity entity = JoueurMapper.toEntity(joueur);
+
+        assertNotNull(entity);
+        assertEquals("Altair", entity.getPseudo());
+        assertEquals("altair@ac.com", entity.getEmail());
+        assertEquals("Viking", entity.getAvatar().getNom());
+        assertEquals(1, entity.getAvis().size());
     }
 
-    private Joueur createJoueur() {
-        LocalDate birthdate = LocalDate.of(1995, 6, 15);
-        Avatar avatar = new Avatar(1L, "Guerrier", null);
-        List<Avis> avisList = new ArrayList<>();
+    @Test
+    void shouldReturnNullWhenMappingNullEntity() {
+        assertNull(JoueurMapper.toDomain(null));
+    }
 
-        return Joueur.builder()
-                .id(10L)
-                .pseudo("PlayerOne")
-                .motDePasse("password")
-                .email("player@example.com")
-                .dateDeNaissance(birthdate)
-                .avatar(avatar)
-                .avis(avisList)
-                .build();
+    @Test
+    void shouldReturnNullWhenMappingNullDomain() {
+        assertNull(JoueurMapper.toEntity(null));
     }
 }

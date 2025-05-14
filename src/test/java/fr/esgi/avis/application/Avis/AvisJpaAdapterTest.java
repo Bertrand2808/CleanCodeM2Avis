@@ -45,9 +45,13 @@ class AvisJpaAdapterTest {
         Avis avis = new Avis(
                 avisId,
                 "Super jeu",
+                10L,
                 joueur.getId(),
                 5.0f,
-                now);
+                now,
+                99L
+        );
+
 
         AvisEntity avisEntity = AvisMapper.toEntity(avis);
         when(avisJpaRepository.save(any(AvisEntity.class))).thenReturn(avisEntity);
@@ -70,9 +74,13 @@ class AvisJpaAdapterTest {
         Avis avis = new Avis(
                 avisId,
                 "Super jeu",
+                10L,
                 joueur.getId(),
                 5.0f,
-                now);
+                now,
+                99L
+        );
+
 
         AvisEntity avisEntity = AvisMapper.toEntity(avis);
         when(avisJpaRepository.findById(avisId)).thenReturn(Optional.of(avisEntity));

@@ -1,11 +1,10 @@
 package fr.esgi.avis.application.Avis.model;
 
+import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
+import fr.esgi.avis.application.Moderateur.model.ModerateurEntity;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Builder
 public class AvisEntity {
 
     @Id
@@ -26,10 +26,9 @@ public class AvisEntity {
     @NonNull
     private String description;
 
-    /*@ManyToOne
+    @ManyToOne
     @NonNull
-    private Jeu jeu;
-     */
+    private JeuEntity jeu;
 
     @ManyToOne
     @NonNull
@@ -39,15 +38,17 @@ public class AvisEntity {
 
     private LocalDateTime dateDEnvoi;
 
-    /*@ManyToOne
-    private Moderateur moderateur;*/
+    @ManyToOne
+    private ModerateurEntity moderateur;
 
-    public AvisEntity(Long id, String description, JoueurEntity joueur, Float note, LocalDateTime dateDEnvoi) {
+    public AvisEntity(Long id, String description, JeuEntity jeu, JoueurEntity joueur, Float note, LocalDateTime dateDEnvoi, ModerateurEntity moderateur) {
         this.id = id;
         this.description = description;
+        this.jeu = jeu;
         this.joueur = joueur;
         this.note = note;
         this.dateDEnvoi = dateDEnvoi;
+        this.moderateur = moderateur;
     }
 
 }

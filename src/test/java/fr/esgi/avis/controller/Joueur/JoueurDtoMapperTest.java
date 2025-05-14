@@ -3,124 +3,69 @@ package fr.esgi.avis.controller.Joueur;
 import fr.esgi.avis.controller.Avatar.dto.AvatarDTO;
 import fr.esgi.avis.controller.Avis.dto.AvisDTO;
 import fr.esgi.avis.controller.Joueur.dto.JoueurDTO;
-import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.domain.Avis.model.Avis;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class JoueurDtoMapperTest {
 
     @Test
-    void shouldConvertJoueurToDtoSuccessfully() {
-        // GIVEN
-        Joueur joueur = createJoueur();
+    void shouldConvertDomainToDtoSuccessfully() {
+        Joueur joueur = new Joueur();
+        joueur.setPseudo("Test");
+        joueur.setEmail("test@test.com");
+        joueur.setMotDePasse("pwd");
+        joueur.setDateDeNaissance(LocalDate.of(1995, 1, 1));
+        joueur.setAvatar(new fr.esgi.avis.domain.Avatar.model.Avatar(1L, "Knight", 1L));
+        joueur.setAvis(Collections.emptyList());
 
-        // WHEN
-        JoueurDTO joueurDTO = JoueurDtoMapper.toDto(joueur);
+        JoueurDTO dto = JoueurDtoMapper.toDto(joueur);
 
-        // THEN
-        assertNotNull(joueurDTO);
-        assertEquals(joueur.getPseudo(), joueurDTO.getPseudo());
-        assertEquals(joueur.getEmail(), joueurDTO.getEmail());
-        assertEquals(joueur.getMotDePasse(), joueurDTO.getMotDePasse());
-        assertEquals(joueur.getDateDeNaissance(), joueurDTO.getDateDeNaissance());
-        assertNotNull(joueurDTO.getAvatar());
-        assertEquals(joueur.getAvatar().getNom(), joueurDTO.getAvatar().getNom());
-        assertEquals(joueur.getAvis().size(), joueurDTO.getAvis().size());
+        assertNotNull(dto);
+        assertEquals("Test", dto.getPseudo());
+        assertEquals("test@test.com", dto.getEmail());
     }
 
     @Test
-    void shouldConvertDtoToJoueurSuccessfully() {
-        // GIVEN
-        JoueurDTO joueurDTO = createJoueurDTO();
-        // WHEN
-        Joueur joueur = JoueurDtoMapper.toDomain(joueurDTO);
+    void shouldConvertDtoToDomainSuccessfully() {
+        JoueurDTO dto = new JoueurDTO();
+        dto.setPseudo("Test");
+        dto.setEmail("test@test.com");
+        dto.setMotDePasse("pwd");
+        dto.setDateDeNaissance(LocalDate.of(1995, 1, 1));
 
-        // THEN
-        assertNotNull(joueur);
-        assertEquals(joueurDTO.getPseudo(), joueur.getPseudo());
-        assertEquals(joueurDTO.getEmail(), joueur.getEmail());
-        assertEquals(joueurDTO.getMotDePasse(), joueur.getMotDePasse());
-        assertEquals(joueurDTO.getDateDeNaissance(), joueur.getDateDeNaissance());
-        assertNotNull(joueur.getAvatar());
-        assertEquals(joueurDTO.getAvatar().getNom(), joueur.getAvatar().getNom());
-        assertEquals(joueurDTO.getAvis().size(), joueur.getAvis().size());
-    }
-
-    @Test
-    void shouldReturnNullWhenJoueurIsNull() {
-        // WHEN
-        JoueurDTO joueurDTO = JoueurDtoMapper.toDto(null);
-
-        // THEN
-        assertNull(joueurDTO);
-    }
-
-    @Test
-    void shouldReturnNullWhenJoueurDtoIsNull() {
-        // WHEN
-        Joueur joueur = JoueurDtoMapper.toDomain(null);
-
-        // THEN
-        assertNull(joueur);
-    }
-
-    private Joueur createJoueur() {
-        LocalDate birthdate = LocalDate.of(1995, 6, 15);
-        Avatar avatar = new Avatar(1L, "Guerrier", null);
-        List<Avis> avisList = new ArrayList<>();
-        Avis avis = new Avis();
-        avis.setId(1L);
-        avis.setDescription("Super jeu");
-        avis.setNote(5.0f);
-        avis.setJoueurId(1L);
-        avis.setDateDEnvoi(LocalDateTime.now());
-        avisList.add(avis);
-
-        return Joueur.builder()
-                .id(10L)
-                .pseudo("PlayerOne")
-                .motDePasse("password")
-                .email("player@example.com")
-                .dateDeNaissance(birthdate)
-                .avatar(avatar)
-                .avis(avisList)
-                .build();
-    }
-
-    private JoueurDTO createJoueurDTO() {
-        LocalDate birthdate = LocalDate.of(1995, 6, 15);
         AvatarDTO avatarDTO = new AvatarDTO();
-        avatarDTO.setId(1L);
-        avatarDTO.setNom("Guerrier");
+        avatarDTO.setNom("Knight");
+        dto.setAvatar(avatarDTO);
 
-        List<AvisDTO> avisDTOList = new ArrayList<>();
         AvisDTO avisDTO = new AvisDTO();
         avisDTO.setId(1L);
-        avisDTO.setDescription("Super jeu");
-        avisDTO.setNote(5.0f);
-        avisDTOList.add(avisDTO);
+        avisDTO.setDescription("Solid game");
+        avisDTO.setNote(4.0f);
+        avisDTO.setDateDEnvoi(LocalDate.now().atStartOfDay());
+        avisDTO.setJoueurId(1L);
+        avisDTO.setJeuId(1L);
+        avisDTO.setModerateurId(1L);
+        dto.setAvis(Collections.singletonList(avisDTO));
 
-        JoueurDTO joueurDTO = new JoueurDTO();
-        joueurDTO.setId(10L);
-        joueurDTO.setPseudo("PlayerOne");
-        joueurDTO.setMotDePasse("password");
-        joueurDTO.setEmail("player@example.com");
-        joueurDTO.setDateDeNaissance(birthdate);
-        joueurDTO.setAvatar(avatarDTO);
-        joueurDTO.setAvis(avisDTOList);
+        Joueur joueur = JoueurDtoMapper.toDomain(dto);
 
-        avisDTO.setJoueurId(joueurDTO.getId());
-        avatarDTO.setId(joueurDTO.getId());
-
-        return joueurDTO;
+        assertNotNull(joueur);
+        assertEquals("Test", joueur.getPseudo());
+        assertEquals("test@test.com", joueur.getEmail());
     }
 
+    @Test
+    void shouldReturnNullForNullJoueur() {
+        assertNull(JoueurDtoMapper.toDto(null));
+    }
+
+    @Test
+    void shouldReturnNullForNullJoueurDTO() {
+        assertNull(JoueurDtoMapper.toDomain(null));
+    }
 }

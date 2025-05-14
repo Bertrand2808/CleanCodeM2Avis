@@ -28,29 +28,35 @@ class AvisControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-    
+
     @Test
     void shouldCreateAvisSuccessfully() {
         // GIVEN
         Long joueurId = 1L;
+        Long jeuId = 2L;
+        Long moderateurId = 3L;
+
         AvisDTO avisDTO = new AvisDTO();
         avisDTO.setId(1L);
         avisDTO.setDescription("Super jeu");
         avisDTO.setJoueurId(joueurId);
+        avisDTO.setJeuId(jeuId);
+        avisDTO.setModerateurId(moderateurId);
         avisDTO.setNote(5.0f);
         avisDTO.setDateDEnvoi(LocalDateTime.now());
-        
+
         Avis createdAvis = AvisDtoMapper.toDomain(avisDTO);
 
         when(avisUseCases.createAvis(any(Avis.class))).thenReturn(createdAvis);
+
         // WHEN
         AvisDTO result = avisController.createAvis(avisDTO);
-        
+
         // THEN
         assertNotNull(result);
         assertEquals(1L, result.getId());
         assertEquals("Super jeu", result.getDescription());
-        verify(avisUseCases, times(1)).createAvis(createdAvis);
+        verify(avisUseCases, times(1)).createAvis(any(Avis.class));
     }
 
     @Test

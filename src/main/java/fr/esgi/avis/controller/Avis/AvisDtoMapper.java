@@ -11,16 +11,15 @@ public class AvisDtoMapper {
      * @return AvisDTO
      */
     public static AvisDTO toDto(Avis avis) {
-        if (avis == null) {
-            return null;
-        }
+        if (avis == null) return null;
         AvisDTO avisDTO = new AvisDTO();
         avisDTO.setDescription(avis.getDescription());
         avisDTO.setNote(avis.getNote());
         avisDTO.setId(avis.getId());
         avisDTO.setJoueurId(avis.getJoueurId());
         avisDTO.setDateDEnvoi(avis.getDateDEnvoi());
-        //avisDTO.setJeuId(avis.getJeuId());
+        avisDTO.setJeuId(avis.getJeuId());
+        avisDTO.setModerateurId(avis.getModerateurId());
         return avisDTO;
     }
 
@@ -30,16 +29,15 @@ public class AvisDtoMapper {
      * @return Avis
      */
     public static Avis toDomain(AvisDTO avisDTO) {
-        if (avisDTO == null) {
-            return null;
-        }
+        if (avisDTO == null) return null;
         Avis avis = new Avis();
         avis.setDescription(avisDTO.getDescription());
         avis.setNote(avisDTO.getNote());
         avis.setId(avisDTO.getId());
         avis.setJoueurId(avisDTO.getJoueurId());
         avis.setDateDEnvoi(avisDTO.getDateDEnvoi());
-        //avis.setJeuId(avisDTO.getJeuId());
+        avis.setJeuId(avisDTO.getJeuId());
+        avis.setModerateurId(avisDTO.getModerateurId());
         return avis;
     }
 }

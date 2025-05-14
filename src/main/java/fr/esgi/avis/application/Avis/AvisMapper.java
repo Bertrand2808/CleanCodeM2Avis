@@ -1,41 +1,30 @@
 package fr.esgi.avis.application.Avis;
 
 import fr.esgi.avis.application.Avis.model.AvisEntity;
-import fr.esgi.avis.application.Joueur.JoueurMapper;
+import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
+import fr.esgi.avis.application.Moderateur.model.ModerateurEntity;
 import fr.esgi.avis.domain.Avis.model.Avis;
 
 public class AvisMapper {
 
-    /**
-     * Convert an AvisEntity to a domain Avis object.
-     * @param avisEntity the entity to convert
-     * @return Avis domain object
-     * @throws IllegalArgumentException if avisEntity is null
-     */
     public static Avis toDomain(AvisEntity avisEntity) {
-        if (avisEntity == null) {
-            throw new IllegalArgumentException("AvisEntity cannot be null");
-        }
+        if (avisEntity == null) return null;
+
         return new Avis(
                 avisEntity.getId(),
                 avisEntity.getDescription(),
+                avisEntity.getJeu().getId(),
                 avisEntity.getJoueur().getId(),
                 avisEntity.getNote(),
-                avisEntity.getDateDEnvoi()
+                avisEntity.getDateDEnvoi(),
+                avisEntity.getModerateur().getId()
         );
     }
 
-    /**
-     * Convert an Avis domain object to an AvisEntity for persistence.
-     * @param avis the domain object to convert
-     * @return AvisEntity persistence object
-     * @throws IllegalArgumentException if avis is null
-     */
     public static AvisEntity toEntity(Avis avis) {
-        if (avis == null) {
-            throw new IllegalArgumentException("Avis cannot be null");
-        }
+        if (avis == null) return null;
+
         AvisEntity avisEntity = new AvisEntity();
         avisEntity.setId(avis.getId());
         avisEntity.setDescription(avis.getDescription());
@@ -45,6 +34,14 @@ public class AvisMapper {
         JoueurEntity joueurEntity = new JoueurEntity();
         joueurEntity.setId(avis.getJoueurId());
         avisEntity.setJoueur(joueurEntity);
+
+        JeuEntity jeuEntity = new JeuEntity();
+        jeuEntity.setId(avis.getJeuId());
+        avisEntity.setJeu(jeuEntity);
+
+        ModerateurEntity moderateurEntity = new ModerateurEntity();
+        moderateurEntity.setId(avis.getModerateurId());
+        avisEntity.setModerateur(moderateurEntity);
 
         return avisEntity;
     }
