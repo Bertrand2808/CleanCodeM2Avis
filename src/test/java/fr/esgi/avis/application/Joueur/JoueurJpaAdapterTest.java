@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,25 @@ class JoueurJpaAdapterTest {
         assertNotNull(savedJoueur);
         assertEquals(joueur.getPseudo(), savedJoueur.getPseudo());
         verify(joueurJpaRepository, times(1)).save(any(JoueurEntity.class));
+    }
+
+    @Test
+    void shouldFindAllJoueursSuccessfully() {
+        // GIVEN
+        JoueurEntity joueurEntity1 = createJoueurEntity();
+        JoueurEntity joueurEntity2 = createJoueurEntity();
+        List<JoueurEntity> listJoueurs = new ArrayList<>();
+        listJoueurs.add(joueurEntity1);
+        listJoueurs.add(joueurEntity2);
+        when(joueurJpaRepository.findAll()).thenReturn(listJoueurs);
+
+        // WHEN
+        List<Joueur> foundJoueurs = joueurJpaAdapter.findAll();
+
+        // THEN
+        assertFalse(foundJoueurs.isEmpty());
+        assertEquals(2, foundJoueurs.size());
+        verify(joueurJpaRepository, times(1)).findAll();
     }
 
     @Test
@@ -160,6 +180,19 @@ class JoueurJpaAdapterTest {
         verify(joueurJpaRepository, times(1)).findById(joueurId);
         verify(avatarJpaRepository, times(1)).findById(avatarId);
         verify(joueurJpaRepository, never()).save(any(JoueurEntity.class));
+    }
+
+    @Test
+    void shouldCountJoueursSuccessfully() {
+        // GIVEN
+        when(joueurJpaRepository.count()).thenReturn(10L);
+
+        // WHEN
+        long count = joueurJpaAdapter.count();
+
+        // THEN
+        assertEquals(10L, count);
+        verify(joueurJpaRepository, times(1)).count();
     }
 
     private JoueurEntity createJoueurEntity() {
