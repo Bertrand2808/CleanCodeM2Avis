@@ -41,7 +41,6 @@ public class JoueurJpaAdapter implements JoueurDataSourcePort {
                 .collect(Collectors.toList());
     }
 
-
     /**
      * Find a Joueur by its pseudo
      * @param pseudo
@@ -108,7 +107,5 @@ public class JoueurJpaAdapter implements JoueurDataSourcePort {
         joueurEntityToUpdate.setAvatar(avatarEntityToUpdate);
         joueurJpaRepository.save(joueurEntityToUpdate);
     }
-
-
 }
 

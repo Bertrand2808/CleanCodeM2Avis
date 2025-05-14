@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UtilisateurMapperTest {
+
     /**
      * Classe inconnue pour les tests
      * Permet de tester le cas où le type d'utilisateur n'est pas géré
@@ -20,7 +21,6 @@ class UtilisateurMapperTest {
             super(id, pseudo, motDePasse, email);
         }
     }
-
 
     @Test
     void shouldConvertEntityToDomainSuccessfully() {
@@ -84,7 +84,7 @@ class UtilisateurMapperTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenEmptyFields() {
+    void shouldThrowExceptionWhenEmptyFieldsInToDomain() {
         // GIVEN
         UtilisateurEntity utilisateurEntity = JoueurEntity.builder()
                 .id(1L)
@@ -103,4 +103,66 @@ class UtilisateurMapperTest {
         // THEN
         assertEquals("Pseudo, motDePasse and email cannot be empty", thrown.getMessage());
     }
+
+    @Test
+    void shouldThrowExceptionWhenEmptyFieldsInToEntity() {
+        // GIVEN
+        Utilisateur utilisateur = Joueur.builder()
+                .id(1L)
+                .pseudo("")
+                .motDePasse("")
+                .email("")
+                .dateDeNaissance(LocalDate.of(1990, 1, 1))
+                .build();
+
+        // WHEN
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> UtilisateurMapper.toEntity(utilisateur)
+        );
+
+        // THEN
+        assertEquals("Pseudo, motDePasse and email cannot be empty", thrown.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenTypeIsNotManagedInToEntity() {
+        // GIVEN
+        Utilisateur utilisateur = new Utilisateur() {
+            @Override
+            public Long getId() {
+                return 1L;
+            }
+
+            @Override
+            public String getPseudo() {
+                return "PseudoTest";
+            }
+
+            @Override
+            public String getMotDePasse() {
+                return "mdpTest";
+            }
+
+            @Override
+            public String getEmail() {
+                return "test@exemple.com";
+            }
+        };
+
+        // WHEN
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> UtilisateurMapper.toEntity(utilisateur)
+        );
+
+        // Debug pour voir le message exact
+        System.out.println("Exception message: " + thrown.getMessage());
+
+        // THEN
+        assertNotNull(thrown.getMessage()); // Vérifie que le message n'est pas null
+        assertFalse(thrown.getMessage().isBlank()); // Vérifie qu'il y a bien un message
+        assertTrue(thrown.getMessage().startsWith("Type d'utilisateur non géré")); // Vérifie que ça commence bien par le message attendu
+    }
+
 }

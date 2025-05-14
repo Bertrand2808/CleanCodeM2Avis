@@ -3,6 +3,7 @@ package fr.esgi.avis.controller.Joueur.rest;
 import fr.esgi.avis.controller.Joueur.JoueurController;
 import fr.esgi.avis.controller.Joueur.dto.JoueurDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +25,11 @@ public class JoueurRestController {
      * @return the created Joueur
      */
     @PostMapping
-    public ResponseEntity<JoueurDTO> createJoueur(JoueurDTO joueurDTO) {
+    public ResponseEntity<JoueurDTO> createJoueur(@RequestBody JoueurDTO joueurDTO) {
         JoueurDTO createdJoueurDto = joueurController.createJoueur(joueurDTO);
-        return ResponseEntity.ok(createdJoueurDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdJoueurDto);
     }
+
 
     /**
      * Get all Joueurs
@@ -43,8 +45,8 @@ public class JoueurRestController {
      * @param pseudo : pseudo of the joueur to find
      * @return the joueur found
      */
-    @GetMapping("/{pseudo}")
-    public ResponseEntity<JoueurDTO> getJoueurByPseudo(String pseudo) {
+    @GetMapping("/pseudo/{pseudo}")
+    public ResponseEntity<JoueurDTO> getJoueurByPseudo(@PathVariable String pseudo) {
         return joueurController.getJoueurByPseudo(pseudo)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -55,15 +57,15 @@ public class JoueurRestController {
      * @param birthdate : birthdate of the joueur to find
      * @return Joueur found
      */
-    @GetMapping("/{birthdate}")
-    public ResponseEntity<JoueurDTO> getJoueurByBirthdate(LocalDate birthdate) {
+    @GetMapping("/birthdate/{birthdate}")
+    public ResponseEntity<JoueurDTO> getJoueurByBirthdate(@PathVariable LocalDate birthdate) {
         return joueurController.getJoueurByBirthdate(birthdate)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<JoueurDTO> getJoueurById(Long id) {
+    @GetMapping("/id/{id}")
+    public ResponseEntity<JoueurDTO> getJoueurById(@PathVariable Long id) {
         return joueurController.getJoueurById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

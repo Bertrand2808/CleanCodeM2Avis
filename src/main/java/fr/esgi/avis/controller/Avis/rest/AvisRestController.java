@@ -2,7 +2,9 @@ package fr.esgi.avis.controller.Avis.rest;
 
 import fr.esgi.avis.controller.Avis.AvisController;
 import fr.esgi.avis.controller.Avis.dto.AvisDTO;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,8 @@ public class AvisRestController {
      * @return the created Avis
      */
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(description = "Méthode pour créer un avis.")
     public ResponseEntity<AvisDTO> createAvis(AvisDTO avisDTO) {
         AvisDTO createdAvisDto = avisController.createAvis(avisDTO);
         return ResponseEntity.ok(createdAvisDto);
@@ -33,7 +37,7 @@ public class AvisRestController {
      * @return the avis found
      */
     @GetMapping("/{id}")
-    public ResponseEntity<AvisDTO> getAvisById(Long id) {
+    public ResponseEntity<AvisDTO> getAvisById(@PathVariable Long id) {
         return avisController.getAvisById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -44,7 +48,9 @@ public class AvisRestController {
      * @param id : id of the avis to delete
      */
     @DeleteMapping("/{id}")
-    public void deleteAvis(Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(description = "Méthode pour supprimer un avis.")
+    public void deleteAvis(@PathVariable Long id) {
         avisController.deleteAvis(id);
     }
 }
