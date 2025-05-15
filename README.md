@@ -118,8 +118,6 @@ Notes : Pour plus de lisibilité, voir le diagram sur **Notion**.
 
 ![diagram.png](doc/diagram.png)
 
-![src.png](doc/src.drawio)
-
 ---
 
 ## 🧪 Tests et qualité du code
@@ -143,6 +141,13 @@ http://localhost:8080/swagger-ui/index.html
 ```
 http://localhost:8080/doc/index.html
 ```
+
+### Routes
+
+- **Connexion** : `http://localhost:8080/connexion`
+- **Inscription** : `http://localhost:8080/inscription`
+- **Jeux** : `http://localhost:8080/jeux`
+- **Détails du jeu** : `http://localhost:8080/jeux/{id}`
 
 ## Capture d'écran
 
