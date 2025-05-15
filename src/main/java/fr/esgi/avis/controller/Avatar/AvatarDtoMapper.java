@@ -5,6 +5,8 @@ import fr.esgi.avis.controller.Avatar.dto.AvatarDTO;
 
 public class AvatarDtoMapper {
 
+    private AvatarDtoMapper() {}
+
     /**
      * Convert Avatar to AvatarDTO
      * @param avatar Avatar

@@ -1,6 +1,5 @@
 package fr.esgi.avis.controller.Plateforme.rest;
 
-import fr.esgi.avis.controller.Jeu.dto.JeuDTO;
 import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +7,6 @@ import java.util.List;
 
 import fr.esgi.avis.controller.Plateforme.PlateformeController;
 import org.springframework.http.ResponseEntity;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/plateformes")

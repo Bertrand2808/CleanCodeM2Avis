@@ -57,6 +57,6 @@ public class AvisController {
         return avisUseCases.getAvisByJeuId(jeuId)
                 .stream()
                 .map(AvisDtoMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

@@ -8,6 +8,8 @@ import fr.esgi.avis.domain.Avatar.model.Avatar;
  */
 public class AvatarMapper {
 
+    private AvatarMapper() {}
+
     /**
      * Convert an AvatarEntity to a domain Avatar object.
      * @param avatarEntity the entity to convert

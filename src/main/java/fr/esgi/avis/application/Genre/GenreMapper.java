@@ -1,12 +1,9 @@
 package fr.esgi.avis.application.Genre;
 
 import fr.esgi.avis.application.Genre.model.GenreEntity;
-import fr.esgi.avis.application.Jeu.JeuMapper;
 import fr.esgi.avis.domain.Genre.model.Genre;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class GenreMapper {
     public static Genre toDomain(GenreEntity genreEntity) {

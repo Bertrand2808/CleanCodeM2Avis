@@ -2,7 +2,6 @@ package fr.esgi.avis.application.Avis;
 
 import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.application.Avis.model.AvisEntity;
-import fr.esgi.avis.application.Classification.ClassificationMapper;
 import fr.esgi.avis.application.Editeur.model.EditeurEntity;
 import fr.esgi.avis.application.Jeu.model.JeuEntity;
 import fr.esgi.avis.application.Joueur.model.JoueurEntity;
@@ -10,12 +9,10 @@ import fr.esgi.avis.application.Moderateur.model.ModerateurEntity;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avis.model.Avis;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

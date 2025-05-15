@@ -46,6 +46,9 @@ import lombok.AllArgsConstructor;
 @Transactional(readOnly = true)
 public class AjoutDonneesInitiales {
 
+    private static final String PS5 = "PlayStation 5";
+    private static final String AUCUNE = "AUCUNE";
+
     private EditeurDataSourcePort editeurDataSourcePort;
     private ClassificationDataSourcePort classificationDataSourcePort;
     private GenreDataSourcePort genreDataSourcePort;
@@ -187,13 +190,13 @@ public class AjoutDonneesInitiales {
                 classificationDataSourcePort.findByNom("PEGI 18").orElseThrow(),
                 "Incarnez Eivor, Viking dont l'éducation a reposé sur le combat, et menez votre clan des terres désolées et glacées de Norvège à celles verdoyantes de l'Angleterre du IXe siècle. Fondez-y la colonie de votre peuple et partez à la conquête de territoires hostiles afin de gagner votre place au Valhalla.",
                 LocalDate.of(2020, 11, 10),
-                Arrays.asList(plateformeDataSourcePort.findByNom("PlayStation 5").orElseThrow()),
+                Arrays.asList(plateformeDataSourcePort.findByNom(PS5).orElseThrow()),
                 "doc/assets/ACV.jpg", 59.99f));
             jeuDataSourcePort.save(new Jeu(
                 "League Of Legends",
                 editeurDataSourcePort.findByNom("Riot Games").orElseThrow(),
                 genreDataSourcePort.findByNom("MOBA (Multiplayer online battle arena)").orElseThrow(),
-                classificationDataSourcePort.findByNom("Aucune").orElseThrow(),
+                classificationDataSourcePort.findByNom(AUCUNE).orElseThrow(),
                 "League of Legends est un jeu de stratégie en temps réel où deux équipes de cinq espèces mythiques s'affrontent pour détruire la base de l'opposant.",
                 LocalDate.of(2009, 10, 27),
                 Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow()),
@@ -202,7 +205,7 @@ public class AjoutDonneesInitiales {
                 "Dofus",
                 editeurDataSourcePort.findByNom("Ankama").orElseThrow(),
                 genreDataSourcePort.findByNom("RPG (Role-playing game))").orElseThrow(),
-                classificationDataSourcePort.findByNom("Aucune").orElseThrow(),
+                classificationDataSourcePort.findByNom(AUCUNE).orElseThrow(),
                 "Dofus est un MMORPG en 2D, avec un gameplay simple et accessible, mais qui offre une grande profondeur et des possibilités de personnalisation infinies.",
                 LocalDate.of(2004, 9, 1),
                 Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow()),
@@ -232,7 +235,7 @@ public class AjoutDonneesInitiales {
                 classificationDataSourcePort.findByNom("PEGI 12").orElseThrow(),
                 "Une fois par an, la Peintresse se réveille. Sur son Monolithe, elle peint son nombre maudit.Et tous ceux de cet âge partent en fumée. Année après année, ce nombre diminue et nous sommes toujours plus nombreux à être effacés. Demain, elle se réveillera pour peindre « 33 ». Et demain, nous partirons pour notre ultime mission : éliminer la Peintresse, pour que plus jamais elle ne peigne la mort. Clair Obscur: Expedition 33 est un RPG au tour par tour révolutionnaire qui intègre des mécaniques de jeu en temps réel, pour rendre les combats plus immersifs et addictifs que jamais. Explorez un monde fantastique rappelant la France de la Belle Époque et peuplé d'ennemis dévastateurs. Nous sommes l'Expédition 33.",
                 LocalDate.of(2025, 4, 24),
-                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow(), plateformeDataSourcePort.findByNom("PlayStation 5").orElseThrow(), plateformeDataSourcePort.findByNom("Xbox Series X").orElseThrow()),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow(), plateformeDataSourcePort.findByNom(PS5).orElseThrow(), plateformeDataSourcePort.findByNom("Xbox Series X").orElseThrow()),
                 "doc/assets/expedition33.jpg", 49.99f));
         }
     }
@@ -240,7 +243,7 @@ public class AjoutDonneesInitiales {
     private void ajouterPlateformes() {
         if (plateformeDataSourcePort.count() == 0) {
             plateformeDataSourcePort.save(new Plateforme("Nintendo Switch"));
-            plateformeDataSourcePort.save(new Plateforme("PlayStation 5"));
+            plateformeDataSourcePort.save(new Plateforme(PS5));
             plateformeDataSourcePort.save(new Plateforme("Xbox Series X"));
             plateformeDataSourcePort.save(new Plateforme("PC"));
             plateformeDataSourcePort.save(new Plateforme("Mobile"));
@@ -272,7 +275,7 @@ public class AjoutDonneesInitiales {
             classificationDataSourcePort.save(new Classification("PEGI 12", "FF0000"));
             classificationDataSourcePort.save(new Classification("PEGI 16", "FFFF00"));
             classificationDataSourcePort.save(new Classification("PEGI 18", "00FFFF"));
-            classificationDataSourcePort.save(new Classification("Aucune", "FFFFFF"));
+            classificationDataSourcePort.save(new Classification(AUCUNE, "FFFFFF"));
         }
     }
 

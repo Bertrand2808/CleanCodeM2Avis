@@ -1,7 +1,5 @@
 package fr.esgi.avis.application.Classification;
 
-import fr.esgi.avis.application.Classification.ClassificationJpaRepository;
-import fr.esgi.avis.application.Classification.ClassificationMapper;
 import fr.esgi.avis.application.Classification.model.ClassificationEntity;
 import fr.esgi.avis.domain.Classification.ClassificationDataSourcePort;
 import fr.esgi.avis.domain.Classification.model.Classification;
@@ -28,7 +26,7 @@ public class ClassificationJpaAdapter implements ClassificationDataSourcePort {
         return classificationJpaRepository.findAll()
                 .stream()
                 .map(ClassificationMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -46,7 +44,7 @@ public class ClassificationJpaAdapter implements ClassificationDataSourcePort {
         return classificationJpaRepository.findByNomContaining(keyword)
                 .stream()
                 .map(ClassificationMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

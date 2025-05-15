@@ -1,7 +1,6 @@
 package fr.esgi.avis.controller.Avatar.rest;
 
 import fr.esgi.avis.controller.Avatar.AvatarController;
-import fr.esgi.avis.controller.Avatar.AvatarDtoMapper;
 import fr.esgi.avis.controller.Avatar.dto.AvatarDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

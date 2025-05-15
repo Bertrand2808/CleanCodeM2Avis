@@ -16,7 +16,7 @@ public class ClassificationDtoMapper {
         classificationDTO.setJeux(
                 classification.getJeux().stream()
                         .map(JeuDtoMapper::toDto)
-                        .collect(Collectors.toList())
+                        .toList()
         );
         return classificationDTO;
     }
@@ -30,7 +30,7 @@ public class ClassificationDtoMapper {
         classification.setJeux(
                 classificationDTO.getJeux().stream()
                         .map(JeuDtoMapper::toDomain)
-                        .collect(Collectors.toList())
+                        .toList()
         );
 
         return classification;

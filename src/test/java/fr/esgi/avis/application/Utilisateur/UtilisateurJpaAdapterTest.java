@@ -50,7 +50,6 @@ class UtilisateurJpaAdapterTest {
     void shouldFindUtilisateurByPseudoWhenExists() {
         // GIVEN
         String pseudo = "PseudoTest";
-        Utilisateur utilisateur = createUtilisateur();
         UtilisateurEntity utilisateurEntity = createUtilisateurEntity();
         when(utilisateurRepository.findByPseudo(pseudo)).thenReturn(utilisateurEntity);
 
@@ -67,7 +66,6 @@ class UtilisateurJpaAdapterTest {
     void shouldFindUtilisateurByEmailWhenExists() {
         // GIVEN
         String email = "test@exemple.com";
-        Utilisateur utilisateur = createUtilisateur();
         UtilisateurEntity utilisateurEntity = createUtilisateurEntity();
         when(utilisateurRepository.findByEmail(email)).thenReturn(utilisateurEntity);
 
@@ -111,7 +109,6 @@ class UtilisateurJpaAdapterTest {
     void shouldFindUtilisateurByIdWhenExists() {
         // GIVEN
         Long id = 1L;
-        Utilisateur utilisateur = createUtilisateur();
         UtilisateurEntity utilisateurEntity = createUtilisateurEntity();
         when(utilisateurRepository.findById(id)).thenReturn(Optional.of(utilisateurEntity));
 

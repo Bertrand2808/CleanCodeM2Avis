@@ -19,7 +19,7 @@ public class ClassificationMapper {
                     classificationEntity.getJeux() != null ?
                     classificationEntity.getJeux().stream()
                     .map(JeuMapper::toDomain)
-                    .collect(Collectors.toList()) :
+                    .toList() :
                     new ArrayList<>()
                 )
                 .build();
@@ -36,7 +36,7 @@ public class ClassificationMapper {
                     classification.getJeux() != null ?
                     classification.getJeux().stream()
                     .map(JeuMapper::toEntity)
-                    .collect(Collectors.toList()) :
+                    .toList() :
                     new ArrayList<>()
                 )
                 .build();
@@ -52,7 +52,7 @@ public class ClassificationMapper {
                 .jeux(
                         classificationEntity.getJeux().stream()
                                 .map(JeuMapper::toDomainWithoutRelations)
-                                .collect(Collectors.toList())
+                                .toList()
                 )
                 .build();
     }
@@ -68,7 +68,7 @@ public class ClassificationMapper {
                     classification.getJeux() != null ?
                     classification.getJeux().stream()
                     .map(JeuMapper::toEntity)
-                    .collect(Collectors.toList()) :
+                    .toList() :
                     new ArrayList<>()
                 )
                 .build();

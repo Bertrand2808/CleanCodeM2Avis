@@ -64,6 +64,6 @@ public class AvisJpaAdapter implements AvisDataSourcePort {
     public List<Avis> findByJeuId(Long jeuId) {
         return avisJpaRepository.findByJeu_Id(jeuId).stream()
                 .map(AvisMapper::toDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

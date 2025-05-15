@@ -97,8 +97,6 @@ class AvisControllerTest {
         avisDTO.setNote(5.0f);
         avisDTO.setDateDEnvoi(LocalDateTime.now());
 
-        Avis avis = AvisDtoMapper.toDomain(avisDTO);
-
         when(avisUseCases.getAvisById(avisDTO.getId())).thenReturn(Optional.empty());
 
         // WHEN
@@ -112,7 +110,6 @@ class AvisControllerTest {
     @Test
     void shouldDeleteAvisSuccessfully() {
         // GIVEN
-        Long avisId = 1L;
         AvisDTO avisDTO = new AvisDTO();
         avisDTO.setId(1L);
         avisDTO.setDescription("Super jeu");
@@ -121,8 +118,6 @@ class AvisControllerTest {
         avisDTO.setModerateurId(3L);
         avisDTO.setNote(5.0f);
         avisDTO.setDateDEnvoi(LocalDateTime.now());
-
-        Avis avis = AvisDtoMapper.toDomain(avisDTO);
 
         // WHEN
         avisController.deleteAvis(avisDTO.getId());

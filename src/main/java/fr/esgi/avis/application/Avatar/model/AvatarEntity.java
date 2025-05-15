@@ -1,6 +1,5 @@
 package fr.esgi.avis.application.Avatar.model;
 
-import fr.esgi.avis.application.Joueur.model.JoueurEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

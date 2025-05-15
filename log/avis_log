@@ -10746,3 +10746,588 @@ java.lang.RuntimeException: Unexpected error
 Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
 2025-05-15T16:26:53.249+02:00  INFO 6708 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-05-15T16:26:53.250+02:00  INFO 6708 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-15T16:44:01.744+02:00  INFO 24268 --- [avis] [main] f.e.a.c.U.UtilisateurViewControllerTest  : Starting UtilisateurViewControllerTest using Java 23.0.2 with PID 24268 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:44:01.745+02:00  INFO 24268 --- [avis] [main] f.e.a.c.U.UtilisateurViewControllerTest  : The following 1 profile is active: "DEV"
+2025-05-15T16:44:02.440+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:44:02.531+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:44:03.673+02:00  INFO 24268 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:44:03.762+02:00  INFO 24268 --- [avis] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-05-15T16:44:03.829+02:00  INFO 24268 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:44:03.962+02:00  INFO 24268 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:44:03.990+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-15T16:44:04.138+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:44:04.139+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-15T16:44:04.181+02:00  INFO 24268 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:44:04.910+02:00  INFO 24268 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:44:04.951+02:00  INFO 24268 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:05.543+02:00  INFO 24268 --- [avis] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-15T16:44:06.712+02:00  WARN 24268 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:44:08.244+02:00  INFO 24268 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:44:08.244+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:44:08.256+02:00  INFO 24268 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:44:08.272+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 27 ms
+2025-05-15T16:44:08.358+02:00  INFO 24268 --- [avis] [main] f.e.a.c.U.UtilisateurViewControllerTest  : Started UtilisateurViewControllerTest in 6.882 seconds (process running for 9.574)
+2025-05-15T16:44:09.118+02:00  WARN 24268 --- [avis] [main] actStandardFragmentInsertionTagProcessor : [THYMELEAF][main][connexion] Deprecated unwrapped fragment expression "entete" found in template connexion, line 39, col 10. Please use the complete syntax of fragment expressions instead ("~{entete}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-05-15T16:44:09.185+02:00  WARN 24268 --- [avis] [main] actStandardFragmentInsertionTagProcessor : [THYMELEAF][main][inscription] Deprecated unwrapped fragment expression "entete" found in template inscription, line 42, col 10. Please use the complete syntax of fragment expressions instead ("~{entete}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-05-15T16:44:09.333+02:00  INFO 24268 --- [avis] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [fr.esgi.avis.controller.Avis.rest.AvisRestControllerTest]: AvisRestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-15T16:44:09.365+02:00  INFO 24268 --- [avis] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration fr.esgi.avis.AvisApplication for test class fr.esgi.avis.controller.Avis.rest.AvisRestControllerTest
+2025-05-15T16:44:09.368+02:00  INFO 24268 --- [avis] [main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+2025-05-15T16:44:09.384+02:00  INFO 24268 --- [avis] [main] f.e.a.c.A.rest.AvisRestControllerTest    : Starting AvisRestControllerTest using Java 23.0.2 with PID 24268 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:44:09.384+02:00  INFO 24268 --- [avis] [main] f.e.a.c.A.rest.AvisRestControllerTest    : The following 1 profile is active: "DEV"
+2025-05-15T16:44:09.580+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:44:09.623+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:44:09.830+02:00  INFO 24268 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:44:09.832+02:00  INFO 24268 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:44:09.839+02:00  INFO 24268 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:44:09.839+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-05-15T16:44:09.840+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:44:09.840+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-05-15T16:44:09.841+02:00  INFO 24268 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:44:09.942+02:00  INFO 24268 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:44:09.962+02:00  INFO 24268 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:10.174+02:00  WARN 24268 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:44:10.532+02:00  INFO 24268 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:44:10.532+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:44:10.535+02:00  INFO 24268 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:44:10.542+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2025-05-15T16:44:10.562+02:00  INFO 24268 --- [avis] [main] f.e.a.c.A.rest.AvisRestControllerTest    : Started AvisRestControllerTest in 1.195 seconds (process running for 11.778)
+2025-05-15T16:44:10.736+02:00  WARN 24268 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Tentative de création d'avis sans authentification valide
+2025-05-15T16:44:10.768+02:00  INFO 24268 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Création d'un avis pour le jeu 1 par le joueur 42
+2025-05-15T16:44:10.770+02:00 ERROR 24268 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Erreur lors de la création de l'avis
+
+java.lang.RuntimeException: Unexpected error
+	at fr.esgi.avis.controller.Avis.AvisController.createAvis(AvisController.java:28) ~[classes/:na]
+	at fr.esgi.avis.controller.Avis.rest.AvisRestController.createAvis(AvisRestController.java:72) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.36.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-6.2.3.jar:6.2.3]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.36.jar:6.0]
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at fr.esgi.avis.filter.CheckPointFilter.doFilter(CheckPointFilter.java:18) ~[classes/:na]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201) ~[spring-test-6.2.3.jar:6.2.3]
+	at fr.esgi.avis.controller.Avis.rest.AvisRestControllerTest.shouldReturnInternalServerErrorWhenExceptionIsThrown(AvisRestControllerTest.java:192) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767) ~[junit-platform-commons-1.11.4.jar:1.11.4]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57) ~[junit5-rt.jar:na]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38) ~[junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11) ~[idea_rt.jar:na]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35) ~[junit-rt.jar:na]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232) ~[junit-rt.jar:na]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55) ~[junit-rt.jar:na]
+
+2025-05-15T16:44:10.849+02:00  INFO 24268 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Création d'un avis pour le jeu 1 par le joueur 42
+2025-05-15T16:44:11.076+02:00  INFO 24268 --- [avis] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [fr.esgi.avis.controller.Joueur.rest.JoueurRestControllerTest]: JoueurRestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-15T16:44:11.100+02:00  INFO 24268 --- [avis] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration fr.esgi.avis.AvisApplication for test class fr.esgi.avis.controller.Joueur.rest.JoueurRestControllerTest
+2025-05-15T16:44:11.104+02:00  INFO 24268 --- [avis] [main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+2025-05-15T16:44:11.115+02:00  INFO 24268 --- [avis] [main] f.e.a.c.J.rest.JoueurRestControllerTest  : Starting JoueurRestControllerTest using Java 23.0.2 with PID 24268 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:44:11.115+02:00  INFO 24268 --- [avis] [main] f.e.a.c.J.rest.JoueurRestControllerTest  : The following 1 profile is active: "DEV"
+2025-05-15T16:44:11.262+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:44:11.301+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:44:11.461+02:00  INFO 24268 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:44:11.462+02:00  INFO 24268 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:44:11.467+02:00  INFO 24268 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:44:11.467+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-05-15T16:44:11.468+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn20: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:44:11.468+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-05-15T16:44:11.469+02:00  INFO 24268 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:44:11.566+02:00  INFO 24268 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:44:11.570+02:00  INFO 24268 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:11.751+02:00  WARN 24268 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:44:12.086+02:00  INFO 24268 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:44:12.086+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:44:12.089+02:00  INFO 24268 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:44:12.096+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2025-05-15T16:44:12.110+02:00  INFO 24268 --- [avis] [main] f.e.a.c.J.rest.JoueurRestControllerTest  : Started JoueurRestControllerTest in 1.007 seconds (process running for 13.327)
+2025-05-15T16:44:12.432+02:00  INFO 24268 --- [avis] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [fr.esgi.avis.controller.Avatar.rest.AvatarRestControllerTest]: AvatarRestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-15T16:44:12.452+02:00  INFO 24268 --- [avis] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration fr.esgi.avis.AvisApplication for test class fr.esgi.avis.controller.Avatar.rest.AvatarRestControllerTest
+2025-05-15T16:44:12.455+02:00  INFO 24268 --- [avis] [main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+2025-05-15T16:44:12.464+02:00  INFO 24268 --- [avis] [main] f.e.a.c.A.rest.AvatarRestControllerTest  : Starting AvatarRestControllerTest using Java 23.0.2 with PID 24268 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:44:12.465+02:00  INFO 24268 --- [avis] [main] f.e.a.c.A.rest.AvatarRestControllerTest  : The following 1 profile is active: "DEV"
+2025-05-15T16:44:12.603+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:44:12.643+02:00  INFO 24268 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:44:12.799+02:00  INFO 24268 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:44:12.800+02:00  INFO 24268 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:44:12.805+02:00  INFO 24268 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:44:12.805+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-05-15T16:44:12.806+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection conn30: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:44:12.806+02:00  INFO 24268 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-05-15T16:44:12.807+02:00  INFO 24268 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:44:12.891+02:00  INFO 24268 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:44:12.894+02:00  INFO 24268 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:13.075+02:00  WARN 24268 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:44:13.390+02:00  INFO 24268 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:44:13.391+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:44:13.393+02:00  INFO 24268 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:44:13.399+02:00  INFO 24268 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2025-05-15T16:44:13.413+02:00  INFO 24268 --- [avis] [main] f.e.a.c.A.rest.AvatarRestControllerTest  : Started AvatarRestControllerTest in 0.959 seconds (process running for 14.63)
+2025-05-15T16:44:13.622+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:13.625+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-15T16:44:13.627+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-15T16:44:13.630+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:13.631+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-05-15T16:44:13.631+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-05-15T16:44:13.634+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:13.634+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-05-15T16:44:13.635+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-05-15T16:44:13.636+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:44:13.637+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-05-15T16:44:13.642+02:00  INFO 24268 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2025-05-15T16:45:12.229+02:00  INFO 17360 --- [avis] [main] f.e.a.c.U.UtilisateurViewControllerTest  : Starting UtilisateurViewControllerTest using Java 23.0.2 with PID 17360 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:45:12.232+02:00  INFO 17360 --- [avis] [main] f.e.a.c.U.UtilisateurViewControllerTest  : The following 1 profile is active: "DEV"
+2025-05-15T16:45:13.281+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:45:13.396+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:45:15.101+02:00  INFO 17360 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:45:15.213+02:00  INFO 17360 --- [avis] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-05-15T16:45:15.280+02:00  INFO 17360 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:45:15.425+02:00  INFO 17360 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:45:15.464+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-15T16:45:15.787+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:45:15.788+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-15T16:45:15.872+02:00  INFO 17360 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:45:17.263+02:00  INFO 17360 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:45:17.341+02:00  INFO 17360 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:17.911+02:00  INFO 17360 --- [avis] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-15T16:45:19.440+02:00  WARN 17360 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:45:21.238+02:00  INFO 17360 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:45:21.238+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:45:21.246+02:00  INFO 17360 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:45:21.260+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 22 ms
+2025-05-15T16:45:21.355+02:00  INFO 17360 --- [avis] [main] f.e.a.c.U.UtilisateurViewControllerTest  : Started UtilisateurViewControllerTest in 9.869 seconds (process running for 15.167)
+2025-05-15T16:45:22.492+02:00  WARN 17360 --- [avis] [main] actStandardFragmentInsertionTagProcessor : [THYMELEAF][main][connexion] Deprecated unwrapped fragment expression "entete" found in template connexion, line 39, col 10. Please use the complete syntax of fragment expressions instead ("~{entete}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-05-15T16:45:22.590+02:00  WARN 17360 --- [avis] [main] actStandardFragmentInsertionTagProcessor : [THYMELEAF][main][inscription] Deprecated unwrapped fragment expression "entete" found in template inscription, line 42, col 10. Please use the complete syntax of fragment expressions instead ("~{entete}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-05-15T16:45:22.774+02:00  INFO 17360 --- [avis] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [fr.esgi.avis.controller.Avis.rest.AvisRestControllerTest]: AvisRestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-15T16:45:22.811+02:00  INFO 17360 --- [avis] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration fr.esgi.avis.AvisApplication for test class fr.esgi.avis.controller.Avis.rest.AvisRestControllerTest
+2025-05-15T16:45:22.816+02:00  INFO 17360 --- [avis] [main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+2025-05-15T16:45:22.839+02:00  INFO 17360 --- [avis] [main] f.e.a.c.A.rest.AvisRestControllerTest    : Starting AvisRestControllerTest using Java 23.0.2 with PID 17360 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:45:22.839+02:00  INFO 17360 --- [avis] [main] f.e.a.c.A.rest.AvisRestControllerTest    : The following 1 profile is active: "DEV"
+2025-05-15T16:45:23.054+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:45:23.095+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:45:23.337+02:00  INFO 17360 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:45:23.338+02:00  INFO 17360 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:45:23.345+02:00  INFO 17360 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:45:23.346+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-05-15T16:45:23.347+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:45:23.347+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-05-15T16:45:23.348+02:00  INFO 17360 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:45:23.480+02:00  INFO 17360 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:45:23.503+02:00  INFO 17360 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:23.749+02:00  WARN 17360 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:45:24.187+02:00  INFO 17360 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:45:24.188+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:45:24.190+02:00  INFO 17360 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:45:24.197+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 9 ms
+2025-05-15T16:45:24.214+02:00  INFO 17360 --- [avis] [main] f.e.a.c.A.rest.AvisRestControllerTest    : Started AvisRestControllerTest in 1.398 seconds (process running for 18.026)
+2025-05-15T16:45:24.445+02:00  WARN 17360 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Tentative de création d'avis sans authentification valide
+2025-05-15T16:45:24.486+02:00  INFO 17360 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Création d'un avis pour le jeu 1 par le joueur 42
+2025-05-15T16:45:24.487+02:00 ERROR 17360 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Erreur lors de la création de l'avis
+
+java.lang.RuntimeException: Unexpected error
+	at fr.esgi.avis.controller.Avis.AvisController.createAvis(AvisController.java:28) ~[classes/:na]
+	at fr.esgi.avis.controller.Avis.rest.AvisRestController.createAvis(AvisRestController.java:72) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.36.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-6.2.3.jar:6.2.3]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.36.jar:6.0]
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at fr.esgi.avis.filter.CheckPointFilter.doFilter(CheckPointFilter.java:18) ~[classes/:na]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:66) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:162) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.2.3.jar:6.2.3]
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201) ~[spring-test-6.2.3.jar:6.2.3]
+	at fr.esgi.avis.controller.Avis.rest.AvisRestControllerTest.shouldReturnInternalServerErrorWhenExceptionIsThrown(AvisRestControllerTest.java:192) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:767) ~[junit-platform-commons-1.11.4.jar:1.11.4]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$8(TestMethodTestDescriptor.java:217) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68) ~[junit-jupiter-engine-5.11.4.jar:5.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:63) ~[junit-platform-launcher-1.11.4.jar:1.11.4]
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:57) ~[junit5-rt.jar:na]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38) ~[junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11) ~[idea_rt.jar:na]
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35) ~[junit-rt.jar:na]
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232) ~[junit-rt.jar:na]
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55) ~[junit-rt.jar:na]
+
+2025-05-15T16:45:24.608+02:00  INFO 17360 --- [avis] [main] f.e.a.c.Avis.rest.AvisRestController     : Création d'un avis pour le jeu 1 par le joueur 42
+2025-05-15T16:45:24.991+02:00  INFO 17360 --- [avis] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [fr.esgi.avis.controller.Joueur.rest.JoueurRestControllerTest]: JoueurRestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-15T16:45:25.026+02:00  INFO 17360 --- [avis] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration fr.esgi.avis.AvisApplication for test class fr.esgi.avis.controller.Joueur.rest.JoueurRestControllerTest
+2025-05-15T16:45:25.030+02:00  INFO 17360 --- [avis] [main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+2025-05-15T16:45:25.058+02:00  INFO 17360 --- [avis] [main] f.e.a.c.J.rest.JoueurRestControllerTest  : Starting JoueurRestControllerTest using Java 23.0.2 with PID 17360 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:45:25.058+02:00  INFO 17360 --- [avis] [main] f.e.a.c.J.rest.JoueurRestControllerTest  : The following 1 profile is active: "DEV"
+2025-05-15T16:45:25.283+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:45:25.333+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:45:25.567+02:00  INFO 17360 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:45:25.568+02:00  INFO 17360 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:45:25.574+02:00  INFO 17360 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:45:25.574+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-05-15T16:45:25.576+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection conn20: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:45:25.577+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-05-15T16:45:25.577+02:00  INFO 17360 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:45:25.706+02:00  INFO 17360 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:45:25.710+02:00  INFO 17360 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:25.962+02:00  WARN 17360 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:45:26.378+02:00  INFO 17360 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:45:26.378+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:45:26.381+02:00  INFO 17360 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:45:26.392+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 14 ms
+2025-05-15T16:45:26.409+02:00  INFO 17360 --- [avis] [main] f.e.a.c.J.rest.JoueurRestControllerTest  : Started JoueurRestControllerTest in 1.38 seconds (process running for 20.222)
+2025-05-15T16:45:26.778+02:00  INFO 17360 --- [avis] [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [fr.esgi.avis.controller.Avatar.rest.AvatarRestControllerTest]: AvatarRestControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-05-15T16:45:26.801+02:00  INFO 17360 --- [avis] [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration fr.esgi.avis.AvisApplication for test class fr.esgi.avis.controller.Avatar.rest.AvatarRestControllerTest
+2025-05-15T16:45:26.804+02:00  INFO 17360 --- [avis] [main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
+2025-05-15T16:45:26.816+02:00  INFO 17360 --- [avis] [main] f.e.a.c.A.rest.AvatarRestControllerTest  : Starting AvatarRestControllerTest using Java 23.0.2 with PID 17360 (started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:45:26.816+02:00  INFO 17360 --- [avis] [main] f.e.a.c.A.rest.AvatarRestControllerTest  : The following 1 profile is active: "DEV"
+2025-05-15T16:45:26.964+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:45:27.004+02:00  INFO 17360 --- [avis] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:45:27.187+02:00  INFO 17360 --- [avis] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:45:27.189+02:00  INFO 17360 --- [avis] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:45:27.193+02:00  INFO 17360 --- [avis] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:45:27.194+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2025-05-15T16:45:27.194+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection conn30: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:45:27.195+02:00  INFO 17360 --- [avis] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2025-05-15T16:45:27.195+02:00  INFO 17360 --- [avis] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-4)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:45:27.309+02:00  INFO 17360 --- [avis] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:45:27.313+02:00  INFO 17360 --- [avis] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:27.516+02:00  WARN 17360 --- [avis] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:45:27.875+02:00  INFO 17360 --- [avis] [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-05-15T16:45:27.876+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-05-15T16:45:27.878+02:00  INFO 17360 --- [avis] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:45:27.885+02:00  INFO 17360 --- [avis] [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 9 ms
+2025-05-15T16:45:27.900+02:00  INFO 17360 --- [avis] [main] f.e.a.c.A.rest.AvatarRestControllerTest  : Started AvatarRestControllerTest in 1.097 seconds (process running for 21.712)
+2025-05-15T16:45:28.111+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:28.114+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-15T16:45:28.116+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-15T16:45:28.119+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:28.120+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-05-15T16:45:28.121+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-05-15T16:45:28.123+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:28.123+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2025-05-15T16:45:28.124+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2025-05-15T16:45:28.127+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:45:28.127+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2025-05-15T16:45:28.133+02:00  INFO 17360 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2025-05-15T16:47:45.032+02:00  INFO 26980 --- [avis] [restartedMain] fr.esgi.avis.AvisApplication             : Starting AvisApplication using Java 23.0.2 with PID 26980 (D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2\target\classes started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:47:45.034+02:00  INFO 26980 --- [avis] [restartedMain] fr.esgi.avis.AvisApplication             : The following 1 profile is active: "DEV"
+2025-05-15T16:47:45.087+02:00  INFO 26980 --- [avis] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-15T16:47:45.087+02:00  INFO 26980 --- [avis] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-15T16:47:45.528+02:00  INFO 26980 --- [avis] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:47:45.589+02:00  INFO 26980 --- [avis] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:47:46.308+02:00  INFO 26980 --- [avis] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-15T16:47:46.317+02:00  INFO 26980 --- [avis] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-15T16:47:46.317+02:00  INFO 26980 --- [avis] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-05-15T16:47:46.353+02:00  INFO 26980 --- [avis] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-15T16:47:46.353+02:00  INFO 26980 --- [avis] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1266 ms
+2025-05-15T16:47:46.565+02:00  INFO 26980 --- [avis] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:47:46.591+02:00  INFO 26980 --- [avis] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-05-15T16:47:46.609+02:00  INFO 26980 --- [avis] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:47:46.743+02:00  INFO 26980 --- [avis] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:47:46.757+02:00  INFO 26980 --- [avis] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-15T16:47:46.853+02:00  INFO 26980 --- [avis] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:47:46.855+02:00  INFO 26980 --- [avis] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-15T16:47:46.889+02:00  INFO 26980 --- [avis] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:47:47.550+02:00  INFO 26980 --- [avis] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:47:47.588+02:00  INFO 26980 --- [avis] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:47:47.841+02:00  INFO 26980 --- [avis] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-15T16:47:48.504+02:00  WARN 26980 --- [avis] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:47:49.398+02:00  INFO 26980 --- [avis] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:avis'
+2025-05-15T16:47:49.446+02:00  INFO 26980 --- [avis] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-05-15T16:47:49.454+02:00  INFO 26980 --- [avis] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:47:49.522+02:00  INFO 26980 --- [avis] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-15T16:47:49.531+02:00  INFO 26980 --- [avis] [restartedMain] fr.esgi.avis.AvisApplication             : Started AvisApplication in 4.775 seconds (process running for 5.233)
+2025-05-15T16:47:50.053+02:00  INFO 26980 --- [avis] [RMI TCP Connection(4)-192.168.1.26] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-15T16:47:50.054+02:00  INFO 26980 --- [avis] [RMI TCP Connection(4)-192.168.1.26] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-15T16:47:50.056+02:00  INFO 26980 --- [avis] [RMI TCP Connection(4)-192.168.1.26] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-15T16:48:00.985+02:00  INFO 26980 --- [avis] [http-nio-8080-exec-1] fr.esgi.avis.aop.LoggingAspect           : Invocation getJeux avec arguments [] : 
+2025-05-15T16:48:01.091+02:00  WARN 26980 --- [avis] [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][jeux] Deprecated unwrapped fragment expression "entete" found in template jeux, line 35, col 10. Please use the complete syntax of fragment expressions instead ("~{entete}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-05-15T16:48:03.327+02:00  INFO 26980 --- [avis] [http-nio-8080-exec-3] fr.esgi.avis.aop.LoggingAspect           : Invocation getJeuById avec arguments [7] : 
+2025-05-15T16:48:03.344+02:00  INFO 26980 --- [avis] [http-nio-8080-exec-3] fr.esgi.avis.aop.LoggingAspect           : Invocation getAvisByJeuId avec arguments [7] : 
+2025-05-15T16:48:03.350+02:00  WARN 26980 --- [avis] [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][jeu] Deprecated unwrapped fragment expression "entete" found in template jeu, line 65, col 10. Please use the complete syntax of fragment expressions instead ("~{entete}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2025-05-15T16:48:38.262+02:00  INFO 26980 --- [avis] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-15T16:48:38.268+02:00  INFO 26980 --- [avis] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-15T16:48:38.274+02:00  INFO 26980 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:48:38.279+02:00  WARN 26980 --- [avis] [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-05-15T16:48:38.281+02:00  INFO 26980 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-15T16:48:38.282+02:00  INFO 26980 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-15T16:48:40.590+02:00  INFO 23728 --- [avis] [restartedMain] fr.esgi.avis.AvisApplication             : Starting AvisApplication using Java 23.0.2 with PID 23728 (D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2\target\classes started by bertr in D:\Document\ESGI\Software_architecture_heuristiques_compromis\CleanCodeM2)
+2025-05-15T16:48:40.591+02:00  INFO 23728 --- [avis] [restartedMain] fr.esgi.avis.AvisApplication             : The following 1 profile is active: "DEV"
+2025-05-15T16:48:40.638+02:00  INFO 23728 --- [avis] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-15T16:48:40.638+02:00  INFO 23728 --- [avis] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-15T16:48:41.163+02:00  INFO 23728 --- [avis] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-15T16:48:41.232+02:00  INFO 23728 --- [avis] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 10 JPA repository interfaces.
+2025-05-15T16:48:42.050+02:00  INFO 23728 --- [avis] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-15T16:48:42.096+02:00  INFO 23728 --- [avis] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1458 ms
+2025-05-15T16:48:42.349+02:00  INFO 23728 --- [avis] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-15T16:48:42.381+02:00  INFO 23728 --- [avis] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.8.Final
+2025-05-15T16:48:42.402+02:00  INFO 23728 --- [avis] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-15T16:48:42.564+02:00  INFO 23728 --- [avis] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-15T16:48:42.586+02:00  INFO 23728 --- [avis] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-15T16:48:42.699+02:00  INFO 23728 --- [avis] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:avis user=SA
+2025-05-15T16:48:42.700+02:00  INFO 23728 --- [avis] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-15T16:48:42.735+02:00  INFO 23728 --- [avis] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-15T16:48:43.472+02:00  INFO 23728 --- [avis] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-15T16:48:43.511+02:00  INFO 23728 --- [avis] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:48:43.773+02:00  INFO 23728 --- [avis] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-15T16:48:44.530+02:00  WARN 23728 --- [avis] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-15T16:48:45.572+02:00  INFO 23728 --- [avis] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:avis'
+2025-05-15T16:48:45.629+02:00  INFO 23728 --- [avis] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-05-15T16:48:45.637+02:00  INFO 23728 --- [avis] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path ''
+2025-05-15T16:48:45.709+02:00  INFO 23728 --- [avis] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-15T16:48:45.718+02:00  INFO 23728 --- [avis] [restartedMain] fr.esgi.avis.AvisApplication             : Started AvisApplication in 5.401 seconds (process running for 6.335)
+2025-05-15T16:48:45.720+02:00  INFO 23728 --- [avis] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-15T16:48:45.727+02:00  INFO 23728 --- [avis] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-15T16:48:45.733+02:00  INFO 23728 --- [avis] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-15T16:48:45.737+02:00  WARN 23728 --- [avis] [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est déjà fermée (pour désactiver la fermeture automatique à l'arrêt de la VM, ajoutez "; DB_CLOSE_ON_EXIT = FALSE" à l'URL db)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-232]
+2025-05-15T16:48:45.738+02:00  INFO 23728 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-15T16:48:45.740+02:00  INFO 23728 --- [avis] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -1,15 +1,11 @@
 package fr.esgi.avis.application.Avis;
 
-import fr.esgi.avis.application.Avatar.model.AvatarEntity;
 import fr.esgi.avis.application.Avis.model.AvisEntity;
-import fr.esgi.avis.application.Joueur.model.JoueurEntity;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
 import fr.esgi.avis.domain.Avis.model.Avis;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -147,7 +143,6 @@ class AvisJpaAdapterTest {
     void shouldFindAvisByJeuIdSuccessfully() {
         // GIVEN
         Long jeuId = random.nextLong(100);
-        List<Avis> avisList = new ArrayList<>();
         Joueur joueur = createJoueur();
         Avis avis = new Avis(
                 1L,
