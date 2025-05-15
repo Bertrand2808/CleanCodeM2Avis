@@ -2,8 +2,6 @@ package fr.esgi.avis.useCases.Genre;
 
 import fr.esgi.avis.domain.Genre.GenreDataSourcePort;
 import fr.esgi.avis.domain.Genre.model.Genre;
-import fr.esgi.avis.domain.Genre.GenreDataSourcePort;
-import fr.esgi.avis.domain.Genre.model.Genre;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -12,4 +12,5 @@ public interface ClassificationDataSourcePort {
     Optional<Classification> findByNom(String nom);
     List<Classification> findByNomContaining(String keyword);
     void deleteById(Long id);
+    long count();
 }

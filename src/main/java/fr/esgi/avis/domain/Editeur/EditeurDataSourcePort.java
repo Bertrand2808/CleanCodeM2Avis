@@ -12,4 +12,5 @@ public interface EditeurDataSourcePort {
     Optional<Editeur> findByNom(String nom);
     List<Editeur> findByNomContaining(String keyword);
     void deleteById(Long id);
+    long count();
 }

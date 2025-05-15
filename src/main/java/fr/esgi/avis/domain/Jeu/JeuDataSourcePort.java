@@ -12,4 +12,5 @@ public interface JeuDataSourcePort {
     Optional<Jeu> findByNom(String nom);
     List<Jeu> findByNomContaining(String keyword);
     void deleteById(Long id);
+    long count();
 }

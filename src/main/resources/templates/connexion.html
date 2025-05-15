@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Connexion - Avis de Jeux</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .form-container {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+      .form-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+      }
+      .btn-connexion {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+      }
+      .alert {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div th:replace="entete"></div>
+
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">Connexion</h2>
+
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <span th:text="${error}"></span>
+        </div>
+
+        <form id="connexionForm" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="pseudo" class="form-label">Pseudo</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+              <input
+                type="text"
+                class="form-control"
+                id="pseudo"
+                name="pseudo"
+                required
+                minlength="3"
+                maxlength="80"
+              />
+              <div class="invalid-feedback">Veuillez entrer votre pseudo.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="motDePasse" class="form-label">Mot de passe</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock"></i></span>
+              <input
+                type="password"
+                class="form-control"
+                id="motDePasse"
+                name="motDePasse"
+                required
+                minlength="8"
+              />
+              <div class="invalid-feedback">Veuillez entrer votre mot de passe.</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-connexion">
+            <i class="bi bi-box-arrow-in-right"></i> Se connecter
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <p>
+            Pas encore de compte ?
+            <a th:href="@{/inscription}" class="text-decoration-none">S'inscrire</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("connexionForm");
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          if (!form.checkValidity()) {
+            event.stopPropagation();
+            form.classList.add("was-validated");
+            return;
+          }
+
+          const formData = new FormData(form);
+          const data = {
+            pseudo: formData.get("pseudo"),
+            motDePasse: formData.get("motDePasse"),
+          };
+
+          try {
+            const response = await fetch("/api/utilisateurs/connexion", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+              window.location.href = "/jeux";
+            } else {
+              const error = await response.text();
+              // Supprimer l'ancien message d'erreur s'il existe
+              const oldError = document.querySelector(".alert-danger");
+              if (oldError) oldError.remove();
+
+              // Ajouter le nouveau message d'erreur
+              const errorDiv = document.createElement("div");
+              errorDiv.className = "alert alert-danger";
+              errorDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill"></i> ${error}`;
+              form.parentNode.insertBefore(errorDiv, form);
+            }
+          } catch (error) {
+            console.error("Erreur:", error);
+            const errorDiv = document.createElement("div");
+            errorDiv.className = "alert alert-danger";
+            errorDiv.innerHTML =
+              '<i class="bi bi-exclamation-triangle-fill"></i> Une erreur est survenue lors de la connexion.';
+            form.parentNode.insertBefore(errorDiv, form);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

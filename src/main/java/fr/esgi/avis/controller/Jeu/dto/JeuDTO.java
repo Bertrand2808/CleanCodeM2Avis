@@ -1,5 +1,8 @@
 package fr.esgi.avis.controller.Jeu.dto;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
 import fr.esgi.avis.domain.Classification.model.Classification;
 import fr.esgi.avis.domain.Editeur.model.Editeur;
@@ -7,9 +10,6 @@ import fr.esgi.avis.domain.Genre.model.Genre;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

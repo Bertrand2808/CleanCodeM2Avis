@@ -2,7 +2,7 @@ package fr.esgi.avis.controller.Moderateur;
 
 import fr.esgi.avis.controller.Moderateur.dto.ModerateurDTO;
 import fr.esgi.avis.domain.Moderateur.model.Moderateur;
-import fr.esgi.avis.usecases.Moderateur.ModerateurUseCases;
+import fr.esgi.avis.useCases.Moderateur.ModerateurUseCases;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

@@ -12,4 +12,5 @@ public interface GenreDataSourcePort {
     Optional<Genre> findByNom(String nom);
     List<Genre> findByNomContaining(String keyword);
     void deleteById(Long id);
+    long count();
 }

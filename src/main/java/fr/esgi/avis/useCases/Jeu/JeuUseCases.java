@@ -2,7 +2,6 @@ package fr.esgi.avis.useCases.Jeu;
 
 import fr.esgi.avis.domain.Jeu.JeuDataSourcePort;
 import fr.esgi.avis.domain.Jeu.model.Jeu;
-import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

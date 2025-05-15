@@ -4,7 +4,7 @@ import fr.esgi.avis.controller.Avatar.dto.AvatarDTO;
 import fr.esgi.avis.controller.Avis.dto.AvisDTO;
 import fr.esgi.avis.controller.Joueur.dto.JoueurDTO;
 import fr.esgi.avis.domain.Joueur.model.Joueur;
-import fr.esgi.avis.usecases.Joueur.JoueurUseCases;
+import fr.esgi.avis.useCases.Joueur.JoueurUseCases;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

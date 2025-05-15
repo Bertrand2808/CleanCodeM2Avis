@@ -2,7 +2,7 @@ package fr.esgi.avis.controller.Moderateur;
 
 import fr.esgi.avis.controller.Moderateur.dto.ModerateurDTO;
 import fr.esgi.avis.domain.Moderateur.model.Moderateur;
-import fr.esgi.avis.usecases.Moderateur.ModerateurUseCases;
+import fr.esgi.avis.useCases.Moderateur.ModerateurUseCases;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -4,6 +4,8 @@ import fr.esgi.avis.application.Genre.model.GenreEntity;
 import fr.esgi.avis.application.Jeu.JeuMapper;
 import fr.esgi.avis.domain.Genre.model.Genre;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class GenreMapper {
@@ -13,10 +15,7 @@ public class GenreMapper {
         return Genre.builder()
                 .id(genreEntity.getId())
                 .nom(genreEntity.getNom())
-                .jeux(genreEntity.getJeux().stream()
-                        .map(JeuMapper::toDomain)
-                        .collect(Collectors.toList())
-                )
+                .jeux(new ArrayList<>())
                 .build();
     }
 
@@ -26,10 +25,27 @@ public class GenreMapper {
         return GenreEntity.builder()
                 .id(genre.getId())
                 .nom(genre.getNom())
-                .jeux(genre.getJeux().stream()
-                    .map(JeuMapper::toEntity)
-                    .collect(Collectors.toList())
-                )
+                .jeux(new ArrayList<>())
+                .build();
+    }
+
+    public static Genre toDomainWithoutJeux(GenreEntity genreEntity) {
+        if (genreEntity == null) return null;
+
+        return Genre.builder()
+                .id(genreEntity.getId())
+                .nom(genreEntity.getNom())
+                .jeux(new ArrayList<>())
+                .build();
+    }
+
+    public static GenreEntity toEntityWithoutJeux(Genre genre) {
+        if (genre == null) return null;
+
+        return GenreEntity.builder()
+                .id(genre.getId())
+                .nom(genre.getNom())
+                .jeux(new ArrayList<>())
                 .build();
     }
 }

@@ -1,8 +1,10 @@
 package fr.esgi.avis.controller.Utilisateur;
 
+import fr.esgi.avis.controller.Utilisateur.dto.ConnexionDTO;
 import fr.esgi.avis.controller.Utilisateur.dto.UtilisateurDTO;
 import fr.esgi.avis.domain.Utilisateur.model.Utilisateur;
-import fr.esgi.avis.usecases.Utilisateur.UtilisateurUseCases;
+import fr.esgi.avis.useCases.Utilisateur.UtilisateurUseCases;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class UtilisateurController {
 
     private final UtilisateurUseCases utilisateurUseCases;
+    private final HttpSession session;
 
     /**
      * Create an utilisateur
@@ -57,6 +60,25 @@ public class UtilisateurController {
     public Optional<UtilisateurDTO> getUtilisateurById(Long id) {
         return utilisateurUseCases.getUtilisateurById(id)
                 .map(UtilisateurDtoMapper::toDto);
+    }
+
+    /**
+     * Connexion d'un utilisateur
+     * @param connexionDTO : données de connexion
+     * @return l'utilisateur connecté
+     */
+    public UtilisateurDTO connexion(ConnexionDTO connexionDTO) {
+        Utilisateur utilisateur = utilisateurUseCases.connexion(connexionDTO.getPseudo(), connexionDTO.getMotDePasse());
+        UtilisateurDTO utilisateurDTO = UtilisateurDtoMapper.toDto(utilisateur);
+        session.setAttribute("utilisateur", utilisateurDTO);
+        return utilisateurDTO;
+    }
+
+    /**
+     * Déconnexion d'un utilisateur
+     */
+    public void deconnexion() {
+        session.removeAttribute("utilisateur");
     }
 
     // TODO : Add other methods

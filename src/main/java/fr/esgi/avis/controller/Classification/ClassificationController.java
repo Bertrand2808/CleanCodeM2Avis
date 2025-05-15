@@ -1,6 +1,5 @@
 package fr.esgi.avis.controller.Classification;
 
-import fr.esgi.avis.controller.Classification.ClassificationDtoMapper;
 import fr.esgi.avis.controller.Classification.dto.ClassificationDTO;
 import fr.esgi.avis.domain.Classification.model.Classification;
 import fr.esgi.avis.useCases.Classification.ClassificationUseCases;

@@ -53,4 +53,9 @@ public class ClassificationJpaAdapter implements ClassificationDataSourcePort {
     public void deleteById(Long id) {
         classificationJpaRepository.deleteById(id);
     }
+
+    @Override
+    public long count() {
+        return classificationJpaRepository.count();
+    }
 }

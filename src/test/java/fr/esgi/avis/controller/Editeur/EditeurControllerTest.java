@@ -1,9 +1,7 @@
 package fr.esgi.avis.controller.Editeur;
 
 import fr.esgi.avis.controller.Editeur.dto.EditeurDTO;
-import fr.esgi.avis.controller.Jeu.dto.JeuDTO;
 import fr.esgi.avis.domain.Editeur.model.Editeur;
-import fr.esgi.avis.domain.Jeu.model.Jeu;
 import fr.esgi.avis.useCases.Editeur.EditeurUseCases;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

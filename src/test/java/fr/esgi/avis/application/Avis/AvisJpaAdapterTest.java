@@ -13,10 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -146,4 +143,47 @@ class AvisJpaAdapterTest {
         return joueur;
     }
 
+    @Test
+    void shouldFindAvisByJeuIdSuccessfully() {
+        // GIVEN
+        Long jeuId = random.nextLong(100);
+        List<Avis> avisList = new ArrayList<>();
+        Joueur joueur = createJoueur();
+        Avis avis = new Avis(
+                1L,
+                "Super jeu",
+                10L,
+                joueur.getId(),
+                5.0f,
+                now,
+                99L
+        );
+
+        AvisEntity avisEntity = AvisMapper.toEntity(avis);
+        when(avisJpaRepository.findByJeu_Id(jeuId)).thenReturn(List.of(avisEntity));
+
+        // WHEN
+        List<Avis> foundAvis = avisJpaAdapter.findByJeuId(jeuId);
+
+        // THEN
+        assertNotNull(foundAvis);
+        assertEquals(1, foundAvis.size());
+        assertEquals(avis.getDescription(), foundAvis.get(0).getDescription());
+        assertEquals(avis.getNote(), foundAvis.get(0).getNote());
+        verify(avisJpaRepository, times(1)).findByJeu_Id(jeuId);
+    }
+
+    @Test
+    void shouldReturnEmptyListWhenNoAvisFound() {
+        // GIVEN
+        Long jeuId = random.nextLong(100);
+        when(avisJpaRepository.findByJeu_Id(jeuId)).thenReturn(Collections.emptyList());
+
+        // WHEN
+        List<Avis> foundAvis = avisJpaAdapter.findByJeuId(jeuId);
+
+        // THEN
+        assertTrue(foundAvis.isEmpty());
+        verify(avisJpaRepository, times(1)).findByJeu_Id(jeuId);
+    }
 }

@@ -1,6 +1,5 @@
 package fr.esgi.avis.useCases.Plateforme;
 
-import fr.esgi.avis.domain.Jeu.model.Jeu;
 import fr.esgi.avis.domain.Plateforme.PlateformeDataSourcePort;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import lombok.RequiredArgsConstructor;

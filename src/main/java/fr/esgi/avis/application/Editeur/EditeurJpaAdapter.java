@@ -41,7 +41,7 @@ public class EditeurJpaAdapter implements EditeurDataSourcePort {
     }
 
     @Override
-    public List<Editeur> findByNomContaining(String keyword) { // ✅ Implemented method
+    public List<Editeur> findByNomContaining(String keyword) {
         return editeurJpaRepository.findByNomContaining(keyword)
                 .stream()
                 .map(EditeurMapper::toDomain)
@@ -51,5 +51,10 @@ public class EditeurJpaAdapter implements EditeurDataSourcePort {
     @Override
     public void deleteById(Long id) {
         editeurJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public long count() {
+        return editeurJpaRepository.count();
     }
 }

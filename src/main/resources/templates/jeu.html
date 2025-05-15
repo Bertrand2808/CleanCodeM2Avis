@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="${jeu.nom + ' - Avis de Jeux'}">Détails du jeu - Avis de Jeux</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .game-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .game-info {
+        background-color: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      .review-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .review-author {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .review-date {
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+      .review-rating {
+        color: #ffc107;
+      }
+      .review-content {
+        white-space: pre-line;
+      }
+      .add-review-form {
+        background-color: white;
+        border-radius: 10px;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div th:replace="entete"></div>
+
+    <div class="container py-4">
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a th:href="@{/jeux}" class="text-decoration-none">Jeux</a>
+          </li>
+          <li class="breadcrumb-item active" th:text="${jeu.nom}"></li>
+        </ol>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <img
+            th:src="@{'/' + ${jeu.image}}"
+            th:alt="${jeu.nom}"
+            class="game-image"
+            onerror="this.onerror=null;this.src='/images/default.jpg';"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="game-info">
+            <h1 class="h2 mb-4" th:text="${jeu.nom}"></h1>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <p class="mb-2">
+                  <i class="bi bi-building"></i>
+                  <strong>Éditeur :</strong>
+                  <span th:text="${jeu.editeur.nom}"></span>
+                </p>
+                <p class="mb-2">
+                  <i class="bi bi-tag"></i>
+                  <strong>Genre :</strong>
+                  <span th:text="${jeu.genre.nom}"></span>
+                </p>
+                <p class="mb-2">
+                  <i class="bi bi-calendar"></i>
+                  <strong>Date de sortie :</strong>
+                  <span th:text="${#temporals.format(jeu.dateDeSortie, 'dd/MM/yyyy')}"></span>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-2">
+                  <i class="bi bi-controller"></i>
+                  <strong>Plateformes :</strong>
+                  <span th:each="plateforme, stat : ${jeu.plateformes}">
+                    <span th:text="${plateforme.nom}"></span>
+                    <span th:if="${!stat.last}">, </span>
+                  </span>
+                </p>
+                <p class="mb-2">
+                  <i class="bi bi-currency-euro"></i>
+                  <strong>Prix :</strong>
+                  <span th:text="${jeu.prix + ' €'}"></span>
+                </p>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Description</h3>
+              <p class="text-muted" th:text="${jeu.description}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h2 class="h3 mb-4">Avis des joueurs</h2>
+
+        <!-- Formulaire d'ajout d'avis pour les utilisateurs connectés -->
+        <div
+          th:if="${session.utilisateur != null and session.utilisateur instanceof T(fr.esgi.avis.controller.Joueur.dto.JoueurDTO)}"
+          class="add-review-form mb-4"
+        >
+          <h3 class="h4 mb-3">Ajouter votre avis</h3>
+          <form id="reviewForm" class="needs-validation" novalidate>
+            <input type="hidden" name="jeuId" th:value="${jeu.id}" />
+
+            <div class="mb-3">
+              <label for="note" class="form-label">Note</label>
+              <select class="form-select" id="note" name="note" required>
+                <option value="">Choisissez une note</option>
+                <option
+                  th:each="i : ${#numbers.sequence(0, 20)}"
+                  th:value="${i}"
+                  th:text="${i}"
+                ></option>
+              </select>
+              <div class="invalid-feedback">Veuillez choisir une note</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Votre avis</label>
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                rows="4"
+                required
+              ></textarea>
+              <div class="invalid-feedback">Veuillez écrire votre avis</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-send"></i> Envoyer
+            </button>
+          </form>
+        </div>
+
+        <!-- Message pour les utilisateurs non connectés -->
+        <div
+          th:unless="${session.utilisateur != null and session.utilisateur instanceof T(fr.esgi.avis.controller.Joueur.dto.JoueurDTO)}"
+          class="alert alert-info"
+        >
+          <i class="bi bi-info-circle"></i>
+          <a th:href="@{/connexion}" class="alert-link">Connectez-vous</a> pour laisser votre avis
+          sur ce jeu.
+        </div>
+
+        <!-- Liste des avis -->
+        <div th:if="${not #lists.isEmpty(avis)}" class="review-list">
+          <div th:each="avis : ${avis}" class="review-card">
+            <div class="review-header">
+              <div class="review-author">
+                <i class="bi bi-person-circle"></i>
+                <span th:text="${avis.joueurId}"></span>
+              </div>
+              <div
+                class="review-date"
+                th:text="${#temporals.format(avis.dateDEnvoi, 'dd/MM/yyyy HH:mm')}"
+              ></div>
+            </div>
+            <div class="review-rating">
+              <i class="bi bi-star-fill"></i>
+              <span th:text="${avis.note + '/20'}"></span>
+            </div>
+            <div class="review-content mt-3" th:text="${avis.description}"></div>
+          </div>
+        </div>
+
+        <!-- Message si aucun avis -->
+        <div th:if="${#lists.isEmpty(avis)}" class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle"></i>
+          Aucun avis n'a encore été publié pour ce jeu.
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:inline="javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("reviewForm");
+
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Validation côté client
+            const note = document.getElementById("note").value;
+            const description = document.getElementById("description").value;
+
+            if (!note || !description) {
+              alert("Veuillez remplir tous les champs obligatoires");
+              return;
+            }
+
+            // Création de l'objet avis
+            const avisData = {
+              jeuId: form.querySelector("[name='jeuId']").value,
+              note: parseInt(note),
+              description: description.trim(),
+            };
+
+            // Envoi de la requête AJAX
+            fetch("/api/avis", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(avisData),
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  return response.text().then((text) => {
+                    throw new Error(text || "Une erreur est survenue");
+                  });
+                }
+                return response.json();
+              })
+              .then((data) => {
+                // Succès : recharger la page pour afficher le nouvel avis
+                window.location.reload();
+              })
+              .catch((error) => {
+                // Affichage de l'erreur
+                alert(error.message);
+              });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

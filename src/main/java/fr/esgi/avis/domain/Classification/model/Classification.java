@@ -1,10 +1,15 @@
 package fr.esgi.avis.domain.Classification.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import fr.esgi.avis.domain.Jeu.model.Jeu;
-import lombok.*;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import fr.esgi.avis.domain.Jeu.model.Jeu;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @NoArgsConstructor

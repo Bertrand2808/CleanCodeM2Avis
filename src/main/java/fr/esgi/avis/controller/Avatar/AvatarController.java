@@ -2,7 +2,7 @@ package fr.esgi.avis.controller.Avatar;
 
 import fr.esgi.avis.controller.Avatar.dto.AvatarDTO;
 import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.usecases.Avatar.AvatarUseCases;
+import fr.esgi.avis.useCases.Avatar.AvatarUseCases;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 

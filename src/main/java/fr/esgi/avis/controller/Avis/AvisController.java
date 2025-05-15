@@ -2,11 +2,13 @@ package fr.esgi.avis.controller.Avis;
 
 import fr.esgi.avis.controller.Avis.dto.AvisDTO;
 import fr.esgi.avis.domain.Avis.model.Avis;
-import fr.esgi.avis.usecases.Avis.AvisUseCases;
+import fr.esgi.avis.useCases.Avis.AvisUseCases;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * AvisController
@@ -44,5 +46,17 @@ public class AvisController {
      */
     public void deleteAvis(Long id) {
         avisUseCases.deleteAvis(id);
+    }
+
+    /**
+     * Get all avis for a jeu
+     * @param jeuId : id of the jeu
+     * @return list of avis for the jeu
+     */
+    public List<AvisDTO> getAvisByJeuId(Long jeuId) {
+        return avisUseCases.getAvisByJeuId(jeuId)
+                .stream()
+                .map(AvisDtoMapper::toDto)
+                .collect(Collectors.toList());
     }
 }

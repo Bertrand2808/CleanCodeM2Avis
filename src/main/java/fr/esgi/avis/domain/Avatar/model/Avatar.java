@@ -1,6 +1,5 @@
 package fr.esgi.avis.domain.Avatar.model;
 
-import fr.esgi.avis.domain.Joueur.model.Joueur;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

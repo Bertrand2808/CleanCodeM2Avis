@@ -42,7 +42,7 @@ public class GenreJpaAdapter implements GenreDataSourcePort {
     }
 
     @Override
-    public List<Genre> findByNomContaining(String keyword) { // ✅ Implemented method
+    public List<Genre> findByNomContaining(String keyword) {
         return genreJpaRepository.findByNomContaining(keyword)
                 .stream()
                 .map(GenreMapper::toDomain)
@@ -52,5 +52,10 @@ public class GenreJpaAdapter implements GenreDataSourcePort {
     @Override
     public void deleteById(Long id) {
         genreJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public long count() {
+        return genreJpaRepository.count();
     }
 }

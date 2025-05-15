@@ -10,10 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -101,5 +98,38 @@ class EditeurJpaAdapterTest {
         editeur.setNom("Ubisoft");
         editeur.setJeux(new ArrayList<>());
         return editeur;
+    }
+
+    @Test
+    void shouldFindEditeurByNomContainingSuccessfully() {
+        // GIVEN
+        String keyword = "Ubisoft";
+        List<Editeur> editeurs = new ArrayList<>();
+        Editeur editeur = createFakeEditeur();
+        EditeurEntity entity = EditeurMapper.toEntity(editeur);
+        when(editeurJpaRepository.findByNomContaining(keyword)).thenReturn(List.of(entity));
+
+        // WHEN
+        List<Editeur> result = editeurJpaAdapter.findByNomContaining(keyword);
+
+        // THEN
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals(editeur.getNom(), result.get(0).getNom());
+        verify(editeurJpaRepository, times(1)).findByNomContaining(keyword);
+    }
+
+    @Test
+    void shouldReturnEmptyListWhenNoEditeurFound() {
+        // GIVEN
+        String keyword = "Ubisoft";
+        when(editeurJpaRepository.findByNomContaining(keyword)).thenReturn(Collections.emptyList());
+
+        // WHEN
+        List<Editeur> result = editeurJpaAdapter.findByNomContaining(keyword);
+
+        // THEN
+        assertTrue(result.isEmpty());
+        verify(editeurJpaRepository, times(1)).findByNomContaining(keyword);
     }
 }

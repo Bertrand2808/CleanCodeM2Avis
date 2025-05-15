@@ -51,4 +51,9 @@ public class JeuJpaAdapter implements JeuDataSourcePort {
     public void deleteById(Long id) {
         jeuJpaRepository.deleteById(id);
     }
+
+    @Override
+    public long count() {
+        return jeuJpaRepository.count();
+    }
 }

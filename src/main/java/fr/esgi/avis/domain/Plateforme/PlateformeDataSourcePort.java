@@ -13,4 +13,5 @@ public interface PlateformeDataSourcePort {
     Optional<Plateforme> findByNom(String nom);
     List<Plateforme> findByNomContaining(String keyword);
     void deleteById(Long id);
+    long count();
 }

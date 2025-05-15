@@ -1,11 +1,6 @@
 package fr.esgi.avis.controller.Plateforme;
 
-import fr.esgi.avis.controller.Jeu.JeuDtoMapper;
-import fr.esgi.avis.controller.Jeu.dto.JeuDTO;
-import fr.esgi.avis.controller.Plateforme.PlateformeDtoMapper;
 import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
-import fr.esgi.avis.controller.Plateforme.PlateformeDtoMapper;
-import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import fr.esgi.avis.domain.Plateforme.model.Plateforme;
 import fr.esgi.avis.useCases.Plateforme.PlateformeUseCases;
 import lombok.RequiredArgsConstructor;

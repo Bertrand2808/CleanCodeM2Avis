@@ -1,21 +1,13 @@
 package fr.esgi.avis.controller.Jeu.rest;
 
-import fr.esgi.avis.controller.Avatar.dto.AvatarDTO;
 import fr.esgi.avis.controller.Jeu.JeuController;
-import fr.esgi.avis.controller.Jeu.JeuDtoMapper;
 import fr.esgi.avis.controller.Jeu.dto.JeuDTO;
-import fr.esgi.avis.controller.Plateforme.PlateformeController;
-import fr.esgi.avis.controller.Plateforme.dto.PlateformeDTO;
-import fr.esgi.avis.domain.Jeu.model.Jeu;
-import fr.esgi.avis.useCases.Jeu.JeuUseCases;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/jeux")

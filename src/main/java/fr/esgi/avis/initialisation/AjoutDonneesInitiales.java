@@ -1,22 +1,44 @@
 package fr.esgi.avis.initialisation;
 
-import com.github.javafaker.Faker;
-import fr.esgi.avis.domain.Avatar.AvatarDataSourcePort;
-import fr.esgi.avis.domain.Avatar.model.Avatar;
-import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
-import fr.esgi.avis.domain.Joueur.model.Joueur;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import lombok.AllArgsConstructor;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.*;
+import com.github.javafaker.Faker;
+
+import fr.esgi.avis.domain.Avatar.AvatarDataSourcePort;
+import fr.esgi.avis.domain.Avatar.model.Avatar;
+import fr.esgi.avis.domain.Avis.AvisDataSourcePort;
+import fr.esgi.avis.domain.Avis.model.Avis;
+import fr.esgi.avis.domain.Classification.ClassificationDataSourcePort;
+import fr.esgi.avis.domain.Classification.model.Classification;
+import fr.esgi.avis.domain.Editeur.EditeurDataSourcePort;
+import fr.esgi.avis.domain.Editeur.model.Editeur;
+import fr.esgi.avis.domain.Genre.GenreDataSourcePort;
+import fr.esgi.avis.domain.Genre.model.Genre;
+import fr.esgi.avis.domain.Jeu.JeuDataSourcePort;
+import fr.esgi.avis.domain.Jeu.model.Jeu;
+import fr.esgi.avis.domain.Joueur.JoueurDataSourcePort;
+import fr.esgi.avis.domain.Joueur.model.Joueur;
+import fr.esgi.avis.domain.Moderateur.model.Moderateur;
+import fr.esgi.avis.domain.Moderateur.model.ModerateurDataSourcePort;
+import fr.esgi.avis.domain.Plateforme.PlateformeDataSourcePort;
+import fr.esgi.avis.domain.Plateforme.model.Plateforme;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor
@@ -24,303 +46,252 @@ import java.util.*;
 @Transactional(readOnly = true)
 public class AjoutDonneesInitiales {
 
-    //private EditeurRepository editeurRepository;
-    //private ClassificationRepository classificationRepository;
-    //private GenreRepository genreRepository;
-    //private PlateformeRepository plateformeRepository;
-    //private JeuRepository jeuRepository;
+    private EditeurDataSourcePort editeurDataSourcePort;
+    private ClassificationDataSourcePort classificationDataSourcePort;
+    private GenreDataSourcePort genreDataSourcePort;
+    private PlateformeDataSourcePort plateformeDataSourcePort;
+    private JeuDataSourcePort jeuDataSourcePort;
     private JoueurDataSourcePort joueurDataSourcePort;
-    //private ModerateurRepository moderateurRepository;
-    //private AvisRepository avisRepository;
+    private ModerateurDataSourcePort moderateurDataSourcePort;
+    private AvisDataSourcePort avisDataSourcePort;
     private AvatarDataSourcePort avatarDataSourcePort;
+
     @PersistenceContext
     private EntityManager entityManager;
 
-    // Le fait de déclarer l'attribut en static va dispenser Spring de gérer l'objet
     private static Faker faker = new Faker(Locale.FRENCH);
 
-    // @Override
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
-    // public void run(String... args) throws Exception {
     public void init() {
-        //ajouterEditeurs();
-        //ajouterClassifications();
-        //ajouterGenres();
-        //ajouterPlateformes();
-        //ajouterJeux();
+        ajouterClassifications();
+        ajouterGenres();
+        ajouterPlateformes();
+        ajouterEditeurs();
         ajouterAvatars();
         ajouterJoueurs(100);
-        //ajouterModerateur();
-        //ajouterAvis(200);
-        //afficherStatistiques();
+        ajouterModerateurs();
+        ajouterJeux();
+        ajouterAvis(200);
+        afficherStatistiques();
     }
 
     private void ajouterAvatars() {
-        avatarDataSourcePort.save(new Avatar("Avatar 1"));
-        avatarDataSourcePort.save(new Avatar("Avatar 2"));
+        if (avatarDataSourcePort.count() == 0) {
+            avatarDataSourcePort.save(new Avatar("Avatar 1"));
+            avatarDataSourcePort.save(new Avatar("Avatar 2"));
+            avatarDataSourcePort.save(new Avatar("Avatar 3"));
+            avatarDataSourcePort.save(new Avatar("Avatar 4"));
+            avatarDataSourcePort.save(new Avatar("Avatar 5"));
+        }
     }
 
-    /*private void ajouterAvis(int nbAvisAAjouter) {
-        if (avisRepository.count() == 0) {
+    private void ajouterAvis(int nbAvisAAjouter) {
+        if (avisDataSourcePort.count() == 0) {
             Random random = new Random();
             List<Joueur> joueurs = joueurDataSourcePort.findAll();
+            List<Jeu> jeux = jeuDataSourcePort.findAll();
+            List<Moderateur> moderateurs = moderateurDataSourcePort.findAll();
+
             for (int i = 0; i < nbAvisAAjouter; i++) {
                 Joueur joueur = joueurs.get(random.nextInt(joueurs.size()));
-                Avis avis = new Avis(faker.letterify("????????"), jeuRepository.findGamesRandomlySorted().get(0), joueur);
-                avis.setNote(random.nextFloat(21));
-                joueur.getAvis().add(avis);
-                avisRepository.save(avis);
+                Jeu jeu = jeux.get(random.nextInt(jeux.size()));
+                Moderateur moderateur = moderateurs.get(random.nextInt(moderateurs.size()));
+                Avis avis = new Avis(
+                    null,
+                    faker.lorem().paragraph(),
+                    jeu.getId(),
+                    joueur.getId(),
+                    random.nextFloat(21),
+                    LocalDateTime.now(),
+                    moderateur.getId()
+                );
+                avisDataSourcePort.save(avis);
             }
         }
-    }*/
+    }
 
     private void ajouterJoueurs(int nbJoueursAAjouter) {
         if (joueurDataSourcePort.count() == 0) {
             Random random = new Random();
             Calendar calendar = Calendar.getInstance();
-            Map<String, Joueur> map = new HashMap<>();
-            int compteur = 0;
-            while (compteur<nbJoueursAAjouter) {
-                compteur++;
+
+            for (int i = 0; i < nbJoueursAAjouter; i++) {
                 calendar.set(1940, 1, 1);
                 Date dateDebut = calendar.getTime();
                 calendar = Calendar.getInstance();
                 calendar.set(2003, 1, 1);
                 Date dateFin = calendar.getTime();
                 Date dateAleatoire = faker.date().between(dateDebut, dateFin);
-                calendar.setTime(dateAleatoire);
                 LocalDate dateDeNaissance = dateAleatoire.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
                 String prenom = faker.name().firstName();
                 String email = prenom + "." + faker.name().lastName().replaceAll(" ", "") + "@soprasteria.com";
-                /*
-                 * Sans Builder : Joueur joueur = new Joueur(); joueur.setPseudo(prenom +
-                 * String.valueOf(random.nextInt(999) + 1000)); joueur.setEmail(email);
-                 * joueur.setMotDePasse(String.valueOf(random.nextInt(99999999) + 10000000));
-                 * joueur.setDateDeNaissance(dateDeNaissance);
-                */
 
+                Joueur joueur = Joueur.builder()
+                    .pseudo(prenom + String.valueOf(random.nextInt(999) + 1000))
+                    .email(email)
+                    .motDePasse(String.valueOf(random.nextInt(99999999) + 10000000))
+                    .dateDeNaissance(dateDeNaissance)
+                    .build();
 
-                Joueur joueur = Joueur.builder().pseudo(prenom + String.valueOf(random.nextInt(999) + 1000))
-                        .email(email).motDePasse(String.valueOf(random.nextInt(99999999) + 10000000))
-                        .dateDeNaissance(dateDeNaissance).build();
-
-                //map.put(joueur.getEmail(), joueur);
                 joueurDataSourcePort.save(joueur);
             }
-            //joueurDataSourcePort.saveAll(map.values());
-            joueurDataSourcePort.save(Joueur.builder().pseudo("test").motDePasse("anniversaire")
-                    .email("test@m2iformation.fr")
-                    .dateDeNaissance(LocalDate.of(1999, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth())).build());
+
+            // Ajout d'un compte test
+            joueurDataSourcePort.save(Joueur.builder()
+                .pseudo("test")
+                .motDePasse("anniversaire")
+                .email("test@m2iformation.fr")
+                .dateDeNaissance(LocalDate.of(1999, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth()))
+                .build());
         }
     }
-    /*
-    private void ajouterModerateur() {
-        moderateurRepository.save(new Moderateur("Peppe", "azerty", "peppe@spiagge.it", "+39123456789"));
+
+    private void ajouterModerateurs() {
+        if (moderateurDataSourcePort.count() == 0) {
+            moderateurDataSourcePort.save(new Moderateur("Peppe", "azerty", "peppe@spiagge.it", "+39123456789"));
+            moderateurDataSourcePort.save(new Moderateur("Admin", "admin123", "admin@avis.fr", "+33123456789"));
+            moderateurDataSourcePort.save(new Moderateur("Modo", "modo123", "modo@avis.fr", "+33234567890"));
+        }
     }
 
     @Transactional(readOnly = true)
     void afficherStatistiques() {
-
-        // méthode qui renvoie les plateformes dont le nom contient ce qui est donné en paramètre
-        System.out.println("Méthode qui renvoie les plateformes dont le nom contient ce qui est donné en paramètre");
-        plateformeRepository.findByNomContaining("Sta").forEach(System.out::println);
-
-        // méthode qui renvoie les éditeurs n'ayant pas encore édité de jeux
-        System.out.println("Méthode qui renvoie les éditeurs n'ayant pas encore édité de jeux");
-        editeurRepository.findEditorsWithoutGames().forEach(e -> System.out.println(e.getNom()));
-
-        // R5 : méthode par dérivation qui renvoie les jeux disponibles sur la plateforme donnée en paramètre
-        System.out.println("Méthode par dérivation qui renvoie les jeux disponibles sur la plateforme donnée en paramètre");
-        jeuRepository.findByPlateformes(plateformeRepository.findByNom("Nintendo Wii")).forEach(p -> System.out.println(p.getNom()));
+        System.out.println("Statistiques de la base de données :");
+        System.out.println("Nombre d'éditeurs : " + editeurDataSourcePort.count());
+        System.out.println("Nombre de jeux : " + jeuDataSourcePort.count());
+        System.out.println("Nombre de joueurs : " + joueurDataSourcePort.count());
+        System.out.println("Nombre d'avis : " + avisDataSourcePort.count());
+        System.out.println("Nombre de modérateurs : " + moderateurDataSourcePort.count());
     }
 
     private void ajouterJeux() {
-        if (jeuRepository.count()==0) {
-            Editeur nintendo = editeurRepository.findByNom("Nintendo");
-            Editeur ubisoft = editeurRepository.findByNom("Ubisoft");
-            Editeur riot = editeurRepository.findByNom("Riot Games");
-            Editeur ankama = editeurRepository.findByNom("Ankama");
-            Editeur bioWare = editeurRepository.findByNom("BioWare");
-            Editeur cdProjeckRed = editeurRepository.findByNom("CD Projekt Red");
-            Editeur blizzard = editeurRepository.findByNom("Blizzard");
-            Editeur fromSoftware = editeurRepository.findByNom("FromSoftware");
-            Editeur naughtyDog = editeurRepository.findByNom("Naughty Dog");
-            Editeur hazelightStudios = editeurRepository.findByNom("Hazelight Studios");
-            Editeur idSoftware = editeurRepository.findByNom("idSoftware");
-
-            Genre moba = genreRepository.findByNom("MOBA (Multiplayer online battle arena)");
-            Genre rpg = genreRepository.findByNom("RPG (Role-playing game))");
-
-            Jeu jeu = new Jeu("Animal Crossing New Horizons", LocalDate.of(2020, 3, 20), nintendo);
-            jeu.setPlateformes(Arrays.asList(plateformeRepository.findAll().get(0), plateformeRepository.findAll().get(1)));
-            jeuRepository.save(jeu);
-
-            jeuRepository.save(new Jeu("Zelda Tears of the Kingdom", LocalDate.of(2023, 5, 12), nintendo));
-            jeuRepository.save(new Jeu("Assassin's Creed Valhalla", LocalDate.of(2020, 11, 10), ubisoft));
-
-            jeuRepository.save(new Jeu("Warframe"));
-            jeuRepository.save(new Jeu("Final Fantasy VIII"));
-            jeuRepository.save(new Jeu("Monster Hunter:World"));
-            jeuRepository.save(new Jeu("Xenoblade Chronicles"));
-            jeuRepository.save(new Jeu("Nier:Automata"));
-            jeuRepository.save(new Jeu("Lost Ark"));
-            jeuRepository.save(new Jeu("Aion"));
-            jeuRepository.save(new Jeu("Métin 2"));
-            jeuRepository.save(new Jeu("Tera"));
-            jeuRepository.save(new Jeu("Tunic"));
-            jeuRepository.save(new Jeu("Satisfactory"));
-            jeuRepository.save(new Jeu("Valorant"));
-            jeuRepository.save(new Jeu("Octopath Travellers"));
-            jeuRepository.save(new Jeu("Minecraft"));
-            jeuRepository.save(new Jeu("Outer Wild"));
-            jeuRepository.save(new Jeu("Strays"));
-            jeuRepository.save(new Jeu("Nier:Replicant"));
-
-            jeuRepository.save(new Jeu("The last of us part II", editeurRepository.findByNom("Naughty Dog")));
-            jeuRepository.save(new Jeu("GTA V", editeurRepository.findByNom("Rockstar")));
-            jeuRepository.save(new Jeu("Splinter cell", editeurRepository.findByNom("Ubisoft")));
-
-            jeuRepository.save(new Jeu("Mario Kart 8 ", "jeu de course", LocalDate.of(2014, 5, 29),
-                    editeurRepository.findByNom("Nintendo")));
-            jeuRepository.save(new Jeu("FIFA 2022", "jeu de simulation de football", LocalDate.of(2021, 9, 27),
-                    editeurRepository.findByNom("Electronic Arts")));
-
-            jeuRepository.save(new Jeu("League Of Legends", LocalDate.of(2009, 10, 27), riot, moba));
-            jeuRepository.save(new Jeu("Dofus", LocalDate.of(2004, 9, 1), ankama, rpg));
-
-            jeuRepository.save(new Jeu("Call of Duty", editeurRepository.findByNom("Activision")));
-            jeuRepository.save(new Jeu("EVE", editeurRepository.findByNom("CCP")));
-            jeuRepository.save(new Jeu("The Elder Scrolls : Skyrim", editeurRepository.findByNom("Bethesda")));
-
-            jeuRepository.save(new Jeu("Dragon Age: Inquisition", LocalDate.of(2014, 11, 21), bioWare));
-            jeuRepository.save(new Jeu("The Witcher 3: Wild Hunt", LocalDate.of(2015, 5, 24), cdProjeckRed));
-            jeuRepository.save(new Jeu("Overwatch", LocalDate.of(2016, 11, 21), blizzard));
-            jeuRepository.save(new Jeu("The Legend of Zelda: Breath of the Wild", LocalDate.of(2017, 3, 3), nintendo));
-            jeuRepository.save(new Jeu("God of War", LocalDate.of(2018, 4, 4), ubisoft));
-            jeuRepository.save(new Jeu("Sekiro: Shadows Die Twice", LocalDate.of(2019, 3, 22), fromSoftware));
-            jeuRepository.save(new Jeu("The Last of Us Part II", LocalDate.of(2020, 6, 19), naughtyDog));
-            jeuRepository.save(new Jeu("It Takes Two", LocalDate.of(2021, 11, 4), hazelightStudios));
-            jeuRepository.save(new Jeu("Elden Ring", LocalDate.of(2022, 2, 25), fromSoftware));
-
-            jeuRepository.save(new Jeu("Doom eternal", LocalDate.of(2020, 3, 20), idSoftware));
-
-            jeuRepository.save(new Jeu("Palworld", LocalDate.of(2024, 1, 19), idSoftware));
-
-            jeuRepository.save(new Jeu("Pikmin", LocalDate.of(2001, 10, 26), editeurRepository.findByNom("Nintendo")));
-
-            jeuRepository.save(new Jeu("Halo 5", LocalDate.of(2015, 10, 27), editeurRepository.findByNom("Microsoft")));
+        if (jeuDataSourcePort.count() == 0) {
+            // Ajout d'autres jeux...
+            jeuDataSourcePort.save(new Jeu(
+                "Zelda Tears of the Kingdom",
+                editeurDataSourcePort.findByNom("Nintendo").orElseThrow(),
+                genreDataSourcePort.findByNom("Action").orElseThrow(),
+                classificationDataSourcePort.findByNom("PEGI 12").orElseThrow(),
+                "L'intrigue se déroule dans le Royaume d'Hyrule, dévasté par le Cataclysme, phénomène déclenché par le réveil du roi démon, Ganondorf. Le monde est séparé en trois parties : la Surface (ou la Terre), où se déroule la majeure partie de l'aventure ; le Ciel, parsemé de nombreuses îles célestes, que l'on peut atteindre en se projetant dans les airs depuis les tours de reconnaissance (lesquelles donnent accès à la carte de la région) ; et enfin les Profondeurs, que l'on peut atteindre en sautant dans des Abîmes, apparus après le Cataclysme.",
+                LocalDate.of(2023, 5, 12),
+                Arrays.asList(plateformeDataSourcePort.findByNom("Nintendo Switch").orElseThrow()),
+                "doc/assets/zelda.jpg",
+                59.99f
+            ));
+            jeuDataSourcePort.save(new Jeu(
+                "Assassin's Creed Valhalla",
+                editeurDataSourcePort.findByNom("Ubisoft").orElseThrow(),
+                genreDataSourcePort.findByNom("Action").orElseThrow(),
+                classificationDataSourcePort.findByNom("PEGI 18").orElseThrow(),
+                "Incarnez Eivor, Viking dont l'éducation a reposé sur le combat, et menez votre clan des terres désolées et glacées de Norvège à celles verdoyantes de l'Angleterre du IXe siècle. Fondez-y la colonie de votre peuple et partez à la conquête de territoires hostiles afin de gagner votre place au Valhalla.",
+                LocalDate.of(2020, 11, 10),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PlayStation 5").orElseThrow()),
+                "doc/assets/ACV.jpg", 59.99f));
+            jeuDataSourcePort.save(new Jeu(
+                "League Of Legends",
+                editeurDataSourcePort.findByNom("Riot Games").orElseThrow(),
+                genreDataSourcePort.findByNom("MOBA (Multiplayer online battle arena)").orElseThrow(),
+                classificationDataSourcePort.findByNom("Aucune").orElseThrow(),
+                "League of Legends est un jeu de stratégie en temps réel où deux équipes de cinq espèces mythiques s'affrontent pour détruire la base de l'opposant.",
+                LocalDate.of(2009, 10, 27),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow()),
+                "doc/assets/lol.jpg", 0f));
+            jeuDataSourcePort.save(new Jeu(
+                "Dofus",
+                editeurDataSourcePort.findByNom("Ankama").orElseThrow(),
+                genreDataSourcePort.findByNom("RPG (Role-playing game))").orElseThrow(),
+                classificationDataSourcePort.findByNom("Aucune").orElseThrow(),
+                "Dofus est un MMORPG en 2D, avec un gameplay simple et accessible, mais qui offre une grande profondeur et des possibilités de personnalisation infinies.",
+                LocalDate.of(2004, 9, 1),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow()),
+                "doc/assets/dofus.jpg", 0f));
+            jeuDataSourcePort.save(new Jeu(
+                "The Witcher 3: Wild Hunt",
+                editeurDataSourcePort.findByNom("CD Projekt Red").orElseThrow(),
+                genreDataSourcePort.findByNom("RPG (Role-playing game))").orElseThrow(),
+                classificationDataSourcePort.findByNom("PEGI 18").orElseThrow(),
+                "The Witcher 3: Wild Hunt est un RPG en 3D, avec un gameplay simple et accessible, mais qui offre une grande profondeur et des possibilités de personnalisation infinies.",
+                LocalDate.of(2015, 5, 24),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow()),
+                "doc/assets/TW3.jpg", 59.99f));
+            jeuDataSourcePort.save(new Jeu(
+                "Elden Ring",
+                editeurDataSourcePort.findByNom("FromSoftware").orElseThrow(),
+                genreDataSourcePort.findByNom("RPG (Role-playing game))").orElseThrow(),
+                classificationDataSourcePort.findByNom("PEGI 18").orElseThrow(),
+                "Elden Ring est un RPG en 3D, avec un gameplay simple et accessible, mais qui offre une grande profondeur et des possibilités de personnalisation infinies.",
+                LocalDate.of(2022, 2, 25),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow()),
+                "doc/assets/eldenring.jpg", 59.99f));
+            jeuDataSourcePort.save(new Jeu(
+                "Clair Obscure : Expedition 33",
+                editeurDataSourcePort.findByNom("Hazelight Studios").orElseThrow(),
+                genreDataSourcePort.findByNom("Action").orElseThrow(),
+                classificationDataSourcePort.findByNom("PEGI 12").orElseThrow(),
+                "Une fois par an, la Peintresse se réveille. Sur son Monolithe, elle peint son nombre maudit.Et tous ceux de cet âge partent en fumée. Année après année, ce nombre diminue et nous sommes toujours plus nombreux à être effacés. Demain, elle se réveillera pour peindre « 33 ». Et demain, nous partirons pour notre ultime mission : éliminer la Peintresse, pour que plus jamais elle ne peigne la mort. Clair Obscur: Expedition 33 est un RPG au tour par tour révolutionnaire qui intègre des mécaniques de jeu en temps réel, pour rendre les combats plus immersifs et addictifs que jamais. Explorez un monde fantastique rappelant la France de la Belle Époque et peuplé d'ennemis dévastateurs. Nous sommes l'Expédition 33.",
+                LocalDate.of(2025, 4, 24),
+                Arrays.asList(plateformeDataSourcePort.findByNom("PC").orElseThrow(), plateformeDataSourcePort.findByNom("PlayStation 5").orElseThrow(), plateformeDataSourcePort.findByNom("Xbox Series X").orElseThrow()),
+                "doc/assets/expedition33.jpg", 49.99f));
         }
     }
 
     private void ajouterPlateformes() {
-        if (plateformeRepository.count() == 0) {
-            plateformeRepository.save(new Plateforme("Amstrad CPC"));
-            plateformeRepository.save(new Plateforme("Nintendo Wii"));
-            plateformeRepository.save(new Plateforme("Nintendo Wii U"));
-            plateformeRepository.save(new Plateforme("Nintendo Switch"));
-            plateformeRepository.save(new Plateforme("Windows"));
-            plateformeRepository.save(new Plateforme("MacOS"));
-            plateformeRepository.save(new Plateforme("Steam"));
-            plateformeRepository.save(new Plateforme("Neo-Geo"));
-            plateformeRepository.save(new Plateforme("PlayStation 1"));
-            plateformeRepository.save(new Plateforme("PlayStation 2"));
-            plateformeRepository.save(new Plateforme("PlayStation 3"));
-            plateformeRepository.save(new Plateforme("PlayStation 4"));
-            plateformeRepository.save(new Plateforme("PlayStation 5"));
-            plateformeRepository.save(new Plateforme("PlayStation Vita"));
-            plateformeRepository.save(new Plateforme("PSP"));
-            plateformeRepository.save(new Plateforme("Sega Dreamcast"));
-            plateformeRepository.save(new Plateforme("Sega Mastersystem"));
-            plateformeRepository.save(new Plateforme("Sega Saturn"));
-            plateformeRepository.save(new Plateforme("Xbox One"));
-            plateformeRepository.save(new Plateforme("Xbox One Series"));
-            plateformeRepository.save(new Plateforme("Xbox 360"));
-            plateformeRepository.save(new Plateforme("Amiga"));
-            plateformeRepository.save(new Plateforme("Android"));
-            plateformeRepository.save(new Plateforme("Atari 8-bit"));
-            plateformeRepository.save(new Plateforme("Atari Jaguar"));
-            plateformeRepository.save(new Plateforme("Commodore 64"));
-            plateformeRepository.save(new Plateforme("Game Boy"));
-            plateformeRepository.save(new Plateforme("Game Boy Color"));
-            plateformeRepository.save(new Plateforme("Game Boy Advance"));
-            plateformeRepository.save(new Plateforme("Game Boy Advance SP"));
-            plateformeRepository.save(new Plateforme("NES"));
-            plateformeRepository.save(new Plateforme("PC-Engine"));
-            plateformeRepository.save(new Plateforme("SNES"));
-            plateformeRepository.save(new Plateforme("Nintendo 3DS"));
-            plateformeRepository.save(new Plateforme("Nintendo 64"));
-            plateformeRepository.save(new Plateforme("Nintendo DS"));
-            plateformeRepository.save(new Plateforme("Nintendo Gamecube"));
+        if (plateformeDataSourcePort.count() == 0) {
+            plateformeDataSourcePort.save(new Plateforme("Nintendo Switch"));
+            plateformeDataSourcePort.save(new Plateforme("PlayStation 5"));
+            plateformeDataSourcePort.save(new Plateforme("Xbox Series X"));
+            plateformeDataSourcePort.save(new Plateforme("PC"));
+            plateformeDataSourcePort.save(new Plateforme("Mobile"));
+            plateformeDataSourcePort.save(new Plateforme("Nintendo Wii"));
+            plateformeDataSourcePort.save(new Plateforme("PlayStation 4"));
+            plateformeDataSourcePort.save(new Plateforme("Xbox One"));
         }
     }
 
     private void ajouterGenres() {
-        if (genreRepository.count() == 0) {
-            genreRepository.save(new Genre("FPS (First person shooter)"));
-            genreRepository.save(new Genre("TS (real-time strategy)"));
-            genreRepository.save(new Genre("RPG (Role-playing game))"));
-            genreRepository.save(new Genre("Simulation"));
-            genreRepository.save(new Genre("Gestion"));
-            genreRepository.save(new Genre("TPS (Third person shooter)"));
-            genreRepository.save(new Genre("Digital collectible card game"));
-            genreRepository.save(new Genre("MOBA (Multiplayer online battle arena"));
-            genreRepository.save(new Genre("Hack n Slash"));
-            genreRepository.save(new Genre("Action/Aventure"));
-            genreRepository.save(new Genre("Point and click"));
-            genreRepository.save(new Genre("Plates-formes"));
-            genreRepository.save(new Genre("4X (eXplore, eXpand, eXploit and eXterminate)"));
-            genreRepository.save(new Genre("Tactical RPG"));
-            genreRepository.save(new Genre("Action RPG"));
+        if (genreDataSourcePort.count() == 0) {
+            genreDataSourcePort.save(new Genre("Action"));
+            genreDataSourcePort.save(new Genre("Aventure"));
+            genreDataSourcePort.save(new Genre("RPG (Role-playing game))"));
+            genreDataSourcePort.save(new Genre("Stratégie"));
+            genreDataSourcePort.save(new Genre("Sport"));
+            genreDataSourcePort.save(new Genre("Course"));
+            genreDataSourcePort.save(new Genre("MOBA (Multiplayer online battle arena)"));
+            genreDataSourcePort.save(new Genre("FPS (First person shooter)"));
+            genreDataSourcePort.save(new Genre("MMORPG"));
+            genreDataSourcePort.save(new Genre("Simulation"));
         }
     }
 
-    @Transactional(readOnly = true)
-    void ajouterClassifications() {
-        if (classificationRepository.count() == 0) {
-            classificationRepository.save(new Classification("PG 3", "0000FF"));
-            classificationRepository.save(new Classification("PG 7", "00FF00"));
-            classificationRepository.save(new Classification("PG 12", "FF0000"));
-            classificationRepository.save(new Classification("PG 16", "FFFF00"));
-            classificationRepository.save(new Classification("PG 18","00FFFF"));
-            classificationRepository.save(new Classification("Aucune", "FFFFFF"));
+    private void ajouterClassifications() {
+        if (classificationDataSourcePort.count() == 0) {
+            classificationDataSourcePort.save(new Classification("PEGI 3", "0000FF"));
+            classificationDataSourcePort.save(new Classification("PEGI 7", "00FF00"));
+            classificationDataSourcePort.save(new Classification("PEGI 12", "FF0000"));
+            classificationDataSourcePort.save(new Classification("PEGI 16", "FFFF00"));
+            classificationDataSourcePort.save(new Classification("PEGI 18", "00FFFF"));
+            classificationDataSourcePort.save(new Classification("Aucune", "FFFFFF"));
         }
     }
-
 
     private void ajouterEditeurs() {
-        if (editeurRepository.count() == 0) {
-            editeurRepository.save(new Editeur("Activision"));
-            editeurRepository.save(new Editeur("Amazon Games"));
-            editeurRepository.save(new Editeur("Ankama"));
-            editeurRepository.save(new Editeur("Bandai Namco"));
-            editeurRepository.save(new Editeur("Bethesda"));
-            editeurRepository.save(new Editeur("BioWare"));
-            editeurRepository.save(new Editeur("Blizzard"));
-            editeurRepository.save(new Editeur("Capcom"));
-            editeurRepository.save(new Editeur("CCP"));
-            editeurRepository.save(new Editeur("CD Projekt Red"));
-            editeurRepository.save(new Editeur("Davilex"));
-            editeurRepository.save(new Editeur("Digital Extreme"));
-            editeurRepository.save(new Editeur("Electronic Arts"));
-            editeurRepository.save(new Editeur("Epic Games"));
-            editeurRepository.save(new Editeur("FromSoftware"));
-            editeurRepository.save(new Editeur("Hazelight Studios"));
-            editeurRepository.save(new Editeur("idSoftware"));
-            editeurRepository.save(new Editeur("Microsoft"));
-            editeurRepository.save(new Editeur("MonolithSoftware"));
-            editeurRepository.save(new Editeur("Naughty Dog"));
-            editeurRepository.save(new Editeur("Nintendo"));
-            editeurRepository.save(new Editeur("Riot Games"));
-            editeurRepository.save(new Editeur("Rockstar"));
-            editeurRepository.save(new Editeur("Sega"));
-            editeurRepository.save(new Editeur("Square Enix"));
-            editeurRepository.save(new Editeur("Tencent"));
-            editeurRepository.save(new Editeur("Ubisoft"));
-            editeurRepository.save(new Editeur("Ultra Software"));
-            editeurRepository.save(new Editeur("Valve"));
-            editeurRepository.save(new Editeur("Wildcard"));
+        if (editeurDataSourcePort.count() == 0) {
+            editeurDataSourcePort.save(new Editeur("Nintendo"));
+            editeurDataSourcePort.save(new Editeur("Sony Interactive Entertainment"));
+            editeurDataSourcePort.save(new Editeur("Microsoft"));
+            editeurDataSourcePort.save(new Editeur("Ubisoft"));
+            editeurDataSourcePort.save(new Editeur("Electronic Arts"));
+            editeurDataSourcePort.save(new Editeur("Activision Blizzard"));
+            editeurDataSourcePort.save(new Editeur("Riot Games"));
+            editeurDataSourcePort.save(new Editeur("Ankama"));
+            editeurDataSourcePort.save(new Editeur("BioWare"));
+            editeurDataSourcePort.save(new Editeur("CD Projekt Red"));
+            editeurDataSourcePort.save(new Editeur("FromSoftware"));
+            editeurDataSourcePort.save(new Editeur("Naughty Dog"));
+            editeurDataSourcePort.save(new Editeur("Hazelight Studios"));
+            editeurDataSourcePort.save(new Editeur("idSoftware"));
         }
-    }*/
-
+    }
 }

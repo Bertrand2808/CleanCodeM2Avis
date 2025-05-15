@@ -8,10 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -104,5 +101,38 @@ class GenreJpaAdapterTest {
         genreJpaAdapter.deleteById(1L);
 
         verify(genreJpaRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    void shouldFindGenreByNomContainingSuccessfully() {
+        // GIVEN
+        String keyword = "RPG";
+        List<Genre> genres = new ArrayList<>();
+        Genre genre = Genre.builder().id(5L).nom("RPG").jeux(new ArrayList<>()).build();
+        GenreEntity entity = GenreMapper.toEntity(genre);
+        when(genreJpaRepository.findByNomContaining(keyword)).thenReturn(List.of(entity));
+
+        // WHEN
+        List<Genre> result = genreJpaAdapter.findByNomContaining(keyword);
+
+        // THEN
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals(genre.getNom(), result.get(0).getNom());
+        verify(genreJpaRepository, times(1)).findByNomContaining(keyword);
+    }
+
+    @Test
+    void shouldReturnEmptyListWhenNoGenreFound() {
+        // GIVEN
+        String keyword = "NonExistant";
+        when(genreJpaRepository.findByNomContaining(keyword)).thenReturn(Collections.emptyList());
+
+        // WHEN
+        List<Genre> result = genreJpaAdapter.findByNomContaining(keyword);
+
+        // THEN
+        assertTrue(result.isEmpty());
+        verify(genreJpaRepository, times(1)).findByNomContaining(keyword);
     }
 }

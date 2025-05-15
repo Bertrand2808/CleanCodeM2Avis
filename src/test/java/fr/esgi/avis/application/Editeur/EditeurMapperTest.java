@@ -55,19 +55,22 @@ class EditeurMapperTest {
 
     @Test
     void shouldConvertDomainToEntitySuccessfully() {
+        // Création de la plateforme
         Plateforme plateforme = Plateforme.builder()
                 .id(1L)
                 .nom("PlayStation 5")
                 .dateDeSortie(LocalDate.of(2020, 11, 12))
-                .jeux(List.of())
+                .jeux(new ArrayList<>())
                 .build();
 
+        // Création de l'éditeur pour le jeu
         Editeur jeuEditeur = Editeur.builder()
                 .id(1L)
                 .nom("Ubisoft")
-                .jeux(List.of())
+                .jeux(new ArrayList<>())
                 .build();
 
+        // Création du jeu
         Jeu jeu = Jeu.builder()
                 .id(1L)
                 .nom("Assassin's Creed Valhalla")
@@ -75,14 +78,21 @@ class EditeurMapperTest {
                 .plateformes(List.of(plateforme))
                 .build();
 
+        // Mise à jour des listes de jeux
+        List<Jeu> jeux = new ArrayList<>();
+        jeux.add(jeu);
+
+        // Création de l'éditeur complet avec sa liste de jeux
         Editeur fullEditeur = Editeur.builder()
                 .id(1L)
                 .nom("Ubisoft")
-                .jeux(List.of(jeu))
+                .jeux(jeux)
                 .build();
 
+        // Conversion en entité
         EditeurEntity entity = EditeurMapper.toEntity(fullEditeur);
 
+        // Vérifications
         assertNotNull(entity);
         assertEquals(fullEditeur.getId(), entity.getId());
         assertEquals(fullEditeur.getNom(), entity.getNom());

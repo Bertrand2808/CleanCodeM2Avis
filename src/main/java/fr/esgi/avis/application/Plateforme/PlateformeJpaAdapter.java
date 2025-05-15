@@ -54,4 +54,9 @@ public class PlateformeJpaAdapter implements PlateformeDataSourcePort {
     public void deleteById(Long id) {
         plateformeJpaRepository.deleteById(id);
     }
+
+    @Override
+    public long count() {
+        return plateformeJpaRepository.count();
+    }
 }

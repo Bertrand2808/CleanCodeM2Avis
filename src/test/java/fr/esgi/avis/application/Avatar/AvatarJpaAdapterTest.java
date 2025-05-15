@@ -86,4 +86,45 @@ class AvatarJpaAdapterTest {
         // THEN
         verify(avatarRepository, times(1)).deleteById(avatarId);
     }
+
+    @Test
+    void shouldNotFailWhenDeletingNonExistentAvatar() {
+        // GIVEN
+        Long avatarId = 999L;
+        doNothing().when(avatarRepository).deleteById(avatarId);
+
+        // WHEN
+        avatarJpaAdapter.deleteById(avatarId);
+
+        // THEN
+        verify(avatarRepository, times(1)).deleteById(avatarId);
+    }
+
+    @Test
+    void shouldCountAvatarsSuccessfully() {
+        // GIVEN
+        long expectedCount = 5L;
+        when(avatarRepository.count()).thenReturn(expectedCount);
+
+        // WHEN
+        long actualCount = avatarJpaAdapter.count();
+
+        // THEN
+        assertEquals(expectedCount, actualCount);
+        verify(avatarRepository, times(1)).count();
+    }
+
+    @Test
+    void shouldReturnZeroWhenNoAvatarsExist() {
+        // GIVEN
+        long expectedCount = 0L;
+        when(avatarRepository.count()).thenReturn(expectedCount);
+
+        // WHEN
+        long actualCount = avatarJpaAdapter.count();
+
+        // THEN
+        assertEquals(expectedCount, actualCount);
+        verify(avatarRepository, times(1)).count();
+    }
 }

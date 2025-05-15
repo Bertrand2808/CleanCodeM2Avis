@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 log/
+doc/coverage/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

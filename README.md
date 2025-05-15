@@ -1,6 +1,6 @@
 # 📌 Projet : Avis
 
-## Liens utiles : 
+## Liens utiles :
 - Notion : https://www.notion.so/Clean-Code-1b2449738dcc808587aef6d0a6b29ac0?pvs=4
 - Trello : https://trello.com/invite/b/67cec311863296c171fb4b17/ATTId9eb4e2fa4ae3afde4947794c88bbb325B0ADBAD/clean-code
 - Github : https://github.com/Bertrand2808/CleanCodeM2Avis
@@ -95,7 +95,7 @@ public class XUseCases {
         - **Mapper DTO** (`XDtoMapperTest`)
         - **Contrôleurs** (`XControllerTest`, `XRestControllerTest`)
 - **Tests d'intégrations**:
-  - A venir : tests des RestController 
+  - A venir : tests des RestController
 
 ### **6️⃣ Utilisation de DTO et Mapper**
 - **Pourquoi ?** Ne jamais exposer directement les objets métier.
@@ -105,7 +105,7 @@ public class XUseCases {
 - **Utilisation de `Lombok`** pour réduire le code répétitif (`@Data`, `@RequiredArgsConstructor`).
 - **Mappers centralisés** (`XMapper`, `XDtoMapper`) pour éviter la duplication de code.
 
-# Diagram Principal 
+# Diagram Principal
 
 Notes : Pour plus de lisibilité, voir le diagram sur **Notion**.
 
@@ -123,24 +123,14 @@ Lancer tous les tests unitaires et d'intégration :
 mvn test
 ```
 
-# Architecture du projet : détails 
+### Swagger
 
-## Avatar endpoint 
+```
+http://localhost:8080/swagger-ui/index.html
+```
 
-![AvatarDiagram.png](doc/AvatarDiagram.png)
+### Documentation
 
-## Joueur endpoint
-
-![JoueurDiagram.png](doc/JoueurDiagram.png)
-
-## Utilisateur endpoint
-
-![UtilisateurDiagram.png](doc/UtilisateurDiagram.png)
-
-## Avis endpoint
-
-![AvisDiagram.png](doc/AvisDiagram.png)
-
-## Moderateur endpoint
-
-![ModerateurDiagram.png](doc/ModerateurDiagram.png)
+```
+http://localhost:8080/doc/index.html
+```
