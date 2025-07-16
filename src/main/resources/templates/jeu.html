@@ -245,23 +245,63 @@
               },
               body: JSON.stringify(avisData),
             })
-              .then((response) => {
-                if (!response.ok) {
-                  return response.text().then((text) => {
-                    throw new Error(text || "Une erreur est survenue");
-                  });
-                }
-                return response.json();
-              })
-              .then((data) => {
-                // Succès : recharger la page pour afficher le nouvel avis
-                window.location.reload();
-              })
-              .catch((error) => {
-                // Affichage de l'erreur
-                alert(error.message);
-              });
+                    .then((response) => {
+                      if (!response.ok) {
+                        return response.text().then((text) => {
+                          throw new Error(text || "Une erreur est survenue");
+                        });
+                      }
+                      return response.json();
+                    })
+                    .then((data) => {
+                      // Remplacer le formulaire par un message de remerciement
+                      const formContainer = document.querySelector('.add-review-form');
+                      formContainer.innerHTML = `
+                <div class="alert alert-success text-center">
+                    <i class="bi bi-check-circle-fill fs-1 text-success"></i>
+                    <h4 class="mt-2">Merci pour votre avis !</h4>
+                    <p>Votre avis a été ajouté avec succès.</p>
+                </div>
+            `;
+
+                      // Ajouter le nouvel avis en haut de la liste
+                      addNewAvisToList(data, note, description);
+
+                      formContainer.scrollIntoView({ behavior: 'smooth' });
+                    })
+                    .catch((error) => {
+                      alert(error.message);
+                    });
           });
+        }
+
+        // Fonction pour ajouter le nouvel avis à la liste
+        function addNewAvisToList(avisData, note, description) {
+          const reviewList = document.querySelector('.review-list');
+          if (reviewList) {
+            const now = new Date();
+            const dateFormatted = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', {hour: '2-digit', minute: '2-digit'});
+
+            const newAvisHTML = `
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-author">
+                <i class="bi bi-person-circle"></i>
+                <span>Vous</span>
+              </div>
+              <div class="review-date">${dateFormatted}</div>
+            </div>
+            <div class="review-rating">
+              <i class="bi bi-star-fill"></i>
+              <span>${note}/20</span>
+            </div>
+            <div class="review-content mt-3">${description}</div>
+          </div>
+        `;
+
+            // Insérer en haut de la liste
+            reviewList.insertAdjacentHTML('afterbegin', newAvisHTML);
+          }
         }
       });
     </script>

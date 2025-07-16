@@ -63,9 +63,13 @@ public class AvisRestController {
             JoueurDTO joueur = (JoueurDTO) utilisateur;
 
             // Set required fields
-            avisDTO.setJoueurId(joueur.getId());
+            Long joueurId = joueur.getId();
+            if (joueurId == null) {
+                joueurId = 1L; // Valeur par défaut si l'ID du joueur n'est pas défini
+            }
+            avisDTO.setJoueurId(joueurId);
             avisDTO.setDateDEnvoi(LocalDateTime.now());
-            avisDTO.setModerateurId(1L); // Temporairement, on met le premier modérateur
+            avisDTO.setModerateurId(102L); // Temporairement, on met le premier modérateur
 
             log.info("Création d'un avis pour le jeu {} par le joueur {}", avisDTO.getJeuId(), joueur.getId());
 
